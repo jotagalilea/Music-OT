@@ -16,7 +16,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:paddingTop="0dp"
-        android:src="@drawable/musicIconMenu"
+        android:src="@drawable/ic_menu_musicatop"
         android:tint="#fe7300"/>
 
     <TextView
