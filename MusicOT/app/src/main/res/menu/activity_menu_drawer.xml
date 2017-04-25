@@ -9,7 +9,8 @@
         <item
             android:id="@+id/nav_albumes"
             android:icon="@drawable/ic_menu_albumes"
-            android:title="Albumes" />
+            android:title="Albumes"
+            android:onClick="albumMenuOnClick"/>
         <item
             android:id="@+id/nav_artista"
             android:icon="@drawable/ic_menu_artista"

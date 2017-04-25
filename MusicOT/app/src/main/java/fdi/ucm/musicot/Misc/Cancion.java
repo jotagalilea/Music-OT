@@ -1,4 +1,4 @@
-package fdi.ucm.musicot;
+package fdi.ucm.musicot.Misc;
 
 /**
  * Created by deekin on 25/04/17.

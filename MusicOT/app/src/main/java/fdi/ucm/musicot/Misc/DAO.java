@@ -1,4 +1,4 @@
-package fdi.ucm.musicot;
+package fdi.ucm.musicot.Misc;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
