@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 /**
- * Created by deekin on 24/04/17.
+ * Created by Javier/Julio on 24/04/17.
  *
  * DAO (Data Access Object) será la clase que utilizaremos para interacturar con la base de datos
  * sin tener que embarrar el código de resto de la aplicación con Stirngs y cosas SQL raras.
@@ -35,11 +35,28 @@ public class DAO extends SQLiteOpenHelper{
 
     }
 
+    /**
+     * Devuelve el array de Strings con los nombres de las columnas de la tabla dada.
+     * @param nombreTabla
+     * @return
+     */
+    public String[] getNombreColumnas(String nombreTabla){
+
+        String[] res = null;
+
+        switch(nombreTabla){
+
+            case "temas_table":{ res = COLS_TEMAS.clone(); }break;
+        }
+
+        return res;
+    }
+
     //------------------------------------------------------
 
     /**
      * Genera un String que contiene un CREATE TABLE con el nombre de la tabla y las columnas dadas,
-     * EL PRIMER ELEMENTO DEL ARRAY "nombreColumnas" SERÁ EL KEY
+     * EL ULTIMO ELEMENTO DEL ARRAY "nombreColumnas" SERÁ EL KEY
      * @param nombreTabla
      * @param nombreColumnas
      * @return
@@ -55,7 +72,48 @@ public class DAO extends SQLiteOpenHelper{
                 res = res + nombreColumnas[i] + ",";
             }
 
-            res = nombreColumnas[nombreColumnas.length-1] + ")";
+            res = res + nombreColumnas[nombreColumnas.length-1] + "PRIMARY KEY)";
+        }
+
+        return res;
+    }
+
+    /**
+     * Genera el comando SQL para eliminar la tabla pasada por variable
+     * @param nombreTabla
+     * @return
+     */
+    private String deleteTable(String nombreTabla){
+
+        String res = null;
+
+        res = "DROP TABLE" + nombreTabla;
+
+        return res;
+    }
+
+    /**
+     * Devuelve un string con la linea SELECT SQl generada
+     * @param nombreTabla
+     * @param nombreColumnas
+     * @param condiciones
+     * @return
+     */
+    private String selectSQLString(String nombreTabla, String[] nombreColumnas, String[] condiciones){
+
+        String res = null;
+
+        res = "SELECT * FROM "+ nombreTabla;
+
+        if(condiciones.length >= 1){
+
+            res +=" WHERE ";
+
+            for (int i=0;i<condiciones.length-2;i++ ) {
+                res = res +nombreColumnas[i] + condiciones[i] + ",";
+            }
+
+            res = res + condiciones[condiciones.length-1] + ")";
         }
 
         return res;

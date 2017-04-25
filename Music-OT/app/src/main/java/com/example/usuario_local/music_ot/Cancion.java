@@ -5,4 +5,14 @@ package com.example.usuario_local.music_ot;
  */
 
 public class Cancion {
+
+    private String titulo;
+    private String album;
+
+    public Cancion(){
+        this.album = null;
+        this.titulo = null;
+    }
+
+
 }
