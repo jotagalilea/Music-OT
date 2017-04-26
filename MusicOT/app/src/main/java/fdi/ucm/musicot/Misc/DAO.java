@@ -40,7 +40,9 @@ public class DAO {
 
     public DAO(){
 
-        for (int i=0; i<NUM_TEMAS-1;i++ ) {
+        canciones = new Cancion[NUM_TEMAS];
+
+        for (int i=0; i<NUM_TEMAS;i++ ) {
             //Crea las canciones con los datos dummies en el String
             canciones[i] = new Cancion(
                     tituloAlbumArtista[i][0],
@@ -57,7 +59,7 @@ public class DAO {
 
         Cancion[] lista = new Cancion[NUM_TEMAS];
 
-        for (int i=0;i<NUM_TEMAS-1;i++) {
+        for (int i=0;i<NUM_TEMAS;i++) {
             lista[i] = canciones[i].clone();
         }
 

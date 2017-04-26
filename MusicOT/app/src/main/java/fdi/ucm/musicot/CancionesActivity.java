@@ -1,13 +1,20 @@
 package fdi.ucm.musicot;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Layout;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.GridLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.usuario_local.music_ot.R;
 
@@ -27,12 +34,12 @@ public class CancionesActivity extends AppCompatActivity {
         //---------------- A partir de aqui no es código automático
 
         //Rellenamos con todas las canciones disponibles en la aplicación
-        mContieneCanciones = (GridLayout) findViewById(R.id.contenedor_albumes);
+        mContieneCanciones = (GridLayout) findViewById(R.id.contenedor_canciones);
 
         Cancion[] listaCanciones = MenuActivity.dao.getListaCanciones();
 
         for (Cancion tema: listaCanciones ) {
-            mContieneCanciones.addView(this.generateLinearCanciones(tema));
+            this.generateLinearCanciones(tema);
         }
     }
 
@@ -44,27 +51,54 @@ public class CancionesActivity extends AppCompatActivity {
      */
     private LinearLayout generateLinearCanciones(Cancion cancion){
 
-        //TODO(2) Terminar esta función, hay que investigar como generar un Linealayout con propiedades
-        LinearLayout resCancion = null;
+        LinearLayout linearLayout = new LinearLayout(this);
 
-        return resCancion;
+        //Damos las propiedades al LinearLayout
+        linearLayout.setLayoutParams(
+                new LinearLayout.LayoutParams(
+                        convertirAdp(143), ViewGroup.LayoutParams.WRAP_CONTENT)
+        );
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
+
+        //----- ImageView -----
+        ImageView imageView = new ImageView(this);
+
+        imageView.setLayoutParams(
+                new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT, convertirAdp(150))
+        );
+        // TODO Averiguar como funciona lo de poner imagenes en el ImageView
+
+        //----- TextView -----
+        TextView textView = new TextView(this);
+
+        textView.setLayoutParams(
+                new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT, convertirAdp(20))
+        );
+        textView.setGravity(Gravity.CENTER);
+        textView.setText(cancion.getTitulo());
+        textView.setBackgroundColor(Color.RED);
+
+        //Se añaden los componentes al LinearLayout
+        linearLayout.addView(imageView);
+        linearLayout.addView(textView);
+
+        linearLayout.setBackgroundColor(Color.CYAN);
+
+        mContieneCanciones.addView(linearLayout);
+
+        return linearLayout;
     }
 
-    /*  <LinearLayout
-            android:layout_width="130dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:onClick="">
+    /**
+     * Convierte el numero introducido a DP
+     * @param num
+     * @return
+     */
+    private int convertirAdp(int num){
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:src="@drawable/ic_menu_albumes"></ImageView>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_gravity="center"
-                android:text="HOLA HOLA"></TextView>
-        </LinearLayout>
-    */
+        return (int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP, num, getResources().getDisplayMetrics());
+    }
 }

@@ -22,12 +22,12 @@ public class MenuActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        dao = new DAO();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        dao = new DAO();
 
         /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -117,6 +117,11 @@ public class MenuActivity extends AppCompatActivity
 
         startActivity(moveToAlbumes);
 
+    }
+
+    public DAO getDAO(){
+
+        return this.dao;
     }
 
 }
