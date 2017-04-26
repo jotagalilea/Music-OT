@@ -13,8 +13,12 @@ import android.view.MenuItem;
 
 import com.example.usuario_local.music_ot.R;
 
+import fdi.ucm.musicot.Misc.DAO;
+
 public class MenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    public static DAO dao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +26,8 @@ public class MenuActivity extends AppCompatActivity
         setContentView(R.layout.activity_menu);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        dao = new DAO();
 
         /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -90,14 +96,27 @@ public class MenuActivity extends AppCompatActivity
     }
 
     /**
-     * Va a la ventana menu ( onClick )
+     * Va a la ventana Albumes ( onClick )
      * @param menuItem
      */
-    public void albumMenuOnClick(MenuItem menuItem){
+    public void albumMenuAlbumesOnClick(MenuItem menuItem){
 
         Intent moveToAlbumes = new Intent(this, AlbumesActivity.class);
 
         startActivity(moveToAlbumes);
 
     }
+
+    /**
+     * Va a la ventana Canciones ( onClick )
+     * @param menuItem
+     */
+    public void albumMenuTemasOnClick(MenuItem menuItem){
+
+        Intent moveToAlbumes = new Intent(this, CancionesActivity.class);
+
+        startActivity(moveToAlbumes);
+
+    }
+
 }
