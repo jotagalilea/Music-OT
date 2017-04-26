@@ -12,6 +12,4 @@
     tools:context="fdi.ucm.musicot.MenuActivity"
     tools:showIn="@layout/app_bar_menu">
 
-
-
 </RelativeLayout>
