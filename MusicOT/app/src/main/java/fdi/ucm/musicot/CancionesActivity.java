@@ -54,10 +54,12 @@ public class CancionesActivity extends AppCompatActivity {
         LinearLayout linearLayout = new LinearLayout(this);
 
         //Damos las propiedades al LinearLayout
-        linearLayout.setLayoutParams(
-                new LinearLayout.LayoutParams(
-                        convertirAdp(143), ViewGroup.LayoutParams.WRAP_CONTENT)
+        LinearLayout.LayoutParams linearParams = new LinearLayout.LayoutParams(
+                convertirAdp(143), ViewGroup.LayoutParams.WRAP_CONTENT
         );
+        linearParams.leftMargin = convertirAdp(2);
+
+        linearLayout.setLayoutParams(linearParams);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
 
         //----- ImageView -----
@@ -67,16 +69,20 @@ public class CancionesActivity extends AppCompatActivity {
                 new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT, convertirAdp(150))
         );
+        imageView.setImageDrawable(
+                getResources().getDrawable(R.drawable.ic_menu_temas));
         // TODO Averiguar como funciona lo de poner imagenes en el ImageView
 
         //----- TextView -----
         TextView textView = new TextView(this);
 
-        textView.setLayoutParams(
-                new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.WRAP_CONTENT, convertirAdp(20))
+        LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT, convertirAdp(20)
         );
-        textView.setGravity(Gravity.CENTER);
+        textParams.gravity = Gravity.CENTER;
+
+        textView.setLayoutParams( textParams );
+
         textView.setText(cancion.getTitulo());
         textView.setBackgroundColor(Color.RED);
 
