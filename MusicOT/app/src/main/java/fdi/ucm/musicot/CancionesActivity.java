@@ -2,14 +2,9 @@ package fdi.ucm.musicot;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Layout;
-import android.util.TypedValue;
 import android.view.Gravity;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
 import android.widget.ImageView;
@@ -18,7 +13,8 @@ import android.widget.TextView;
 
 import com.example.usuario_local.music_ot.R;
 
-import fdi.ucm.musicot.Misc.Cancion;
+import fdi.ucm.musicot.Modelo.Cancion;
+import fdi.ucm.musicot.Misc.Utils;
 
 public class CancionesActivity extends AppCompatActivity {
 
@@ -55,10 +51,8 @@ public class CancionesActivity extends AppCompatActivity {
 
         //Damos las propiedades al LinearLayout
         LinearLayout.LayoutParams linearParams = new LinearLayout.LayoutParams(
-                convertirAdp(143), ViewGroup.LayoutParams.WRAP_CONTENT
+                Utils.convertirAdp(130, this), ViewGroup.LayoutParams.WRAP_CONTENT
         );
-        linearParams.leftMargin = convertirAdp(2);
-
         linearLayout.setLayoutParams(linearParams);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
 
@@ -67,7 +61,7 @@ public class CancionesActivity extends AppCompatActivity {
 
         imageView.setLayoutParams(
                 new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT, convertirAdp(150))
+                        LinearLayout.LayoutParams.MATCH_PARENT, Utils.convertirAdp(150, this))
         );
         imageView.setImageDrawable(
                 getResources().getDrawable(R.drawable.ic_menu_temas));
@@ -77,7 +71,7 @@ public class CancionesActivity extends AppCompatActivity {
         TextView textView = new TextView(this);
 
         LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT, convertirAdp(20)
+                LinearLayout.LayoutParams.WRAP_CONTENT, Utils.convertirAdp(20, this)
         );
         textParams.gravity = Gravity.CENTER;
 
@@ -86,9 +80,23 @@ public class CancionesActivity extends AppCompatActivity {
         textView.setText(cancion.getTitulo());
         textView.setBackgroundColor(Color.RED);
 
+        //----- TextViewAlbum -----
+        TextView textViewAlbum = new TextView(this);
+
+        LinearLayout.LayoutParams textParamsAlbum = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT, Utils.convertirAdp(20, this)
+        );
+        textParamsAlbum.gravity = Gravity.CENTER;
+
+        textViewAlbum.setLayoutParams( textParamsAlbum );
+
+        textViewAlbum.setText(cancion.getAlbum().getTitulo());
+        textViewAlbum.setBackgroundColor(Color.GREEN);
+
         //Se añaden los componentes al LinearLayout
         linearLayout.addView(imageView);
         linearLayout.addView(textView);
+        linearLayout.addView(textViewAlbum);
 
         linearLayout.setBackgroundColor(Color.CYAN);
 
@@ -97,14 +105,4 @@ public class CancionesActivity extends AppCompatActivity {
         return linearLayout;
     }
 
-    /**
-     * Convierte el numero introducido a DP
-     * @param num
-     * @return
-     */
-    private int convertirAdp(int num){
-
-        return (int) TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP, num, getResources().getDisplayMetrics());
-    }
 }

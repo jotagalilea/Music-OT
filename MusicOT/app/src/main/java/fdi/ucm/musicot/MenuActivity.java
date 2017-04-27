@@ -13,7 +13,7 @@ import android.view.MenuItem;
 
 import com.example.usuario_local.music_ot.R;
 
-import fdi.ucm.musicot.Misc.DAO;
+import fdi.ucm.musicot.Modelo.DAO;
 
 public class MenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

@@ -1,8 +1,6 @@
-package fdi.ucm.musicot.Misc;
+package fdi.ucm.musicot.Modelo;
 
-import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
+import java.util.Arrays;
 
 /**
  * Created by Javier/Julio on 24/04/17.
@@ -18,77 +16,178 @@ public class DAO {
 
     //Titulo[i][0] / Album[i][1] / Artista[i][2]
     public String[][] tituloAlbumArtista = {
-            {"40:1","War and Victory","Sabaton"},
-            {"Wolf Pack","Primo Victoria","Sabaton"},
-            {"Swedish Pagans","Last Stance","Sabaton"},
-            {"Sparta","Last Stance","Sabaton"},
-            {"Dare(La La La)","Shakira","Shakira"},
-            {"Primo Victoria","Primo Victoria","Sabaton"},
-            {"Murmaider","The Dethalbum","Dethklok"},
-            {"Awaken","The Dethalbum","Dethklok"},
-            {"Face Fisted","The Dethalbum","Dethklok"},
-            {"Deththeme","The Dethalbum","Dethklok"} };
+            {"40:1", "War and Victory", "Sabaton"},
+            {"Wolf Pack", "Primo Victoria", "Sabaton"},
+            {"Swedish Pagans", "Last Stance", "Sabaton"},
+            {"Sparta", "Last Stance", "Sabaton"},
+            {"Dare(La La La)", "Shakira", "Shakira"},
+            {"Primo Victoria", "Primo Victoria", "Sabaton"},
+            {"Murmaider", "The Dethalbum", "Dethklok"},
+            {"Awaken", "The Dethalbum", "Dethklok"},
+            {"Face Fisted", "The Dethalbum", "Dethklok"},
+            {"Deththeme", "The Dethalbum", "Dethklok"}};
 
-    //String de canciones dummies
-    private Cancion[] canciones;
-
+    public static Cancion[] canciones;
+    public static Album[] albumes;
+    public static Artista[] artistas;
 
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!! COSAS QUE FALTAN POR HACER !!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // TODO(1) Relacionar la imagen con el album, eso no tengo claro como hacerlo
 
-    public DAO(){
+    public DAO() {
 
         canciones = new Cancion[NUM_TEMAS];
+        albumes = new Album[0];
+        artistas = new Artista[0];
 
-        for (int i=0; i<NUM_TEMAS;i++ ) {
+        for (int i = 0; i < NUM_TEMAS; i++) {
+
             //Crea las canciones con los datos dummies en el String
+            Album currAlbum = this.albumExiste(tituloAlbumArtista[i][1], tituloAlbumArtista[i][2]);
+            Artista currArtista = this.artistaExiste(tituloAlbumArtista[i][2]);
+
+            if(currAlbum != null)
+                System.out.println("Album leido numero "+i+": "+currAlbum.getTitulo());
+            else
+                System.out.println("Album leido numero "+i);
+
+            if (currAlbum == null) {
+                if (currArtista == null) {
+                    currArtista = new Artista(tituloAlbumArtista[i][2]);
+                    artistas = Arrays.copyOf(artistas, artistas.length + 1);
+                    artistas[artistas.length-1] = currArtista;
+                }
+                currAlbum = new Album(tituloAlbumArtista[i][1], currArtista);
+                albumes = Arrays.copyOf(albumes, albumes.length + 1);
+                albumes[albumes.length-1] = currAlbum;
+                currArtista.addAlbum(currAlbum);
+            }
+
             canciones[i] = new Cancion(
                     tituloAlbumArtista[i][0],
-                    tituloAlbumArtista[i][1],
-                    tituloAlbumArtista[i][2] );
+                    currAlbum,
+                    currArtista);
+
+            canciones[i].getAlbum().addCancion(canciones[i]);
+            currAlbum.addCancion(canciones[i]);
+            currArtista.addCancion(canciones[i]);
         }
+    }
+
+    /**
+     * Devuelve el objeto album si ya existe uno con estas características, sino devuelve null
+     *
+     * @param nombreAlbum
+     * @param artista
+     * @return
+     */
+    private Album albumExiste(String nombreAlbum, String artista) {
+
+        Album res = null;
+        int i = 0;
+
+        while (i < this.albumes.length && (res == null)) {
+            //Si el album no existe ya
+            if (albumes[i].getTitulo().equalsIgnoreCase(nombreAlbum) &&
+                    albumes[i].getArtista().getNombre().equalsIgnoreCase(artista)) {
+                res = albumes[i];
+            }
+            i++;
+        }
+
+        return res;
+    }
+
+    /**
+     * Devuelve el objeto Artista con el nombre dado, si no existe se devuelve null
+     *
+     * @param nombreArtista
+     * @return
+     */
+    private Artista artistaExiste(String nombreArtista) {
+
+        Artista res = null;
+        int i = 0;
+
+        while (i < this.artistas.length && (res == null)) {
+            //Si el album no existe ya
+            if (artistas[i].getNombre().equalsIgnoreCase(nombreArtista)) {
+                res = artistas[i];
+            }
+            i++;
+        }
+
+        return res;
     }
 
     /**
      * Devuelve una lista con todas las canciones almacenadas en la aplicacion.
+     *
      * @return
      */
-    public Cancion[] getListaCanciones(){
+    public Cancion[] getListaCanciones() {
 
-        Cancion[] lista = new Cancion[NUM_TEMAS];
+        /*Cancion[] lista = new Cancion[NUM_TEMAS];
 
-        for (int i=0;i<NUM_TEMAS;i++) {
+        for (int i = 0; i < NUM_TEMAS; i++) {
             lista[i] = canciones[i].clone();
-        }
+        }*/
 
-        return lista;
+        return DAO.canciones;
     }
 
     /**
      * Devuelve la canción con el ID introducido, devuelve null si la canción no existe.
+     *
      * @param ID
      * @return
      */
-    public Cancion getCancionByID(int ID){
+    public Cancion getCancionByID(int ID) {
 
         Cancion canRes = this.canciones[ID];
 
         return canRes.clone();
     }
 
+    public Album[] getListaAlbumes() {
+
+        /*Album[] lista = new Album[NUM_TEMAS];
+
+        for (int i = 0; i < NUM_TEMAS; i++) {
+            lista[i] =
+        }*/
+
+        return DAO.albumes;
+    }
+
     /**
      * Devuelve el numero de temas almacenados en la BBDD
+     *
      * @return
      */
-    public int getNumeroTemas(){
+    public int getNumeroTemas() {
 
         return NUM_TEMAS;
     }
+
+//--------------------
+//----- GETTER's -----
+//--------------------
+
+    public Cancion[] getCanciones() {
+        return Arrays.copyOf(this.canciones, canciones.length);
+    }
+
+    private Album[] getAlbum() {
+        return Arrays.copyOf(this.albumes, albumes.length);
+    }
+
+    private Artista[] getArtista() {
+        return Arrays.copyOf(this.artistas, artistas.length);
+    }
 }
-
-
 //------------------------------------------------------------------------------------------
 //------ No se recuperara esta parte del código hasta que no se vaya a hacer la BBDD -------
 //------------------------------------------------------------------------------------------

@@ -1,4 +1,4 @@
-package fdi.ucm.musicot.Misc;
+package fdi.ucm.musicot.Modelo;
 
 /**
  * Created by deekin on 25/04/17.
@@ -7,18 +7,28 @@ package fdi.ucm.musicot.Misc;
 public class Cancion {
 
     private String titulo;
-    private String album;
-    private String artista;
+    private Album album;
+    private Artista artista;
 
     public Cancion(){
         this.album = null;
         this.titulo = null;
+        this.artista = null;
     }
 
-    public Cancion(String titulo, String album, String artista){
+    public Cancion(String titulo, Album album, Artista artista){
         this.album = album;
         this.titulo = titulo;
         this.artista = artista;
+
+    }
+
+    public void setArtista(Artista newArtista){
+        this.artista = newArtista;
+    }
+
+    public void setAlbum(Album newAlbum){
+        this.album = newAlbum;
     }
 
     /**
@@ -40,11 +50,9 @@ public class Cancion {
         return titulo;
     }
 
-    public String getAlbum() {
+    public Album getAlbum() {
         return album;
     }
 
-    public String getArtista() {
-        return artista;
-    }
+    public Artista getArtista() { return artista; }
 }
