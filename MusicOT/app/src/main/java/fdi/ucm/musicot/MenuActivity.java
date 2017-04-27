@@ -1,8 +1,10 @@
 package fdi.ucm.musicot;
 
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -116,6 +118,20 @@ public class MenuActivity extends AppCompatActivity
         Intent moveToAlbumes = new Intent(this, CancionesActivity.class);
 
         startActivity(moveToAlbumes);
+
+    }
+
+    /**
+     * Va a la ventana Canciones ( onClick )
+     * @param menuItem
+     */
+    public void albumMenuArtistasOnClick(MenuItem menuItem){
+
+        /*Intent moveToAlbumes = new Intent(this, CancionesActivity.class);
+
+        startActivity(moveToAlbumes);
+*/
+
 
     }
 
