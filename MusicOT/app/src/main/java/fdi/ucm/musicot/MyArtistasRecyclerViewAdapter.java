@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.usuario_local.music_ot.R;
+
 import fdi.ucm.musicot.ArtistasFragment.OnListFragmentInteractionListener;
 import fdi.ucm.musicot.dummy.DummyContent.DummyItem;
 

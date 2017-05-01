@@ -3,6 +3,7 @@ package fdi.ucm.musicot;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.ViewGroup;
@@ -51,7 +52,8 @@ public class CancionesActivity extends AppCompatActivity {
 
         //Damos las propiedades al LinearLayout
         LinearLayout.LayoutParams linearParams = new LinearLayout.LayoutParams(
-                Utils.convertirAdp(130, this), ViewGroup.LayoutParams.WRAP_CONTENT
+                //Utils.convertirAdp(130, this), ViewGroup.LayoutParams.WRAP_CONTENT
+                Utils.convertirAdp(110, this), ViewGroup.LayoutParams.WRAP_CONTENT
         );
         linearLayout.setLayoutParams(linearParams);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
@@ -61,7 +63,7 @@ public class CancionesActivity extends AppCompatActivity {
 
         imageView.setLayoutParams(
                 new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT, Utils.convertirAdp(150, this))
+                        LinearLayout.LayoutParams.MATCH_PARENT, Utils.convertirAdp(0, this), 0.7f)
         );
         imageView.setImageDrawable(
                 getResources().getDrawable(R.drawable.ic_menu_temas));
@@ -71,7 +73,7 @@ public class CancionesActivity extends AppCompatActivity {
         TextView textView = new TextView(this);
 
         LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT, Utils.convertirAdp(20, this)
+                LinearLayout.LayoutParams.MATCH_PARENT, Utils.convertirAdp(0, this), 0.15f
         );
         textParams.gravity = Gravity.CENTER;
 
@@ -84,7 +86,7 @@ public class CancionesActivity extends AppCompatActivity {
         TextView textViewAlbum = new TextView(this);
 
         LinearLayout.LayoutParams textParamsAlbum = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT, Utils.convertirAdp(20, this)
+                LinearLayout.LayoutParams.MATCH_PARENT, Utils.convertirAdp(0, this), 0.15f
         );
         textParamsAlbum.gravity = Gravity.CENTER;
 
@@ -93,10 +95,24 @@ public class CancionesActivity extends AppCompatActivity {
         textViewAlbum.setText(cancion.getAlbum().getTitulo());
         textViewAlbum.setBackgroundColor(Color.GREEN);
 
+        ///////////////////////////////////////////////////////
+        LinearLayout item = new LinearLayout(this);
+        item.setLayoutParams(new LinearLayoutCompat.LayoutParams(
+                Utils.convertirAdp(100, this), ViewGroup.LayoutParams.WRAP_CONTENT
+        ));
+
+        item.setOrientation(LinearLayout.VERTICAL);
+
+        item.addView(imageView);
+        item.addView(textView);
+        item.addView(textViewAlbum);
+
+        linearLayout.addView(item);
+        ///////////////////////////////////////////////////////
         //Se añaden los componentes al LinearLayout
-        linearLayout.addView(imageView);
+        /*linearLayout.addView(imageView);
         linearLayout.addView(textView);
-        linearLayout.addView(textViewAlbum);
+        linearLayout.addView(textViewAlbum);*/
 
         linearLayout.setBackgroundColor(Color.CYAN);
 
