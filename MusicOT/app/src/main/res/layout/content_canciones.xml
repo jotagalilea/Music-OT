@@ -9,7 +9,7 @@
     tools:showIn="@layout/activity_canciones">
 
 
-    <GridLayout
+    <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/contenedor_canciones">
@@ -31,5 +31,5 @@
         </TableRow>
     -->
 
-    </GridLayout>
+    </TableLayout>
 </android.support.v4.widget.NestedScrollView>
