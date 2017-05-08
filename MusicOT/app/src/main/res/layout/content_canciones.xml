@@ -8,29 +8,28 @@
     tools:context="fdi.ucm.musicot.CancionesActivity"
     tools:showIn="@layout/activity_canciones">
 
-    <GridLayout
-        android:id="@+id/contenedor_canciones"
-        android:layout_height="200dp"
+
+    <TableLayout
         android:layout_width="match_parent"
-        android:columnCount="3"
-        android:layout_columnSpan="3">
+        android:layout_height="wrap_content"
+        android:id="@+id/contenedor_canciones">
 
-        <LinearLayout
-            android:layout_width="130dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:onClick="">
+       <!--<TableRow
+           android:layout_width="match_parent"
+           android:layout_height="match_parent">
+           <LinearLayout
+               android:layout_height="wrap_content"
+               android:layout_width="0dp"
+               android:layout_weight="1">
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="20dp"
+                   android:layout_gravity="center"
+                   android:text="HOLA HOLA">
+               </TextView>
+           </LinearLayout>
+        </TableRow>
+    -->
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:src="@drawable/ic_menu_albumes"></ImageView>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_gravity="center"
-                android:text="HOLA HOLA"></TextView>
-        </LinearLayout>
-
-    </GridLayout>
+    </TableLayout>
 </android.support.v4.widget.NestedScrollView>

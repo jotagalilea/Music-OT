@@ -1,21 +1,32 @@
 package fdi.ucm.musicot;
 
+import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.GridLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 
 import com.example.usuario_local.music_ot.R;
 
-import fdi.ucm.musicot.Misc.Cancion;
+import fdi.ucm.musicot.Modelo.Cancion;
+import fdi.ucm.musicot.Misc.Utils;
+
+import static android.view.Gravity.FILL_HORIZONTAL;
 
 public class CancionesActivity extends AppCompatActivity {
 
-    GridLayout mContieneCanciones;
+    TableLayout mContieneCanciones;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,44 +38,139 @@ public class CancionesActivity extends AppCompatActivity {
         //---------------- A partir de aqui no es código automático
 
         //Rellenamos con todas las canciones disponibles en la aplicación
-        mContieneCanciones = (GridLayout) findViewById(R.id.contenedor_albumes);
+        mContieneCanciones = (TableLayout) findViewById(R.id.contenedor_canciones);
 
         Cancion[] listaCanciones = MenuActivity.dao.getListaCanciones();
 
-        for (Cancion tema: listaCanciones ) {
-            mContieneCanciones.addView(this.generateLinearCanciones(tema));
+        //int iFila = 0;
+        TableRow fila = new TableRow(this);
+        mContieneCanciones.addView(fila);
+        final byte maxItems = 3;
+        byte i = 1;
+        for (Cancion tema: listaCanciones) {
+            if (i < maxItems){
+                i++;
+            }
+            else {
+                i = 1;
+                fila = new TableRow(this);
+                mContieneCanciones.addView(fila);
+            }
+            fila.addView(generateLinearCanciones(tema));
+
+            //mContieneCanciones.addView(generateLinearCanciones(tema)); //BORRAR ESTA LÍNEA CUNADO FUNCIONE LA TABLA.
+            /*try {// Intenta coger la fila. Si está creada hay que rellenarla.
+                fila = (TableRow) mContieneCanciones.getChildAt(iFila);
+                if (i < maxItems)
+                    i++;
+                else {
+                    i = 1;
+                    iFila++;
+                    fila = (TableRow) mContieneCanciones.getChildAt(iFila);
+                }
+
+            }
+            catch (Exception e){ // Si no está creada se crea.
+                fila = new TableRow(this);
+            }*/
         }
     }
 
     /**
-     * Convierte el objeto Canción introducido en un formato XML de layout para presentarlo en GridLayout
+     * Convierte el objeto Canción introducido en un formato XML de layout para presentarlo en TableLayout
      *
      * @param cancion
      * @return
      */
     private LinearLayout generateLinearCanciones(Cancion cancion){
 
-        //TODO(2) Terminar esta función, hay que investigar como generar un Linealayout con propiedades
-        LinearLayout resCancion = null;
+        LinearLayout linearLayout = new LinearLayout(this);
 
-        return resCancion;
+        //Damos las propiedades al LinearLayout
+        LinearLayout.LayoutParams linearParams = new LinearLayout.LayoutParams(
+                //Utils.convertirAdp(130, this), ViewGroup.LayoutParams.WRAP_CONTENT
+                Utils.convertirAdp(0, this), ViewGroup.LayoutParams.WRAP_CONTENT, 1f
+        );
+        linearLayout.setLayoutParams(linearParams);
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
+
+        //----- ImageView -----
+        ImageView imageView = new ImageView(this);
+
+        imageView.setLayoutParams(
+                new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT, Utils.convertirAdp(50, this))
+        );
+        imageView.setImageDrawable(
+                getResources().getDrawable(R.drawable.ic_menu_temas));
+        // TODO Averiguar como funciona lo de poner imagenes en el ImageView
+
+        //----- TextView -----
+        TextView textView = new TextView(this);
+
+        LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, Utils.convertirAdp(20, this)
+        );
+        textParams.gravity = Gravity.CENTER;
+
+        textView.setLayoutParams( textParams );
+
+        textView.setText(cancion.getTitulo());
+        textView.setBackgroundColor(Color.RED);
+
+        //----- TextViewAlbum -----
+        TextView textViewAlbum = new TextView(this);
+
+        LinearLayout.LayoutParams textParamsAlbum = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, Utils.convertirAdp(20, this)
+        );
+        textParamsAlbum.gravity = Gravity.CENTER;
+
+        textViewAlbum.setLayoutParams( textParamsAlbum );
+
+        textViewAlbum.setText(cancion.getAlbum().getTitulo());
+        textViewAlbum.setBackgroundColor(Color.GREEN);
+
+        ///////////////////////////////////////////////////////
+        /*LinearLayout item = new LinearLayout(this);
+
+        item.setOrientation(LinearLayout.VERTICAL);
+
+        item.addView(imageView);
+        item.addView(textView);
+        item.addView(textViewAlbum);
+
+        linearLayout.addView(item);*/
+        ///////////////////////////////////////////////////////
+
+        //Se añaden los componentes al LinearLayout
+        linearLayout.addView(imageView);
+        linearLayout.addView(textView);
+        linearLayout.addView(textViewAlbum);
+
+        linearLayout.setBackgroundColor(Color.CYAN);
+
+        //mContieneCanciones.addView(linearLayout);
+
+        //////////////////////////////////////////////////////////
+        linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog alertDialog = new AlertDialog.Builder(CancionesActivity.this).create();
+                alertDialog.setTitle("Alert");
+                alertDialog.setMessage("cancion pulsada. Bieeeeen!!");
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.show();
+            }
+        });
+        /////////////////////////////////////////////////////////////
+
+        return linearLayout;
     }
 
-    /*  <LinearLayout
-            android:layout_width="130dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:onClick="">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:src="@drawable/ic_menu_albumes"></ImageView>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_gravity="center"
-                android:text="HOLA HOLA"></TextView>
-        </LinearLayout>
-    */
 }

@@ -1,8 +1,10 @@
 package fdi.ucm.musicot;
 
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -13,7 +15,7 @@ import android.view.MenuItem;
 
 import com.example.usuario_local.music_ot.R;
 
-import fdi.ucm.musicot.Misc.DAO;
+import fdi.ucm.musicot.Modelo.DAO;
 
 public class MenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -22,12 +24,12 @@ public class MenuActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        dao = new DAO();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        dao = new DAO();
 
         /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -117,6 +119,25 @@ public class MenuActivity extends AppCompatActivity
 
         startActivity(moveToAlbumes);
 
+    }
+
+    /**
+     * Va a la ventana Canciones ( onClick )
+     * @param menuItem
+     */
+    public void albumMenuArtistasOnClick(MenuItem menuItem){
+
+        /*Intent moveToAlbumes = new Intent(this, CancionesActivity.class);
+
+        startActivity(moveToAlbumes);
+*/
+
+
+    }
+
+    public DAO getDAO(){
+
+        return this.dao;
     }
 
 }
