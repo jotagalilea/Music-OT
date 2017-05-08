@@ -25,10 +25,8 @@ import fdi.ucm.musicot.Misc.Utils;
 public class CancionesActivity extends AppCompatActivity {
 
     TableLayout mContieneCanciones;
-    /* Hacer un método que cambie el número de columnas de la tabla
-     para cuando cambie la orientación del dispositivo.
-      */
-    static final byte maxItems = 3;
+    // TODO Hacer un método que modifique el número de columnas según la orientación del cacharro.
+    static final byte maxColumnas = 3;
 
 
     @Override
@@ -50,7 +48,7 @@ public class CancionesActivity extends AppCompatActivity {
         byte i = 1;
         fila.addView(generateLinearCanciones(listaCanciones[0]));
         for (Cancion tema: listaCanciones) {
-            if (i < maxItems){
+            if (i < maxColumnas){
                 i++;
             }
             else {
@@ -79,12 +77,13 @@ public class CancionesActivity extends AppCompatActivity {
         ImageView imageView = new ImageView(this);
 
         imageView.setLayoutParams(
-                new LinearLayout.LayoutParams(              //HAY QUE PONER LAS DIMENSIONES PA QUE LA IMAGEN SEA CUADRADA
+                new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT, Utils.convertirAdp(50, this))
         );
         imageView.setImageDrawable(
                 getResources().getDrawable(R.drawable.ic_menu_temas));
-        // TODO Averiguar como funciona lo de poner imagenes en el ImageView
+        // TODO Averiguar como funciona lo de poner imagenes en el ImageView.
+        // TODO Hacer que las imágenes salgan cuadradas.
 
         //----- TextView -----
         TextView textView = new TextView(this);
