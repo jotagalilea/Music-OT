@@ -5,12 +5,9 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
@@ -22,11 +19,17 @@ import com.example.usuario_local.music_ot.R;
 import fdi.ucm.musicot.Modelo.Cancion;
 import fdi.ucm.musicot.Misc.Utils;
 
-import static android.view.Gravity.FILL_HORIZONTAL;
+
+
 
 public class CancionesActivity extends AppCompatActivity {
 
     TableLayout mContieneCanciones;
+    /* Hacer un método que cambie el número de columnas de la tabla
+     para cuando cambie la orientación del dispositivo.
+      */
+    static final byte maxItems = 3;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,14 +42,13 @@ public class CancionesActivity extends AppCompatActivity {
 
         //Rellenamos con todas las canciones disponibles en la aplicación
         mContieneCanciones = (TableLayout) findViewById(R.id.contenedor_canciones);
-
+        mContieneCanciones.setStretchAllColumns(true);
         Cancion[] listaCanciones = MenuActivity.dao.getListaCanciones();
 
-        //int iFila = 0;
         TableRow fila = new TableRow(this);
         mContieneCanciones.addView(fila);
-        final byte maxItems = 3;
         byte i = 1;
+        fila.addView(generateLinearCanciones(listaCanciones[0]));
         for (Cancion tema: listaCanciones) {
             if (i < maxItems){
                 i++;
@@ -57,22 +59,6 @@ public class CancionesActivity extends AppCompatActivity {
                 mContieneCanciones.addView(fila);
             }
             fila.addView(generateLinearCanciones(tema));
-
-            //mContieneCanciones.addView(generateLinearCanciones(tema)); //BORRAR ESTA LÍNEA CUNADO FUNCIONE LA TABLA.
-            /*try {// Intenta coger la fila. Si está creada hay que rellenarla.
-                fila = (TableRow) mContieneCanciones.getChildAt(iFila);
-                if (i < maxItems)
-                    i++;
-                else {
-                    i = 1;
-                    iFila++;
-                    fila = (TableRow) mContieneCanciones.getChildAt(iFila);
-                }
-
-            }
-            catch (Exception e){ // Si no está creada se crea.
-                fila = new TableRow(this);
-            }*/
         }
     }
 
@@ -86,19 +72,14 @@ public class CancionesActivity extends AppCompatActivity {
 
         LinearLayout linearLayout = new LinearLayout(this);
 
-        //Damos las propiedades al LinearLayout
-        LinearLayout.LayoutParams linearParams = new LinearLayout.LayoutParams(
-                //Utils.convertirAdp(130, this), ViewGroup.LayoutParams.WRAP_CONTENT
-                Utils.convertirAdp(0, this), ViewGroup.LayoutParams.WRAP_CONTENT, 1f
-        );
-        linearLayout.setLayoutParams(linearParams);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
+
 
         //----- ImageView -----
         ImageView imageView = new ImageView(this);
 
         imageView.setLayoutParams(
-                new LinearLayout.LayoutParams(
+                new LinearLayout.LayoutParams(              //HAY QUE PONER LAS DIMENSIONES PA QUE LA IMAGEN SEA CUADRADA
                         LinearLayout.LayoutParams.MATCH_PARENT, Utils.convertirAdp(50, this))
         );
         imageView.setImageDrawable(
@@ -131,18 +112,6 @@ public class CancionesActivity extends AppCompatActivity {
         textViewAlbum.setText(cancion.getAlbum().getTitulo());
         textViewAlbum.setBackgroundColor(Color.GREEN);
 
-        ///////////////////////////////////////////////////////
-        /*LinearLayout item = new LinearLayout(this);
-
-        item.setOrientation(LinearLayout.VERTICAL);
-
-        item.addView(imageView);
-        item.addView(textView);
-        item.addView(textViewAlbum);
-
-        linearLayout.addView(item);*/
-        ///////////////////////////////////////////////////////
-
         //Se añaden los componentes al LinearLayout
         linearLayout.addView(imageView);
         linearLayout.addView(textView);
@@ -150,7 +119,6 @@ public class CancionesActivity extends AppCompatActivity {
 
         linearLayout.setBackgroundColor(Color.CYAN);
 
-        //mContieneCanciones.addView(linearLayout);
 
         //////////////////////////////////////////////////////////
         linearLayout.setOnClickListener(new View.OnClickListener() {
@@ -169,6 +137,7 @@ public class CancionesActivity extends AppCompatActivity {
             }
         });
         /////////////////////////////////////////////////////////////
+
 
         return linearLayout;
     }
