@@ -101,7 +101,7 @@ public class MenuActivity extends AppCompatActivity
      * Va a la ventana Albumes ( onClick )
      * @param menuItem
      */
-    public void albumMenuAlbumesOnClick(MenuItem menuItem){
+    public void MenuAlbumesOnClick(MenuItem menuItem){
 
         Intent moveToAlbumes = new Intent(this, AlbumesActivity.class);
 
@@ -113,7 +113,7 @@ public class MenuActivity extends AppCompatActivity
      * Va a la ventana Canciones ( onClick )
      * @param menuItem
      */
-    public void albumMenuTemasOnClick(MenuItem menuItem){
+    public void MenuTemasOnClick(MenuItem menuItem){
 
         Intent moveToAlbumes = new Intent(this, CancionesActivity.class);
 
@@ -125,7 +125,7 @@ public class MenuActivity extends AppCompatActivity
      * Va a la ventana Canciones ( onClick )
      * @param menuItem
      */
-    public void albumMenuArtistasOnClick(MenuItem menuItem){
+    public void MenuArtistasOnClick(MenuItem menuItem){
 
         /*Intent moveToAlbumes = new Intent(this, CancionesActivity.class);
 
