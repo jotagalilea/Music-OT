@@ -38,6 +38,7 @@ public class DAO {
 
     public DAO() {
 
+        // TODO: Pensar en estructuras más eficientes para canciones, álbumes y artistas.
         canciones = new Cancion[NUM_TEMAS];
         albumes = new Album[0];
         artistas = new Artista[0];

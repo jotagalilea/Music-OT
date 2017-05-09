@@ -1,13 +1,11 @@
 package fdi.ucm.musicot;
 
-import android.content.DialogInterface;
+import android.app.FragmentManager;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
@@ -18,8 +16,7 @@ import com.example.usuario_local.music_ot.R;
 
 import fdi.ucm.musicot.Modelo.Cancion;
 import fdi.ucm.musicot.Misc.Utils;
-
-
+import fdi.ucm.musicot.Modelo.RetenCanciones;
 
 
 public class CancionesActivity extends AppCompatActivity {
@@ -27,7 +24,8 @@ public class CancionesActivity extends AppCompatActivity {
     TableLayout mContieneCanciones;
     // TODO Hacer un método que modifique el número de columnas según la orientación del cacharro.
     static final byte maxColumnas = 3;
-
+    private Cancion[] listaCanciones;
+    private RetenCanciones retenCanciones;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +35,19 @@ public class CancionesActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         //---------------- A partir de aqui no es código automático
+        // Uso del fragmento RetenCanciones para cuando ocurra un cambio de orientación, etc.
+        FragmentManager fm = getFragmentManager();
+        retenCanciones = (RetenCanciones) fm.findFragmentByTag("cancionesRetenidas");
+        if (retenCanciones == null){
+            retenCanciones = new RetenCanciones();
+            fm.beginTransaction().add(retenCanciones, "cancionesRetenidas").commit();
+            retenCanciones.setCancionesRetenidas(listaCanciones);
+        }
 
         //Rellenamos con todas las canciones disponibles en la aplicación
         mContieneCanciones = (TableLayout) findViewById(R.id.contenedor_canciones);
         mContieneCanciones.setStretchAllColumns(true);
-        Cancion[] listaCanciones = MenuActivity.dao.getListaCanciones();
+        listaCanciones = MenuActivity.dao.getListaCanciones();
 
         TableRow fila = new TableRow(this);
         mContieneCanciones.addView(fila);
@@ -119,8 +125,8 @@ public class CancionesActivity extends AppCompatActivity {
         linearLayout.setBackgroundColor(Color.CYAN);
 
 
-        //////////////////////////////////////////////////////////
-        linearLayout.setOnClickListener(new View.OnClickListener() {
+        // Creación de un mensaje de alerta:
+        /*linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AlertDialog alertDialog = new AlertDialog.Builder(CancionesActivity.this).create();
@@ -134,11 +140,19 @@ public class CancionesActivity extends AppCompatActivity {
                         });
                 alertDialog.show();
             }
-        });
-        /////////////////////////////////////////////////////////////
+        });*/
 
 
         return linearLayout;
+    }
+
+    /*
+    Guarda la lista de canciones ante la destrucción o el reinicio de la actividad.
+     */
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        retenCanciones.setCancionesRetenidas(listaCanciones);
     }
 
 }
