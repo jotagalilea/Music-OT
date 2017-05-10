@@ -23,14 +23,23 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     public static DAO dao;
 
     private ArtistasFragment fragmentArtistas;
+    private CancionesFragment fragmentCanciones;
+    private AlbumesFragment fragmentAlbumes;
     private TableLayout fragmentArtistasContenedor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         dao = new DAO();
 
+        //Inicializamos los fragmentos de la actividad MAIN
         fragmentArtistas = new ArtistasFragment();
         fragmentArtistas.setMenuActivity(this);
+
+        fragmentCanciones = new CancionesFragment();
+        fragmentCanciones.setMenuActivity(this);
+
+        fragmentAlbumes = new AlbumesFragment();
+        fragmentAlbumes.setMenuActivity(this);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
@@ -110,9 +119,10 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
      */
     public void menuAlbumesOnClick(MenuItem menuItem){
 
-        Intent moveToAlbumes = new Intent(this, AlbumesActivity.class);
+        transicionarMenuFragmento(R.id.fragment_contentmenu1, fragmentAlbumes);
+        /*Intent moveToAlbumes = new Intent(this, AlbumesActivity.class);
 
-        startActivity(moveToAlbumes);
+        startActivity(moveToAlbumes);*/
 
     }
 
@@ -122,9 +132,11 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
      */
     public void menuTemasOnClick(MenuItem menuItem){
 
-        Intent moveToAlbumes = new Intent(this, CancionesActivity.class);
+        transicionarMenuFragmento(R.id.fragment_contentmenu1, fragmentCanciones);
 
-        startActivity(moveToAlbumes);
+        /*Intent moveToAlbumes = new Intent(this, CancionesActivity.class);
+
+        startActivity(moveToAlbumes);*/
 
     }
 
@@ -134,10 +146,22 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
      */
     public void menuArtistasOnClick(MenuItem menuItem){
 
+        transicionarMenuFragmento(R.id.fragment_contentmenu1, fragmentArtistas);
+
+    }
+
+    /**
+     * Sustituye el fragmento del contenedor con la ID dada por el nuevo fragmento dado, también
+     * encoge el menú lateral si está dsplegado
+     * @param id
+     * @param newFragment
+     */
+    private void transicionarMenuFragmento(int id, Fragment newFragment){
+
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-        transaction.replace(R.id.fragment_contentmenu1, fragmentArtistas);
+        transaction.replace(id, newFragment);
         transaction.addToBackStack(null);
 
         transaction.commit();
@@ -145,7 +169,6 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         }
-
     }
 
     public DAO getDAO(){

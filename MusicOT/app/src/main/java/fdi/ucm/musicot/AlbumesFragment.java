@@ -16,70 +16,102 @@ import android.widget.TextView;
 import com.example.usuario_local.music_ot.R;
 
 import fdi.ucm.musicot.Misc.Utils;
-import fdi.ucm.musicot.Modelo.Artista;
-import fdi.ucm.musicot.Modelo.DAO;
+import fdi.ucm.musicot.Modelo.Album;
 
-import java.util.List;
 
 /**
- * A fragment representing a list of Items.
- * <p/>
+ * A simple {@link Fragment} subclass.
+ * Activities that contain this fragment must implement the
+ * to handle interaction events.
+ * Use the {@link AlbumesFragment#newInstance} factory method to
+ * create an instance of this fragment.
  */
-public class ArtistasFragment extends Fragment {
+public class AlbumesFragment extends Fragment {
+    // TODO: Rename parameter arguments, choose names that match
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
 
-    TableLayout tabla;
-    MenuActivity menuActivity;
+    // TODO: Rename and change types of parameters
+    private String mParam1;
+    private String mParam2;
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    private TableLayout mContieneAlbumes;
+    private MenuActivity menuActivity;
 
-        View view;
-
-        view = inflater.inflate(R.layout.fragment_artistas, container, false);
-
-        tabla = (TableLayout) view.findViewById(R.id.contenedor_artistas);
-        rellenarTablaInit(tabla, menuActivity);
-
-        return view;
+    public AlbumesFragment() {
+        // Required empty public constructor
     }
 
     /**
-     * Se llama esta funcion para rellenar la tabla de información
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
+     * @return A new instance of fragment AlbumesFragment.
      */
-    public void rellenarTablaInit(TableLayout tabla, MenuActivity menuActivity){
+    // TODO: Rename and change types and number of parameters
+    public static AlbumesFragment newInstance(String param1, String param2) {
+        AlbumesFragment fragment = new AlbumesFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
+        return fragment;
+    }
 
-        //Rellenamos con todas los artistas disponibles en la aplicación
-        tabla.setStretchAllColumns(true);
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.fragment_albumes, container, false);
+
+        mContieneAlbumes = (TableLayout) view.findViewById(R.id.contenedor_albumes);
+
+        Album[] listaAlbumes = MenuActivity.dao.getListaAlbumes();
+
+        mContieneAlbumes.setStretchAllColumns(true);
 
         TableRow fila = new TableRow(menuActivity);
-        tabla.addView(fila);
+        mContieneAlbumes.addView(fila);
         byte i = 0;
 
-        for (Artista artista: DAO.artistas) {
+        for (Album album: listaAlbumes) {
             if (i < 3){
                 i++;
             }
             else {
                 i = 1;
                 fila = new TableRow(menuActivity);
-                tabla.addView(fila);
+                mContieneAlbumes.addView(fila);
             }
-            fila.addView(generateLinearArtista(artista, menuActivity));
+            fila.addView(generateLinearAlbumes(album, menuActivity));
         }
+
+        return view;
     }
 
     /**
-     * Convierte el objeto Canción introducido en un formato XML de layout para presentarlo en TableLayout
+     * Convierte el objeto Canción introducido en un formato XML de layout para presentarlo en GridLayout
      *
-     * @param artista
+     * @param album
      * @return
      */
-    private LinearLayout generateLinearArtista(Artista artista, MenuActivity menuActivity){
+    private LinearLayout generateLinearAlbumes(Album album, MenuActivity menuActivity){
 
         LinearLayout linearLayout = new LinearLayout(menuActivity);
 
         linearLayout.setOrientation(LinearLayout.VERTICAL);
-
 
         //----- ImageView -----
         ImageView imageView = new ImageView(menuActivity);
@@ -89,7 +121,7 @@ public class ArtistasFragment extends Fragment {
                         LinearLayout.LayoutParams.MATCH_PARENT, Utils.convertirAdp(50, menuActivity))
         );
         imageView.setImageDrawable(
-                getResources().getDrawable(R.drawable.ic_menu_artista));
+                getResources().getDrawable(R.drawable.ic_menu_albumes));
         // TODO Averiguar como funciona lo de poner imagenes en el ImageView.
         // TODO Hacer que las imágenes salgan cuadradas.
 
@@ -103,29 +135,14 @@ public class ArtistasFragment extends Fragment {
 
         textView.setLayoutParams( textParams );
 
-        textView.setText(artista.getNombre());
+        textView.setText(album.getTitulo());
         textView.setBackgroundColor(Color.RED);
-
-        //----- TextViewAlbum -----
-        TextView textViewAlbum = new TextView(menuActivity);
-
-        LinearLayout.LayoutParams textParamsAlbum = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, Utils.convertirAdp(20, menuActivity)
-        );
-        textParamsAlbum.gravity = Gravity.CENTER;
-
-        textViewAlbum.setLayoutParams( textParamsAlbum );
-
-        textViewAlbum.setText(String.valueOf(artista.getAlbumes().length));
-        textViewAlbum.setBackgroundColor(Color.GREEN);
 
         //Se añaden los componentes al LinearLayout
         linearLayout.addView(imageView);
         linearLayout.addView(textView);
-        linearLayout.addView(textViewAlbum);
 
         linearLayout.setBackgroundColor(Color.CYAN);
-
 
         // Creación de un mensaje de alerta:
         /*linearLayout.setOnClickListener(new View.OnClickListener() {
@@ -144,19 +161,15 @@ public class ArtistasFragment extends Fragment {
             }
         });*/
 
-
         return linearLayout;
     }
 
-    ////////////////////////////////
-    ///// SETTERS && GETTERS ///////
-    ////////////////////////////////
-
-    public void setTabla(TableLayout tabla) {
-        this.tabla = tabla;
-    }
+    /////////////////////////
+    /// SETTERS & GETTERS ///
+    /////////////////////////
 
     public void setMenuActivity(MenuActivity menuActivity) {
         this.menuActivity = menuActivity;
     }
 }
+

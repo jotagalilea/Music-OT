@@ -7,29 +7,30 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="fdi.ucm.musicot.CancionesActivity"
     tools:showIn="@layout/activity_canciones">
+    <!--
 
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/contenedor_canciones">
 
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/contenedor_canciones">
+           <TableRow
+               android:layout_width="match_parent"
+               android:layout_height="match_parent">
+               <LinearLayout
+                   android:layout_height="wrap_content"
+                   android:layout_width="0dp"
+                   android:layout_weight="1">
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="20dp"
+                       android:layout_gravity="center"
+                       android:text="HOLA HOLA">
+                   </TextView>
+               </LinearLayout>
+            </TableRow>
 
-       <!--<TableRow
-           android:layout_width="match_parent"
-           android:layout_height="match_parent">
-           <LinearLayout
-               android:layout_height="wrap_content"
-               android:layout_width="0dp"
-               android:layout_weight="1">
-               <TextView
-                   android:layout_width="match_parent"
-                   android:layout_height="20dp"
-                   android:layout_gravity="center"
-                   android:text="HOLA HOLA">
-               </TextView>
-           </LinearLayout>
-        </TableRow>
-    -->
 
     </TableLayout>
+    -->
 </android.support.v4.widget.NestedScrollView>
