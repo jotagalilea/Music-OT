@@ -6,17 +6,17 @@
             android:id="@+id/nav_temas"
             android:icon="@drawable/ic_menu_temas"
             android:title="Temas"
-            android:onClick="albumMenuTemasOnClick" />
+            android:onClick="menuTemasOnClick" />
         <item
             android:id="@+id/nav_albumes"
             android:icon="@drawable/ic_menu_albumes"
             android:title="Albumes"
-            android:onClick="albumMenuAlbumesOnClick"/>
+            android:onClick="menuAlbumesOnClick"/>
         <item
             android:id="@+id/nav_artista"
             android:icon="@drawable/ic_menu_artista"
             android:title="Artistas"
-            android:onClick="albumMenuArtistasOnClick"/>
+            android:onClick="menuArtistasOnClick"/>
         <item
             android:id="@+id/nav_favoritos"
             android:icon="@drawable/ic_menu_favoritos"

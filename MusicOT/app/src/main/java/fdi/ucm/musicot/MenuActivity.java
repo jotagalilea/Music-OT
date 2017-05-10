@@ -4,7 +4,7 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -12,19 +12,25 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TableLayout;
 
 import com.example.usuario_local.music_ot.R;
 
 import fdi.ucm.musicot.Modelo.DAO;
 
-public class MenuActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class MenuActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     public static DAO dao;
+
+    private ArtistasFragment fragmentArtistas;
+    private TableLayout fragmentArtistasContenedor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         dao = new DAO();
+
+        fragmentArtistas = new ArtistasFragment();
+        fragmentArtistas.setMenuActivity(this);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
@@ -48,6 +54,7 @@ public class MenuActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
     }
 
     @Override
@@ -101,7 +108,7 @@ public class MenuActivity extends AppCompatActivity
      * Va a la ventana Albumes ( onClick )
      * @param menuItem
      */
-    public void MenuAlbumesOnClick(MenuItem menuItem){
+    public void menuAlbumesOnClick(MenuItem menuItem){
 
         Intent moveToAlbumes = new Intent(this, AlbumesActivity.class);
 
@@ -113,7 +120,7 @@ public class MenuActivity extends AppCompatActivity
      * Va a la ventana Canciones ( onClick )
      * @param menuItem
      */
-    public void MenuTemasOnClick(MenuItem menuItem){
+    public void menuTemasOnClick(MenuItem menuItem){
 
         Intent moveToAlbumes = new Intent(this, CancionesActivity.class);
 
@@ -125,13 +132,19 @@ public class MenuActivity extends AppCompatActivity
      * Va a la ventana Canciones ( onClick )
      * @param menuItem
      */
-    public void MenuArtistasOnClick(MenuItem menuItem){
+    public void menuArtistasOnClick(MenuItem menuItem){
 
-        /*Intent moveToAlbumes = new Intent(this, CancionesActivity.class);
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-        startActivity(moveToAlbumes);
-*/
+        transaction.replace(R.id.fragment_contentmenu1, fragmentArtistas);
+        transaction.addToBackStack(null);
 
+        transaction.commit();
+
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        }
 
     }
 
