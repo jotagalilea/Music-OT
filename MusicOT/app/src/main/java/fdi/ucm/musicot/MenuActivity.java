@@ -31,20 +31,23 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         dao = new DAO();
 
-        //Inicializamos los fragmentos de la actividad MAIN
-        fragmentArtistas = new ArtistasFragment();
-        fragmentArtistas.setMenuActivity(this);
-
-        fragmentCanciones = new CancionesFragment();
-        fragmentCanciones.setMenuActivity(this);
-
-        fragmentAlbumes = new AlbumesFragment();
-        fragmentAlbumes.setMenuActivity(this);
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        //Inicializamos los fragmentos de la actividad MAIN
+        fragmentArtistas = new ArtistasFragment();
+        fragmentArtistas.setRetainInstance(true);
+        fragmentArtistas.setMenuActivity(this);
+
+        fragmentCanciones = new CancionesFragment();
+        fragmentCanciones.setRetainInstance(true);
+        fragmentCanciones.setMenuActivity(this);
+
+        fragmentAlbumes = new AlbumesFragment();
+        fragmentAlbumes.setRetainInstance(true);
+        fragmentAlbumes.setMenuActivity(this);
 
         /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -112,6 +115,8 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 
     /**
      * Va a la ventana Albumes ( onClick )

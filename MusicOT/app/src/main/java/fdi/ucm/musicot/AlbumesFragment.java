@@ -40,7 +40,6 @@ public class AlbumesFragment extends Fragment {
     private MenuActivity menuActivity;
 
     public AlbumesFragment() {
-        // Required empty public constructor
     }
 
     /**
@@ -74,7 +73,7 @@ public class AlbumesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_albumes, container, false);
+        View view = inflater.inflate(R.layout.fragment_albumes, null, false);
 
         mContieneAlbumes = (TableLayout) view.findViewById(R.id.contenedor_albumes);
 

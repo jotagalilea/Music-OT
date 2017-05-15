@@ -48,7 +48,6 @@ public class CancionesFragment extends Fragment {
     private String mParam2;
 
     public CancionesFragment() {
-        // Required empty public constructor
     }
 
     /**
@@ -85,7 +84,7 @@ public class CancionesFragment extends Fragment {
         int maxColumnas = 3;
         listaCanciones = DAO.canciones;
 
-        View view = inflater.inflate(R.layout.fragment_canciones, container, false);
+        View view = inflater.inflate(R.layout.fragment_canciones, null, false);
         //---------------- A partir de aqui no es código automático
         // Uso del fragmento RetenCanciones para cuando ocurra un cambio de orientación, etc.
         FragmentManager fm = getFragmentManager();

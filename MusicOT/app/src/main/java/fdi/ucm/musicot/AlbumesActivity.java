@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TableLayout;
 import android.widget.TextView;
 
 import com.example.usuario_local.music_ot.R;
@@ -19,7 +20,7 @@ import fdi.ucm.musicot.Modelo.Cancion;
 
 public class AlbumesActivity extends AppCompatActivity {
 
-    GridLayout mContieneAlbumes;
+    TableLayout mContieneAlbumes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +31,7 @@ public class AlbumesActivity extends AppCompatActivity {
 
         //---------------- A partir de aqui no es código automático
 
-        mContieneAlbumes = (GridLayout) findViewById(R.id.contenedor_albumes);
+        mContieneAlbumes = (TableLayout) findViewById(R.id.contenedor_albumes);
 
         Album[] listaAlbumes = MenuActivity.dao.getListaAlbumes();
 
