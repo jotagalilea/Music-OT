@@ -18,6 +18,8 @@ import android.widget.TextView;
 
 import com.example.usuario_local.music_ot.R;
 
+import java.util.ArrayList;
+
 import fdi.ucm.musicot.Misc.Utils;
 import fdi.ucm.musicot.Modelo.Cancion;
 import fdi.ucm.musicot.Modelo.DAO;
@@ -40,7 +42,7 @@ public class CancionesFragment extends Fragment {
     private MenuActivity menuActivity;
 
     RetenCanciones retenCanciones;
-    Cancion[] listaCanciones;
+    ArrayList<Cancion> listaCanciones;
     TableLayout mContieneCanciones;
 
     // TODO: Rename and change types of parameters
@@ -103,7 +105,7 @@ public class CancionesFragment extends Fragment {
         TableRow fila = new TableRow(menuActivity);
         mContieneCanciones.addView(fila);
         byte i = 1;
-        fila.addView(generateLinearCanciones(listaCanciones[0]));
+        fila.addView(generateLinearCanciones(listaCanciones.get(0)));
         for (Cancion tema: listaCanciones) {
             if (i < maxColumnas){
                 i++;

@@ -29,9 +29,11 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        dao = new DAO();
-
+        /*dao = new DAO(this.getApplicationContext());// No sé si está bien pasarle este context.
+        dao = new DAO();*/
         super.onCreate(savedInstanceState);
+        dao = new DAO(this);// No sé si está bien pasarle este context.
+        //dao = new DAO();
         setContentView(R.layout.activity_menu);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 import com.example.usuario_local.music_ot.R;
 
+import java.util.ArrayList;
+
 import fdi.ucm.musicot.Misc.Utils;
 import fdi.ucm.musicot.Modelo.Album;
 import fdi.ucm.musicot.Modelo.Cancion;
@@ -33,7 +35,7 @@ public class AlbumesActivity extends AppCompatActivity {
 
         mContieneAlbumes = (TableLayout) findViewById(R.id.contenedor_albumes);
 
-        Album[] listaAlbumes = MenuActivity.dao.getListaAlbumes();
+        ArrayList<Album> listaAlbumes = MenuActivity.dao.getListaAlbumes();
 
         for (Album album: listaAlbumes ) {
             this.generateLinearAlbumes(album);

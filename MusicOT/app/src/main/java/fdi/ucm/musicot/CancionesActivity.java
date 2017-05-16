@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 import com.example.usuario_local.music_ot.R;
 
+import java.util.ArrayList;
+
 import fdi.ucm.musicot.Modelo.Cancion;
 import fdi.ucm.musicot.Misc.Utils;
 import fdi.ucm.musicot.Modelo.RetenCanciones;
@@ -24,7 +26,7 @@ public class CancionesActivity extends AppCompatActivity {
     TableLayout mContieneCanciones;
     // TODO Hacer un método que modifique el número de columnas según la orientación del cacharro.
     static final byte maxColumnas = 3;
-    private Cancion[] listaCanciones;
+    private ArrayList<Cancion> listaCanciones;
     private RetenCanciones retenCanciones;
 
     @Override
@@ -52,7 +54,7 @@ public class CancionesActivity extends AppCompatActivity {
         TableRow fila = new TableRow(this);
         mContieneCanciones.addView(fila);
         byte i = 1;
-        fila.addView(generateLinearCanciones(listaCanciones[0]));
+        fila.addView(generateLinearCanciones(listaCanciones.get(0)));
         for (Cancion tema: listaCanciones) {
             if (i < maxColumnas){
                 i++;
