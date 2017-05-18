@@ -105,7 +105,7 @@ public class DAO {
     //private void cargarCanciones(Context context) {
     private void cargarCanciones(Activity activity){
         ContentResolver musicResolver = activity.getContentResolver();
-        Uri musicUri = android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+        Uri musicUri = android.provider.MediaStore.Audio.Media.INTERNAL_CONTENT_URI;
         String sel = MediaStore.Files.FileColumns.MIME_TYPE + "=?";
         String ext = MimeTypeMap.getSingleton().getMimeTypeFromExtension("mp3");
         String[] selExtARGS = new String[]{ext};
