@@ -1,6 +1,13 @@
 package fdi.ucm.musicot.Modelo;
 
+import android.media.MediaMetadataRetriever;
+
+import java.io.File;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
+
+import fdi.ucm.musicot.Misc.Utils;
 
 /**
  * Created by Javier/Julio on 24/04/17.
@@ -12,10 +19,10 @@ import java.util.Arrays;
 public class DAO {
 
     //Numero de temas que tiene la aplicación
-    public static final int NUM_TEMAS = 10;
+    //public static final int NUM_TEMAS = 10;
 
     //Titulo[i][0] / Album[i][1] / Artista[i][2]
-    public String[][] tituloAlbumArtista = {
+    /*public String[][] tituloAlbumArtista = {
             {"40:1", "War and Victory", "Sabaton"},
             {"Wolf Pack", "Primo Victoria", "Sabaton"},
             {"Swedish Pagans", "Last Stance", "Sabaton"},
@@ -26,10 +33,13 @@ public class DAO {
             {"Awaken", "The Dethalbum", "Dethklok"},
             {"Face Fisted", "The Dethalbum", "Dethklok"},
             {"Deththeme", "The Dethalbum", "Dethklok"}};
-
-    public static Cancion[] canciones;
+    */
+    /*public static Cancion[] canciones;
     public static Album[] albumes;
-    public static Artista[] artistas;
+    public static Artista[] artistas;*/
+    public static ArrayList<Cancion> canciones;
+    public static ArrayList<Album> albumes;
+    public static ArrayList<Artista> artistas;
 
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!! COSAS QUE FALTAN POR HACER !!!!!!
@@ -39,11 +49,20 @@ public class DAO {
     public DAO() {
 
         // TODO: Pensar en estructuras más eficientes para canciones, álbumes y artistas.
-        canciones = new Cancion[NUM_TEMAS];
+        //canciones = new Cancion[NUM_TEMAS];
+        /*canciones = new Cancion[0];
         albumes = new Album[0];
-        artistas = new Artista[0];
+        artistas = new Artista[0];*/
 
-        for (int i = 0; i < NUM_TEMAS; i++) {
+        canciones = new ArrayList<>();
+        albumes = new ArrayList<>();
+        artistas = new ArrayList<>();
+
+        File dir = Utils.parseMountDirectory();
+        cargarCancionesDeLaSD(dir.getAbsolutePath());
+
+
+        /*for (int i = 0; i < NUM_TEMAS; i++) {
 
             //Crea las canciones con los datos dummies en el String
             Album currAlbum = this.albumExiste(tituloAlbumArtista[i][1], tituloAlbumArtista[i][2]);
@@ -75,7 +94,65 @@ public class DAO {
             currAlbum.addCancion(canciones[i]);
             currArtista.addCancion(canciones[i]);
         }
+        */
     }
+
+    private String[] extensions = { "mp3" };
+
+    public void cargarCancionesDeLaSD(String path) {
+
+        File file = new File(path);
+        if (file.isDirectory()) {
+            File[] files = file.listFiles();
+            if (files != null && files.length > 0) {
+                for (File f : files) {
+                    if (f.isDirectory()) {
+                        cargarCancionesDeLaSD(f.getAbsolutePath());
+                    } else {
+                        for (int i = 0; i < extensions.length; i++) {
+                            if (f.getAbsolutePath().endsWith(extensions[i])) {
+                                crearCancion(f);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
+    private void crearCancion(File f) {
+        MediaMetadataRetriever mmr = new MediaMetadataRetriever();
+        mmr.setDataSource(f.getAbsolutePath());
+        String albumName = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM);
+        String artistName = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST);
+        String titulo = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE);
+        Artista art = artistaExiste(artistName);
+        Album alb = albumExiste(albumName, artistName);
+        boolean artistaExiste = art != null;
+        boolean albumExiste = alb != null;
+        if (!artistaExiste)
+            art = new Artista(artistName);
+        if (!albumExiste)
+            alb = new Album(albumName, art);
+
+        Cancion c = new Cancion(titulo, alb, art, f);
+
+        art.addCancion(c);
+        if (!albumExiste) {
+            art.addAlbum(alb);
+            albumes.add(alb);
+        }
+        alb.addCancion(c);
+
+        if (!artistaExiste) {
+            artistas.add(art);
+        }
+        art.addCancion(c);
+
+        canciones.add(c);
+    }
+
 
     /**
      * Devuelve el objeto album si ya existe uno con estas características, sino devuelve null
@@ -89,11 +166,11 @@ public class DAO {
         Album res = null;
         int i = 0;
 
-        while (i < this.albumes.length && (res == null)) {
+        while (i < this.albumes.size() && (res == null)) {
             //Si el album no existe ya
-            if (albumes[i].getTitulo().equalsIgnoreCase(nombreAlbum) &&
-                    albumes[i].getArtista().getNombre().equalsIgnoreCase(artista)) {
-                res = albumes[i];
+            if (albumes.get(i).getTitulo().equalsIgnoreCase(nombreAlbum) &&
+                    albumes.get(i).getArtista().getNombre().equalsIgnoreCase(artista)) {
+                res = albumes.get(i);
             }
             i++;
         }
@@ -112,10 +189,10 @@ public class DAO {
         Artista res = null;
         int i = 0;
 
-        while (i < this.artistas.length && (res == null)) {
+        while (i < this.artistas.size() && (res == null)) {
             //Si el album no existe ya
-            if (artistas[i].getNombre().equalsIgnoreCase(nombreArtista)) {
-                res = artistas[i];
+            if (artistas.get(i).getNombre().equalsIgnoreCase(nombreArtista)) {
+                res = artistas.get(i);
             }
             i++;
         }
@@ -128,7 +205,7 @@ public class DAO {
      *
      * @return
      */
-    public Cancion[] getListaCanciones() {
+    public ArrayList<Cancion> getListaCanciones() {
 
         /*Cancion[] lista = new Cancion[NUM_TEMAS];
 
@@ -147,12 +224,12 @@ public class DAO {
      */
     public Cancion getCancionByID(int ID) {
 
-        Cancion canRes = this.canciones[ID];
+        Cancion canRes = this.canciones.get(ID);
 
         return canRes.clone();
     }
 
-    public Album[] getListaAlbumes() {
+    public ArrayList<Album> getListaAlbumes() {
 
         /*Album[] lista = new Album[NUM_TEMAS];
 
@@ -168,16 +245,24 @@ public class DAO {
      *
      * @return
      */
-    public int getNumeroTemas() {
-
+    /*public int getNumeroTemas() {
         return NUM_TEMAS;
-    }
+    }*/
 
 //--------------------
 //----- GETTER's -----
 //--------------------
 
-    public Cancion[] getCanciones() {
+    public ArrayList<Cancion> getCanciones(){
+        return canciones;
+    }
+    public ArrayList<Album> getAlbumes(){
+        return albumes;
+    }
+    public ArrayList<Artista> getArtistas(){
+        return artistas;
+    }
+    /*public Cancion[] getCanciones() {
         return Arrays.copyOf(this.canciones, canciones.length);
     }
 
@@ -187,7 +272,7 @@ public class DAO {
 
     private Artista[] getArtista() {
         return Arrays.copyOf(this.artistas, artistas.length);
-    }
+    }*/
 }
 //------------------------------------------------------------------------------------------
 //------ No se recuperara esta parte del código hasta que no se vaya a hacer la BBDD -------

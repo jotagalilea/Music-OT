@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import com.example.usuario_local.music_ot.R;
 
+import java.util.ArrayList;
+
 import fdi.ucm.musicot.Misc.Utils;
 import fdi.ucm.musicot.Modelo.Album;
 
@@ -77,7 +79,7 @@ public class AlbumesFragment extends Fragment {
 
         mContieneAlbumes = (TableLayout) view.findViewById(R.id.contenedor_albumes);
 
-        Album[] listaAlbumes = MenuActivity.dao.getListaAlbumes();
+        ArrayList<Album> listaAlbumes = MenuActivity.dao.getListaAlbumes();
 
         mContieneAlbumes.setStretchAllColumns(true);
 
