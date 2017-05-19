@@ -12,11 +12,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 
 import com.example.usuario_local.music_ot.R;
 
+import fdi.ucm.musicot.Misc.Utils;
 import fdi.ucm.musicot.Modelo.DAO;
+import fdi.ucm.musicot.Modelo.Reproductor;
 
 public class MenuActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -25,15 +30,24 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     private ArtistasFragment fragmentArtistas;
     private CancionesFragment fragmentCanciones;
     private AlbumesFragment fragmentAlbumes;
+    public static ReproductorFragment fragmentReproductor;
+    public static ReproductorFragmentMini fragmentMini;
     private TableLayout fragmentArtistasContenedor;
+
+    public static Reproductor reproductor = null;
+    private LinearLayout miniReproductorFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        /*dao = new DAO(this.getApplicationContext());// No sé si está bien pasarle este context.
-        dao = new DAO();*/
+        if(dao == null) {
+            dao = new DAO();
+        }
+
+        if(reproductor == null) {
+            reproductor = new Reproductor();
+        }
+
         super.onCreate(savedInstanceState);
-        dao = new DAO(this);// No sé si está bien pasarle este context.
-        //dao = new DAO();
         setContentView(R.layout.activity_menu);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -51,14 +65,13 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         fragmentAlbumes.setRetainInstance(true);
         fragmentAlbumes.setMenuActivity(this);
 
-        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
+        fragmentReproductor = new ReproductorFragment();
+        fragmentReproductor.setRetainInstance(true);
+
+        fragmentMini = new ReproductorFragmentMini();
+        fragmentMini.setRetainInstance(true);
+
+        miniReproductorFragment = (LinearLayout) findViewById(R.id.mini_bot_reproductor);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -69,6 +82,12 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        if(Utils.currentFragment == null) {
+            Utils.currentFragment = fragmentReproductor;
+            Utils.currentMiniFragment = fragmentMini;
+        }
+        transicionarMenuFragmento(R.id.mini_bot_reproductor, Utils.currentMiniFragment);
+        cambiaFragment(R.id.fragment_contentmenu1, Utils.currentFragment);
     }
 
     @Override
@@ -103,7 +122,6 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
@@ -118,19 +136,18 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-
-
     /**
      * Va a la ventana Albumes ( onClick )
      * @param menuItem
      */
     public void menuAlbumesOnClick(MenuItem menuItem){
 
-        transicionarMenuFragmento(R.id.fragment_contentmenu1, fragmentAlbumes);
-        /*Intent moveToAlbumes = new Intent(this, AlbumesActivity.class);
+        cambiaFragment(R.id.fragment_contentmenu1, fragmentAlbumes);
+    }
 
-        startActivity(moveToAlbumes);*/
+    public void menuInicioOnClick(MenuItem menuItem){
 
+        cambiaFragment(R.id.fragment_contentmenu1, fragmentReproductor);
     }
 
     /**
@@ -139,12 +156,25 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
      */
     public void menuTemasOnClick(MenuItem menuItem){
 
-        transicionarMenuFragmento(R.id.fragment_contentmenu1, fragmentCanciones);
+        cambiaFragment(R.id.fragment_contentmenu1, fragmentCanciones);
 
-        /*Intent moveToAlbumes = new Intent(this, CancionesActivity.class);
+    }
 
-        startActivity(moveToAlbumes);*/
+    private void cambiaFragment(int idNewFragment, Fragment newFragment){
 
+        if(Reproductor.isDeployed
+                && idNewFragment==R.id.fragment_contentmenu1
+                && newFragment != fragmentReproductor){
+
+            findViewById(R.id.mini_bot_reproductor).setVisibility(View.VISIBLE);
+        }else if(idNewFragment == R.id.fragment_contentmenu1
+                && newFragment == fragmentReproductor){
+
+            findViewById(R.id.mini_bot_reproductor).setVisibility(View.INVISIBLE);
+        }
+
+        transicionarMenuFragmento(idNewFragment, newFragment);
+        Utils.currentFragment = newFragment;
     }
 
     /**
@@ -154,7 +184,6 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     public void menuArtistasOnClick(MenuItem menuItem){
 
         transicionarMenuFragmento(R.id.fragment_contentmenu1, fragmentArtistas);
-
     }
 
     /**
@@ -182,5 +211,4 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
         return this.dao;
     }
-
 }

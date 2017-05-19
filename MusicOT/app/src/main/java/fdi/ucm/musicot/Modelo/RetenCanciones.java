@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class RetenCanciones extends Fragment {
 
-    private ArrayList<Cancion> cancionesRetenidas;
+    private Cancion[] cancionesRetenidas;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -20,11 +20,11 @@ public class RetenCanciones extends Fragment {
     }
 
 
-    public void setCancionesRetenidas(ArrayList<Cancion> data) {
+    public void setCancionesRetenidas(Cancion[] data) {
         this.cancionesRetenidas = data;
     }
 
-    public ArrayList<Cancion> getCancionesRetenidas() {
+    public Cancion[] getCancionesRetenidas() {
         return this.cancionesRetenidas;
     }
 

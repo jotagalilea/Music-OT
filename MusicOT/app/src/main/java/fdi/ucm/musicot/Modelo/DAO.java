@@ -1,16 +1,6 @@
 package fdi.ucm.musicot.Modelo;
 
-import android.app.Activity;
-import android.content.ContentResolver;
-import android.content.Context;
-import android.database.Cursor;
-import android.net.Uri;
-import android.provider.MediaStore;
-import android.webkit.MimeTypeMap;
-
-import java.util.ArrayList;
 import java.util.Arrays;
-
 
 /**
  * Created by Javier/Julio on 24/04/17.
@@ -25,7 +15,7 @@ public class DAO {
     public static final int NUM_TEMAS = 10;
 
     //Titulo[i][0] / Album[i][1] / Artista[i][2]
-    /*public String[][] tituloAlbumArtista; = {
+    public String[][] tituloAlbumArtista = {
             {"40:1", "War and Victory", "Sabaton"},
             {"Wolf Pack", "Primo Victoria", "Sabaton"},
             {"Swedish Pagans", "Last Stance", "Sabaton"},
@@ -36,35 +26,24 @@ public class DAO {
             {"Awaken", "The Dethalbum", "Dethklok"},
             {"Face Fisted", "The Dethalbum", "Dethklok"},
             {"Deththeme", "The Dethalbum", "Dethklok"}};
-            */
 
-    //public static Cancion[] canciones;
-    //public static Album[] albumes;
-    //public static Artista[] artistas;
-    public static ArrayList<Cancion> canciones;
-    public static ArrayList<Album> albumes;
-    public static ArrayList<Artista> artistas;
+    public static Cancion[] canciones;
+    public static Album[] albumes;
+    public static Artista[] artistas;
 
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!! COSAS QUE FALTAN POR HACER !!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // TODO(1) Relacionar la imagen con el album, eso no tengo claro como hacerlo
 
-    //public DAO(Context context) {
-    public DAO(Activity activity){
-        // TODO: Pensar en estructuras más eficientes para canciones, álbumes y artistas.
-        //canciones = new Cancion[NUM_TEMAS];
-        //albumes = new Album[0];
-        //artistas = new Artista[0];
-        canciones = new ArrayList<>();
-        albumes = new ArrayList<>();
-        artistas = new ArrayList<>();
-        //cargarCanciones(context);
-        cargarCanciones(activity);
-        cargarAlbumes();
-        cargarArtistas();
+    public DAO() {
 
-        /*for (int i = 0; i < NUM_TEMAS; i++) {
+        // TODO: Pensar en estructuras más eficientes para canciones, álbumes y artistas.
+        canciones = new Cancion[NUM_TEMAS];
+        albumes = new Album[0];
+        artistas = new Artista[0];
+
+        for (int i = 0; i < NUM_TEMAS; i++) {
 
             //Crea las canciones con los datos dummies en el String
             Album currAlbum = this.albumExiste(tituloAlbumArtista[i][1], tituloAlbumArtista[i][2]);
@@ -96,83 +75,10 @@ public class DAO {
             currAlbum.addCancion(canciones[i]);
             currArtista.addCancion(canciones[i]);
         }
-        */
     }
 
     /**
-     * Carga las canciones de la memoria en el array.
-     */
-    //private void cargarCanciones(Context context) {
-    private void cargarCanciones(Activity activity){
-        ContentResolver musicResolver = activity.getContentResolver();
-        Uri musicUri = android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
-        String sel = MediaStore.Files.FileColumns.MIME_TYPE + "=?";
-        String ext = MimeTypeMap.getSingleton().getMimeTypeFromExtension("mp3");
-        String[] selExtARGS = new String[]{ext};
-        //Peta aquí
-        Cursor musicCursor = musicResolver.query(musicUri, null, sel, selExtARGS, null);
-
-        if (musicCursor != null && musicCursor.moveToFirst()) {
-            //get columns
-            int titleColumn = musicCursor.getColumnIndex(android.provider.MediaStore.Audio.Media.TITLE);
-            int idColumn = musicCursor.getColumnIndex(android.provider.MediaStore.Audio.Media._ID);
-            int albumColumn = musicCursor.getColumnIndex(MediaStore.Audio.Media.ALBUM);
-            int artistColumn = musicCursor.getColumnIndex(android.provider.MediaStore.Audio.Media.ARTIST);
-            int column_index = musicCursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA);
-            //add songs to list
-            do {
-                long id = musicCursor.getLong(idColumn);
-                String title = musicCursor.getString(titleColumn);
-                String artistName = musicCursor.getString(artistColumn);
-                String albumTitle = musicCursor.getString(albumColumn);
-                Artista artista = artistaExiste(artistName);
-                Album album = albumExiste(albumTitle, artistName);
-                // Pensar si hay que añadir albumes al array de albumes de Artista.
-                // Pensar si ponemos array en lugar de ArrayList.
-                if (artista == null) {
-                    artista = new Artista(artistName);
-                }
-                if (album == null) {
-                    album = new Album(albumTitle, artista);
-                    artista.addAlbum(album);
-                }
-                if (!artistaTieneAlbum(artista, album))
-                    artista.addAlbum(album);
-                canciones.add(new Cancion(title, album, artista));
-            }
-            while (musicCursor.moveToNext());
-
-        }
-    }
-
-    /**
-     * Comprueba si el artista contiene el album pasado como parámetro.
-     * @param artista
-     * @param album
-     * @return
-     */
-    private boolean artistaTieneAlbum(Artista artista, Album album) {
-        for (Album al: artista.getAlbumes()) {
-            if (al.getTitulo().equalsIgnoreCase(album.getTitulo()))
-                return true;
-        }
-        return false;
-    }
-
-    /**
-     * Carga los artistas de las canciones.
-     */
-    private void cargarArtistas() {
-    }
-
-    /**
-     * Carga los álbumes de las canciones en el array.
-     */
-    private void cargarAlbumes() {
-    }
-
-    /**
-     * Devuelve el objeto album si ya existe uno con estas características, si no devuelve null
+     * Devuelve el objeto album si ya existe uno con estas características, sino devuelve null
      *
      * @param nombreAlbum
      * @param artista
@@ -183,11 +89,11 @@ public class DAO {
         Album res = null;
         int i = 0;
 
-        while (i < this.albumes.size() && (res == null)) {
+        while (i < this.albumes.length && (res == null)) {
             //Si el album no existe ya
-            if (albumes.get(i).getTitulo().equalsIgnoreCase(nombreAlbum) &&
-                    albumes.get(i).getArtista().getNombre().equalsIgnoreCase(artista)) {
-                res = albumes.get(i);
+            if (albumes[i].getTitulo().equalsIgnoreCase(nombreAlbum) &&
+                    albumes[i].getArtista().getNombre().equalsIgnoreCase(artista)) {
+                res = albumes[i];
             }
             i++;
         }
@@ -206,10 +112,10 @@ public class DAO {
         Artista res = null;
         int i = 0;
 
-        while (i < this.artistas.size() && (res == null)) {
-            //Si el artista no existe ya
-            if (artistas.get(i).getNombre().equalsIgnoreCase(nombreArtista)) {
-                res = artistas.get(i);
+        while (i < this.artistas.length && (res == null)) {
+            //Si el album no existe ya
+            if (artistas[i].getNombre().equalsIgnoreCase(nombreArtista)) {
+                res = artistas[i];
             }
             i++;
         }
@@ -222,7 +128,7 @@ public class DAO {
      *
      * @return
      */
-    public ArrayList<Cancion> getListaCanciones() {
+    public Cancion[] getListaCanciones() {
 
         /*Cancion[] lista = new Cancion[NUM_TEMAS];
 
@@ -241,12 +147,12 @@ public class DAO {
      */
     public Cancion getCancionByID(int ID) {
 
-        Cancion canRes = this.canciones.get(ID);
+        Cancion canRes = this.canciones[ID];
 
         return canRes.clone();
     }
 
-    public ArrayList<Album> getListaAlbumes() {
+    public Album[] getListaAlbumes() {
 
         /*Album[] lista = new Album[NUM_TEMAS];
 
@@ -271,30 +177,17 @@ public class DAO {
 //----- GETTER's -----
 //--------------------
 
-    public ArrayList<Cancion> getCanciones(){
-        return canciones;
-    }
-
-    public ArrayList<Album> getAlbumes(){
-        return albumes;
-    }
-
-    public ArrayList<Artista> getArtistas(){
-        return artistas;
-    }
-
-    /*public Cancion[] getCanciones() {
+    public Cancion[] getCanciones() {
         return Arrays.copyOf(this.canciones, canciones.length);
     }
 
-    public Album[] getAlbum() {
+    private Album[] getAlbum() {
         return Arrays.copyOf(this.albumes, albumes.length);
     }
 
-    public Artista[] getArtista() {
+    private Artista[] getArtista() {
         return Arrays.copyOf(this.artistas, artistas.length);
     }
-    */
 }
 //------------------------------------------------------------------------------------------
 //------ No se recuperara esta parte del código hasta que no se vaya a hacer la BBDD -------

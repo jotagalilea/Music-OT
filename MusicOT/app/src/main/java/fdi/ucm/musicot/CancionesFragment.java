@@ -18,13 +18,10 @@ import android.widget.TextView;
 
 import com.example.usuario_local.music_ot.R;
 
-import java.util.ArrayList;
-
 import fdi.ucm.musicot.Misc.Utils;
 import fdi.ucm.musicot.Modelo.Cancion;
 import fdi.ucm.musicot.Modelo.DAO;
 import fdi.ucm.musicot.Modelo.RetenCanciones;
-
 
 /**
  * A simple {@link Fragment} subclass.
@@ -42,7 +39,7 @@ public class CancionesFragment extends Fragment {
     private MenuActivity menuActivity;
 
     RetenCanciones retenCanciones;
-    ArrayList<Cancion> listaCanciones;
+    Cancion[] listaCanciones;
     TableLayout mContieneCanciones;
 
     // TODO: Rename and change types of parameters
@@ -105,7 +102,7 @@ public class CancionesFragment extends Fragment {
         TableRow fila = new TableRow(menuActivity);
         mContieneCanciones.addView(fila);
         byte i = 1;
-        fila.addView(generateLinearCanciones(listaCanciones.get(0)));
+        fila.addView(generateLinearCanciones(listaCanciones[0]));
         for (Cancion tema: listaCanciones) {
             if (i < maxColumnas){
                 i++;
@@ -182,25 +179,6 @@ public class CancionesFragment extends Fragment {
 
         linearLayout.setBackgroundColor(Color.CYAN);
 
-
-        // Creación de un mensaje de alerta:
-        /*linearLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AlertDialog alertDialog = new AlertDialog.Builder(CancionesActivity.this).create();
-                alertDialog.setTitle("Alert");
-                alertDialog.setMessage("cancion pulsada. Bieeeeen!!");
-                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        });
-                alertDialog.show();
-            }
-        });*/
-
-
         return linearLayout;
     }
 
@@ -212,7 +190,6 @@ public class CancionesFragment extends Fragment {
         super.onDestroy();
         retenCanciones.setCancionesRetenidas(listaCanciones);
     }
-
 
     /////////////////////////
     /// SETTERS & GETTERS ///
