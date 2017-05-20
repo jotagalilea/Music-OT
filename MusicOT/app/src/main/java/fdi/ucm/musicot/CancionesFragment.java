@@ -2,6 +2,7 @@ package fdi.ucm.musicot;
 
 import android.app.FragmentManager;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -83,7 +84,7 @@ public class CancionesFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         int maxColumnas = 3;
-        listaCanciones = DAO.canciones;
+        listaCanciones = DAO.getCanciones();
 
         View view = inflater.inflate(R.layout.fragment_canciones, null, false);
         //---------------- A partir de aqui no es código automático
@@ -143,9 +144,13 @@ public class CancionesFragment extends Fragment {
                 new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT, Utils.convertirAdp(50, menuActivity))
         );
-        imageView.setImageDrawable(
+        Bitmap cover = cancion.getAlbum().getCaratula();
+        if (cover != null)
+            imageView.setImageBitmap(cover);
+        else
+            imageView.setImageDrawable(
                 getResources().getDrawable(R.drawable.ic_menu_temas));
-        // TODO Averiguar como funciona lo de poner imagenes en el ImageView.
+
         // TODO Hacer que las imágenes salgan cuadradas.
 
         //----- TextView -----

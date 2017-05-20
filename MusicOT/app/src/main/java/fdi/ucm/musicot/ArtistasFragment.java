@@ -55,7 +55,7 @@ public class ArtistasFragment extends Fragment {
         tabla.addView(fila);
         byte i = 0;
 
-        for (Artista artista: DAO.artistas) {
+        for (Artista artista: DAO.getArtistas()) {
             if (i < 3){
                 i++;
             }

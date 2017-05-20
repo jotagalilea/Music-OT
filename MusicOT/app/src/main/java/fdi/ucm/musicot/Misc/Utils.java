@@ -9,11 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
 
 import java.io.File;
-import java.util.ArrayList;
 
-import fdi.ucm.musicot.Modelo.Cancion;
-
-import static fdi.ucm.musicot.Modelo.DAO.canciones;
 
 /**
  * Clase pensada para almacenar todas las funciones que no tienen lugar en otro sitio

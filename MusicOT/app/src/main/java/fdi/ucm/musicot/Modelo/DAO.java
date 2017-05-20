@@ -1,6 +1,11 @@
 package fdi.ucm.musicot.Modelo;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.MediaMetadataRetriever;
+import android.provider.MediaStore;
+
+import com.example.usuario_local.music_ot.R;
 
 import java.io.File;
 import java.lang.reflect.Array;
@@ -37,9 +42,9 @@ public class DAO {
     /*public static Cancion[] canciones;
     public static Album[] albumes;
     public static Artista[] artistas;*/
-    public static ArrayList<Cancion> canciones;
-    public static ArrayList<Album> albumes;
-    public static ArrayList<Artista> artistas;
+    private static ArrayList<Cancion> canciones;
+    private static ArrayList<Album> albumes;
+    private static ArrayList<Artista> artistas;
 
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!! COSAS QUE FALTAN POR HACER !!!!!!
@@ -59,7 +64,8 @@ public class DAO {
         artistas = new ArrayList<>();
 
         File dir = Utils.parseMountDirectory();
-        cargarCancionesDeLaSD(dir.getAbsolutePath());
+        MediaMetadataRetriever mmr = new MediaMetadataRetriever();
+        cargarCancionesDeLaSD(dir.getAbsolutePath(), mmr);
 
 
         /*for (int i = 0; i < NUM_TEMAS; i++) {
@@ -99,58 +105,80 @@ public class DAO {
 
     private String[] extensions = { "mp3" };
 
-    public void cargarCancionesDeLaSD(String path) {
+    public void cargarCancionesDeLaSD(String path, MediaMetadataRetriever mmr) {
 
-        File file = new File(path);
-        if (file.isDirectory()) {
-            File[] files = file.listFiles();
-            if (files != null && files.length > 0) {
-                for (File f : files) {
-                    if (f.isDirectory()) {
-                        cargarCancionesDeLaSD(f.getAbsolutePath());
-                    } else {
-                        for (int i = 0; i < extensions.length; i++) {
-                            if (f.getAbsolutePath().endsWith(extensions[i])) {
-                                crearCancion(f);
+        try {
+            File file = new File(path);
+            if (file.isDirectory()) {
+                File[] files = file.listFiles();
+                if (files != null && files.length > 0) {
+                    for (File f : files) {
+                        if (f.isDirectory()) {
+                            cargarCancionesDeLaSD(f.getAbsolutePath(), mmr);
+                        } else {
+                            for (int i = 0; i < extensions.length; i++) {
+                                if (f.getAbsolutePath().endsWith(extensions[i])) {
+                                    crearCancion(f, mmr);
+                                }
                             }
                         }
                     }
                 }
             }
         }
-
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
-    private void crearCancion(File f) {
-        MediaMetadataRetriever mmr = new MediaMetadataRetriever();
-        mmr.setDataSource(f.getAbsolutePath());
-        String albumName = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM);
-        String artistName = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST);
-        String titulo = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE);
-        Artista art = artistaExiste(artistName);
-        Album alb = albumExiste(albumName, artistName);
-        boolean artistaExiste = art != null;
-        boolean albumExiste = alb != null;
-        if (!artistaExiste)
-            art = new Artista(artistName);
-        if (!albumExiste)
-            alb = new Album(albumName, art);
+    private void crearCancion(File f, MediaMetadataRetriever mmr) {
 
-        Cancion c = new Cancion(titulo, alb, art, f);
+        try {
+            mmr.setDataSource(f.getAbsolutePath());
 
-        art.addCancion(c);
-        if (!albumExiste) {
-            art.addAlbum(alb);
-            albumes.add(alb);
+            String albumName = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM);
+            String artistName = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST);
+            String titulo = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE);
+            byte[] imagen = mmr.getEmbeddedPicture();
+
+            if (titulo == null)
+                titulo = f.getName();
+            if (artistName == null)
+                artistName = "Desconocido";
+            if (albumName == null)
+                albumName = "Desconocido";
+            Bitmap caratula = null;
+            if (imagen != null)
+                caratula = BitmapFactory.decodeByteArray(imagen, 0, imagen.length);
+
+            Artista art = artistaExiste(artistName);
+            Album alb = albumExiste(albumName, artistName);
+            boolean artistExists = art != null;
+            boolean albumExists = alb != null;
+            if (!artistExists)
+                art = new Artista(artistName);
+            if (!albumExists)
+                alb = new Album(albumName, art, caratula);
+
+            Cancion c = new Cancion(titulo, alb, art, f);
+
+            art.addCancion(c);
+            if (!albumExists) {
+                art.addAlbum(alb);
+                albumes.add(alb);
+            }
+            alb.addCancion(c);
+
+            if (!artistExists) {
+                artistas.add(art);
+            }
+            art.addCancion(c);
+
+            canciones.add(c);
         }
-        alb.addCancion(c);
-
-        if (!artistaExiste) {
-            artistas.add(art);
+        catch (Exception e){
+            e.printStackTrace();
         }
-        art.addCancion(c);
-
-        canciones.add(c);
     }
 
 
@@ -253,13 +281,13 @@ public class DAO {
 //----- GETTER's -----
 //--------------------
 
-    public ArrayList<Cancion> getCanciones(){
+    public static ArrayList<Cancion> getCanciones(){
         return canciones;
     }
-    public ArrayList<Album> getAlbumes(){
+    public static ArrayList<Album> getAlbumes(){
         return albumes;
     }
-    public ArrayList<Artista> getArtistas(){
+    public static ArrayList<Artista> getArtistas(){
         return artistas;
     }
     /*public Cancion[] getCanciones() {

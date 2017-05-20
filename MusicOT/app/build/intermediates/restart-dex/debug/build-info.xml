@@ -6,7 +6,7 @@
     density="xxhdpi"
     format="10"
     plugin-version="2.3.2"
-    timestamp="1495216291928"
+    timestamp="1495318819009"
     token="1296304885048567987"
     verifier="COLD_SWAP_REQUESTED" >
 
@@ -25,17 +25,17 @@
 
     <build
         build-mode="FULL"
-        timestamp="1495211310036"
+        timestamp="1495318219974"
         verifier="FULL_BUILD_REQUESTED" >
+        <artifact
+            location="C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
+            type="SPLIT" />
         <artifact
             location="C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
             type="SPLIT" />
         <artifact
             location="C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\build\outputs\apk\app-debug.apk"
             type="SPLIT_MAIN" />
-        <artifact
-            location="C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
-            type="SPLIT" />
         <artifact
             location="C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
             type="SPLIT" />
@@ -66,16 +66,11 @@
     </build>
     <build
         build-mode="COLD"
-        timestamp="1495215619004"
+        timestamp="1495318668897"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
             type="SPLIT" />
-    </build>
-    <build
-        build-mode="COLD"
-        timestamp="1495216266939"
-        verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
             type="SPLIT" />
@@ -85,7 +80,7 @@
     </build>
     <build
         build-mode="COLD"
-        timestamp="1495216291928"
+        timestamp="1495318819009"
         verifier="COLD_SWAP_REQUESTED" />
 
 </instant-run>

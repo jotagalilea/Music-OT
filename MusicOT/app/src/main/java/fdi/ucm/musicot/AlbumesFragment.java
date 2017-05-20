@@ -1,5 +1,6 @@
 package fdi.ucm.musicot;
 
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -121,9 +122,13 @@ public class AlbumesFragment extends Fragment {
                 new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT, Utils.convertirAdp(50, menuActivity))
         );
-        imageView.setImageDrawable(
-                getResources().getDrawable(R.drawable.ic_menu_albumes));
-        // TODO Averiguar como funciona lo de poner imagenes en el ImageView.
+        Bitmap cover = album.getCaratula();
+        if (cover != null)
+            imageView.setImageBitmap(cover);
+        else
+            imageView.setImageDrawable(
+                    getResources().getDrawable(R.drawable.ic_menu_temas));
+
         // TODO Hacer que las imágenes salgan cuadradas.
 
         //----- TextView -----

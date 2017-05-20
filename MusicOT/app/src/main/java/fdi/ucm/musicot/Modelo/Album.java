@@ -1,5 +1,7 @@
 package fdi.ucm.musicot.Modelo;
 
+import android.graphics.Bitmap;
+
 import java.util.Arrays;
 import java.util.Comparator;
 
@@ -12,24 +14,27 @@ public class Album {
     String titulo;
     Artista artista;
     Cancion[] canciones;
+    Bitmap caratula;
 
     public Album(){
-
         this.titulo = null;
         this.artista = null;
         this.canciones = null;
+        this.caratula = null;
     }
 
-    public Album(String titulo, Artista artista){
+    public Album(String titulo, Artista artista, Bitmap cover){
         this.titulo = titulo;
         this.artista = artista;
         this.canciones = new Cancion[0];
+        this.caratula = cover;
     }
 
-    public Album(String titulo, Artista artista, Cancion[] canciones){
+    public Album(String titulo, Artista artista, Cancion[] canciones, Bitmap cover){
         this.titulo = titulo;
         this.artista = artista;
         this.canciones = canciones;
+        this.caratula = cover;
     }
 
     //-----------------
@@ -91,6 +96,10 @@ public class Album {
     public void setCanciones(Cancion[] canciones) {
         this.canciones = canciones;
     }
+
+    public Bitmap getCaratula() { return caratula; }
+
+    public void setCaratula(Bitmap caratula) { this.caratula = caratula; }
 
 /*
     public void addAlbum(String nombreAlbum,String artista, String[] canciones){
