@@ -17,6 +17,8 @@ import com.example.usuario_local.music_ot.R;
 
 import java.io.IOException;
 
+import fdi.ucm.musicot.Misc.PaqueteCancionMedia;
+import fdi.ucm.musicot.Modelo.Cancion;
 import fdi.ucm.musicot.Modelo.Reproductor;
 
 /**
@@ -85,23 +87,30 @@ public class ReproductorFragment extends Fragment {
             }
         });
 
-        actualizaDatosCancion();
+        actualizaDatosCancion(Reproductor.currentSong);
 
         return view;
 
     }
 
-    public void actualizaDatosCancion(){
+    public void actualizaDatosCancion(PaqueteCancionMedia cancion){
 
-        progressBar.setMax(Reproductor.currentSong.getDuration());
-        progressBar.setProgress(Reproductor.currentSong.getCurrentPosition());
+        String subStr = cancion.getCancionData().getTitulo();
 
-        MenuActivity.fragmentMini.progressBar.setMax(Reproductor.currentSong.getDuration());
-        MenuActivity.fragmentMini.progressBar.setMax(Reproductor.currentSong.getCurrentPosition());
+        progressBar.setMax(Reproductor.currentSong.getMedia().getDuration());
+        progressBar.setProgress(Reproductor.currentSong.getMedia().getCurrentPosition());
+
+        MenuActivity.fragmentMini.progressBar.setMax(Reproductor.currentSong.getMedia().getDuration());
+        MenuActivity.fragmentMini.progressBar.setProgress(Reproductor.currentSong.getMedia().getCurrentPosition());
 
         updatePlayButton();
 
-        textviewTituloCancion.setText(/*currentSong.g*/"PRUEBA POR AHORA");
+        if(subStr.length() > 15){
+            subStr = subStr.substring(0, 25) + "...";
+        }
+
+        textviewTituloCancion.setText(subStr);
+        MenuActivity.fragmentMini.tituloView.setText(subStr);
 
     }
 

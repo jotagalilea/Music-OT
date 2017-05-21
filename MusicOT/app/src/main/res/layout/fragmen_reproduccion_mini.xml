@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <ProgressBar
-        android:id="@+id/progressBar"
+        android:id="@+id/progressBar_mini"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,31 +15,19 @@
         android:background="@android:color/darker_gray" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tituloCancion_mini"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="YEYEYYEEYEY"
         android:textSize="20sp"
-        android:layout_below="@+id/progressBar"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/progressBar_mini"
+        android:layout_alignParentStart="true" />
 
     <ImageButton
         android:id="@+id/mini_P"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_rep_play_button"
-        android:layout_marginEnd="30dp"
-        android:layout_below="@+id/progressBar"
-        android:layout_toStartOf="@+id/textView2" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        android:layout_marginEnd="16dp"
-        android:layout_below="@+id/progressBar"
+        android:layout_below="@+id/progressBar_mini"
         android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

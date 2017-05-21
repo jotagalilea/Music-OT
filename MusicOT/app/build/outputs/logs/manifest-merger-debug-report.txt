@@ -1,64 +1,64 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\src\main\AndroidManifest.xml:2:1-24:12
+ADDED from /home/deekin/GIT/Proyecto-PAD/MusicOT/app/src/main/AndroidManifest.xml:2:1-24:12
 	package
-		ADDED from C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\src\main\AndroidManifest.xml:3:5-49
-		INJECTED from C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\src\main\AndroidManifest.xml
+		ADDED from /home/deekin/GIT/Proyecto-PAD/MusicOT/app/src/main/AndroidManifest.xml:3:5-49
+		INJECTED from /home/deekin/GIT/Proyecto-PAD/MusicOT/app/src/main/AndroidManifest.xml
+		INJECTED from /home/deekin/GIT/Proyecto-PAD/MusicOT/app/src/main/AndroidManifest.xml
 	android:versionName
-		INJECTED from C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\src\main\AndroidManifest.xml
+		INJECTED from /home/deekin/GIT/Proyecto-PAD/MusicOT/app/src/main/AndroidManifest.xml
+		INJECTED from /home/deekin/GIT/Proyecto-PAD/MusicOT/app/src/main/AndroidManifest.xml
 	xmlns:android
-		ADDED from C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\src\main\AndroidManifest.xml:2:11-69
+		ADDED from /home/deekin/GIT/Proyecto-PAD/MusicOT/app/src/main/AndroidManifest.xml:2:11-69
 	android:versionCode
-		INJECTED from C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\src\main\AndroidManifest.xml
+		INJECTED from /home/deekin/GIT/Proyecto-PAD/MusicOT/app/src/main/AndroidManifest.xml
+		INJECTED from /home/deekin/GIT/Proyecto-PAD/MusicOT/app/src/main/AndroidManifest.xml
 application
-ADDED from C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\src\main\AndroidManifest.xml:5:5-21:19
-MERGED from [com.android.support:design:23.1.1] C:\Users\J\.android\build-cache\75a815ce19273abce7ef334703f9b928beccdc6c\output\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:appcompat-v7:23.1.1] C:\Users\J\.android\build-cache\1307cab75b700edb9c535fd78d444b13a7ba05d1\output\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:support-v4:23.4.0] C:\Users\J\.android\build-cache\d1d0884ec5c346724e9c59ac2cbbf088a811cc21\output\AndroidManifest.xml:22:5-20
+ADDED from /home/deekin/GIT/Proyecto-PAD/MusicOT/app/src/main/AndroidManifest.xml:5:5-21:19
+MERGED from [com.android.support:design:23.1.1] /home/deekin/.android/build-cache/772ac4f9e97bd47e176753d6b6b52153e6797619/output/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:appcompat-v7:23.1.1] /home/deekin/.android/build-cache/6bee8cbb870caffb91be8bb8a03763027af31c39/output/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.4.0] /home/deekin/.android/build-cache/3d9889bf310b8ae9f651d7cf703efbbfa165d523/output/AndroidManifest.xml:22:5-20
 	android:label
-		ADDED from C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\src\main\AndroidManifest.xml:8:9-41
+		ADDED from /home/deekin/GIT/Proyecto-PAD/MusicOT/app/src/main/AndroidManifest.xml:8:9-41
 	android:supportsRtl
-		ADDED from C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\src\main\AndroidManifest.xml:9:9-35
+		ADDED from /home/deekin/GIT/Proyecto-PAD/MusicOT/app/src/main/AndroidManifest.xml:9:9-35
 	android:allowBackup
-		ADDED from C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\src\main\AndroidManifest.xml:6:9-35
+		ADDED from /home/deekin/GIT/Proyecto-PAD/MusicOT/app/src/main/AndroidManifest.xml:6:9-35
 	android:icon
-		ADDED from C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\src\main\AndroidManifest.xml:7:9-43
+		ADDED from /home/deekin/GIT/Proyecto-PAD/MusicOT/app/src/main/AndroidManifest.xml:7:9-43
 	android:theme
-		ADDED from C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\src\main\AndroidManifest.xml:10:9-40
+		ADDED from /home/deekin/GIT/Proyecto-PAD/MusicOT/app/src/main/AndroidManifest.xml:10:9-40
 activity#fdi.ucm.musicot.MenuActivity
-ADDED from C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\src\main\AndroidManifest.xml:11:9-20:20
+ADDED from /home/deekin/GIT/Proyecto-PAD/MusicOT/app/src/main/AndroidManifest.xml:11:9-20:20
 	android:label
-		ADDED from C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\src\main\AndroidManifest.xml:13:13-45
+		ADDED from /home/deekin/GIT/Proyecto-PAD/MusicOT/app/src/main/AndroidManifest.xml:13:13-45
 	android:theme
-		ADDED from C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\src\main\AndroidManifest.xml:14:13-56
+		ADDED from /home/deekin/GIT/Proyecto-PAD/MusicOT/app/src/main/AndroidManifest.xml:14:13-56
 	android:name
-		ADDED from C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\src\main\AndroidManifest.xml:12:13-56
+		ADDED from /home/deekin/GIT/Proyecto-PAD/MusicOT/app/src/main/AndroidManifest.xml:12:13-56
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\src\main\AndroidManifest.xml:15:13-19:29
+ADDED from /home/deekin/GIT/Proyecto-PAD/MusicOT/app/src/main/AndroidManifest.xml:15:13-19:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\src\main\AndroidManifest.xml:16:17-69
+ADDED from /home/deekin/GIT/Proyecto-PAD/MusicOT/app/src/main/AndroidManifest.xml:16:17-69
 	android:name
-		ADDED from C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\src\main\AndroidManifest.xml:16:25-66
+		ADDED from /home/deekin/GIT/Proyecto-PAD/MusicOT/app/src/main/AndroidManifest.xml:16:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\src\main\AndroidManifest.xml:18:17-77
+ADDED from /home/deekin/GIT/Proyecto-PAD/MusicOT/app/src/main/AndroidManifest.xml:18:17-77
 	android:name
-		ADDED from C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\src\main\AndroidManifest.xml:18:27-74
+		ADDED from /home/deekin/GIT/Proyecto-PAD/MusicOT/app/src/main/AndroidManifest.xml:18:27-74
 uses-permission#android.permission.READ_EXTERNAL_STORAGE
-ADDED from C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\src\main\AndroidManifest.xml:22:5-80
+ADDED from /home/deekin/GIT/Proyecto-PAD/MusicOT/app/src/main/AndroidManifest.xml:22:5-80
 	android:name
-		ADDED from C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\src\main\AndroidManifest.xml:22:22-77
+		ADDED from /home/deekin/GIT/Proyecto-PAD/MusicOT/app/src/main/AndroidManifest.xml:22:22-77
 uses-sdk
-INJECTED from C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
-MERGED from [com.android.support:design:23.1.1] C:\Users\J\.android\build-cache\75a815ce19273abce7ef334703f9b928beccdc6c\output\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:appcompat-v7:23.1.1] C:\Users\J\.android\build-cache\1307cab75b700edb9c535fd78d444b13a7ba05d1\output\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:recyclerview-v7:23.4.0] C:\Users\J\.android\build-cache\869670480d5e9a89d64e96fea9abf5e5eb0ffc44\output\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:support-v4:23.4.0] C:\Users\J\.android\build-cache\d1d0884ec5c346724e9c59ac2cbbf088a811cc21\output\AndroidManifest.xml:20:5-43
+INJECTED from /home/deekin/GIT/Proyecto-PAD/MusicOT/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+MERGED from [com.android.support:design:23.1.1] /home/deekin/.android/build-cache/772ac4f9e97bd47e176753d6b6b52153e6797619/output/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:appcompat-v7:23.1.1] /home/deekin/.android/build-cache/6bee8cbb870caffb91be8bb8a03763027af31c39/output/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:recyclerview-v7:23.4.0] /home/deekin/.android/build-cache/f240654c17a510f6465e9f14ecf5d41bd252b8f7/output/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.4.0] /home/deekin/.android/build-cache/3d9889bf310b8ae9f651d7cf703efbbfa165d523/output/AndroidManifest.xml:20:5-43
 	android:targetSdkVersion
-		INJECTED from C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\src\main\AndroidManifest.xml
+		INJECTED from /home/deekin/GIT/Proyecto-PAD/MusicOT/app/src/main/AndroidManifest.xml
+		INJECTED from /home/deekin/GIT/Proyecto-PAD/MusicOT/app/src/main/AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\src\main\AndroidManifest.xml
+		INJECTED from /home/deekin/GIT/Proyecto-PAD/MusicOT/app/src/main/AndroidManifest.xml
+		INJECTED from /home/deekin/GIT/Proyecto-PAD/MusicOT/app/src/main/AndroidManifest.xml

@@ -2,13 +2,12 @@ package fdi.ucm.musicot;
 
 import android.app.Fragment;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.example.usuario_local.music_ot.R;
 
@@ -24,6 +23,7 @@ public class ReproductorFragmentMini extends Fragment {
     Reproductor reproductor;
     public static ProgressBar progressBar;
     public static ImageButton butonPlay;
+    public static TextView tituloView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -32,7 +32,8 @@ public class ReproductorFragmentMini extends Fragment {
 
         reproductor = MenuActivity.reproductor;
 
-        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
+        tituloView = (TextView) view.findViewById(R.id.tituloCancion_mini);
+        progressBar = (ProgressBar) view.findViewById(R.id.progressBar_mini);
         butonPlay = (ImageButton) view.findViewById(R.id.mini_P);
 
         butonPlay.setOnClickListener(new View.OnClickListener() {

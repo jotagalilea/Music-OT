@@ -1,6 +1,9 @@
 package fdi.ucm.musicot.Modelo;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Environment;
 import android.view.View;
 
@@ -9,6 +12,7 @@ import com.example.usuario_local.music_ot.R;
 import java.io.IOException;
 
 import fdi.ucm.musicot.MenuActivity;
+import fdi.ucm.musicot.Misc.PaqueteCancionMedia;
 import fdi.ucm.musicot.Misc.Utils;
 import fdi.ucm.musicot.ReproductorFragment;
 import fdi.ucm.musicot.ReproductorFragmentMini;
@@ -17,24 +21,18 @@ public class Reproductor {
 
     public static boolean isPlaying = false;
     public static boolean isDeployed = false;
-    public static MediaPlayer[] listaPlayer;
+    public static PaqueteCancionMedia[] listaPlayer;
     ProgressTracker progressTracker;
     String[] urlCanciones;
-    public static MediaPlayer currentSong;
+    public static PaqueteCancionMedia currentSong;
 
     int currSong;
 
     public Reproductor(){
 
-        // TODO Sacar cosas del DAO
-        //urlCanciones = DAO.initialSongs();
-        urlCanciones= new String[]{
-                "/Sabaton - The Last Stand (Limited Edition)/01. Sparta.mp3",
-                "/Sabaton - The Last Stand (Limited Edition)/02. Last Dying Breath.mp3",
-                "/Sabaton - The Last Stand (Limited Edition)/03. Blood Of Bannockburn.mp3"
-        };
+        listaPlayer = new PaqueteCancionMedia[1];
 
-        listaPlayer = rellenarListaCanciones(urlCanciones);
+        listaPlayer[0] = new PaqueteCancionMedia((Cancion)DAO.getCanciones().toArray()[0]);
 
         currentSong = listaPlayer[0];
         currSong = 0;
@@ -43,19 +41,42 @@ public class Reproductor {
         progressTracker.start();
     }
 
+    public void rellenarLista(Album album){
+
+        listaPlayer = rellenarListaCanciones(album.getCanciones());
+    }
+
+    public void rellenarLista(Cancion cancion){
+
+        Cancion[] canArray = new Cancion[1];
+
+        canArray[0] = cancion;
+
+        listaPlayer = rellenarListaCanciones(canArray);
+    }
+
+    public void rellenarLista(Artista artista){
+
+        listaPlayer = rellenarListaCanciones(artista.getCanciones());
+    }
+
     public void botonReproducirCancion(){
 
-        if(isPlaying) {
-            isPlaying = false;
-            currentSong.pause();
+        if(currentSong != null) {
+            if (isPlaying) {
+                isPlaying = false;
+                currentSong.getMedia().pause();
 
-        }else {
-            isPlaying = true;
-            isDeployed = true;
-            currentSong.start();
+            } else {
+                isPlaying = true;
+                isDeployed = true;
+                currentSong.getMedia().start();
+            }
+
+            MenuActivity.fragmentReproductor.actualizaDatosCancion(currentSong);
+        }else{
+
         }
-
-        MenuActivity.fragmentReproductor.actualizaDatosCancion();
     }
 
 
@@ -63,62 +84,67 @@ public class Reproductor {
      * Genera la lista de canciones de la lista de reproducción seleccionada, y actualiza la lista .
      * @return
      */
-    public MediaPlayer[] rellenarListaCanciones(String[] listaURLcanciones){
+    private PaqueteCancionMedia[] rellenarListaCanciones(Cancion[] canciones){
 
-        MediaPlayer[] listaCanciones = new MediaPlayer[listaURLcanciones.length];
+        PaqueteCancionMedia[] listaPaquetes = new PaqueteCancionMedia[canciones.length];
+        MediaPlayer media = new MediaPlayer();
 
-        for(int i=0; i<listaURLcanciones.length; i++){
+        for(int i=0; i<canciones.length; i++){
 
-            listaURLcanciones[i] = Utils.parseMountDirectory()+ listaURLcanciones[i];
             try {
-                listaCanciones[i] = new  MediaPlayer();
-                listaCanciones[i].setDataSource(listaURLcanciones[i]);
-                listaCanciones[i].prepare();
+                media = new MediaPlayer();
+                media.setDataSource(canciones[i].getRuta().getPath());
+                media.prepare();
+                listaPaquetes[i] = new PaqueteCancionMedia(media, canciones[i]);
             } catch (IOException e) {
                 e.printStackTrace();
                 // TODO añadir aqui una función que avise al usuario de que no se ha encontrado la cancion en disco y actualice la lista
             }
         }
 
-        listaPlayer = listaCanciones;
+        listaPlayer = listaPaquetes;
 
-        return listaCanciones;
+        return listaPaquetes;
     }
 
     public void botonNextSong(){
 
-        currSong++;
-        if(currSong > listaPlayer.length-1){
-            currSong = 0;
+        if(currentSong != null) {
+            currSong++;
+            if (currSong > listaPlayer.length - 1) {
+                currSong = 0;
+            }
+
+            currentSong.getMedia().stop();
+            currentSong.getMedia().prepareAsync();
+
+            currentSong = listaPlayer[currSong];
+            if (isPlaying) {
+                currentSong.getMedia().start();
+            }
+
+            MenuActivity.fragmentReproductor.actualizaDatosCancion(Reproductor.currentSong);
         }
-
-        currentSong.stop();
-        currentSong.prepareAsync();
-
-        currentSong = listaPlayer[currSong];
-        if(isPlaying) {
-            currentSong.start();
-        }
-
-        MenuActivity.fragmentReproductor.actualizaDatosCancion();
     }
 
     public void botonPrevSong(){
 
-        currSong--;
-        if(currSong < 0){
-            currSong = listaPlayer.length-1;
+        if(currentSong != null) {
+            currSong--;
+            if (currSong < 0) {
+                currSong = listaPlayer.length - 1;
+            }
+
+            currentSong.getMedia().stop();
+            currentSong.getMedia().prepareAsync();
+
+            currentSong = listaPlayer[currSong];
+            if (isPlaying) {
+                currentSong.getMedia().start();
+            }
+
+            MenuActivity.fragmentReproductor.actualizaDatosCancion(Reproductor.currentSong);
         }
-
-        currentSong.stop();
-        currentSong.prepareAsync();
-
-        currentSong = listaPlayer[currSong];
-        if(isPlaying) {
-            currentSong.start();
-        }
-
-        MenuActivity.fragmentReproductor.actualizaDatosCancion();
     }
 
     public class ProgressTracker extends Thread{
@@ -131,11 +157,11 @@ public class Reproductor {
 
                 try {
                     Thread.sleep(700);
-                    if(ReproductorFragment.progressBar != null){
-                        ReproductorFragment.progressBar.setProgress(currentSong.getCurrentPosition());
+                    if(ReproductorFragment.progressBar != null && currentSong != null){
+                        ReproductorFragment.progressBar.setProgress(currentSong.getMedia().getCurrentPosition());
                     }
-                    if(ReproductorFragmentMini.progressBar != null){
-                        ReproductorFragmentMini.progressBar.setProgress(currentSong.getCurrentPosition());
+                    if(ReproductorFragmentMini.progressBar != null && currentSong != null){
+                        ReproductorFragmentMini.progressBar.setProgress(currentSong.getMedia().getCurrentPosition());
                     }
                 } catch (InterruptedException e) {
                     e.printStackTrace();

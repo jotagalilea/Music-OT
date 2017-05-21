@@ -128,7 +128,7 @@ public class ArtistasFragment extends Fragment {
 
 
         // Creación de un mensaje de alerta:
-        /*linearLayout.setOnClickListener(new View.OnClickListener() {
+        linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AlertDialog alertDialog = new AlertDialog.Builder(CancionesActivity.this).create();
@@ -142,7 +142,7 @@ public class ArtistasFragment extends Fragment {
                         });
                 alertDialog.show();
             }
-        });*/
+        });
 
 
         return linearLayout;

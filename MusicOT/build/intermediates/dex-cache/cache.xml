@@ -2,22 +2,58 @@
 <items version="2" >
 
     <item
-        is-multidex="true"
-        jar="C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="/home/deekin/.android/build-cache/f240654c17a510f6465e9f14ecf5d41bd252b8f7/output/jars/classes.jar"
+        jumboMode="false"
         optimize="true"
-        revision="25.0.0"
-        sha1="caff8e51a24901cfc9cd7e1cf83d84f4cb0c103b">
-        <dex dex="C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_c8f879f0974e74494295d48a73bac1c5eeed399a\classes.dex" />
+        revision="25.0.2"
+        sha1="ec75036c3c52e451d0cde50a5aedaf5fd32354a0">
+        <dex dex="/home/deekin/GIT/Proyecto-PAD/MusicOT/app/build/intermediates/pre-dexed/debug/classes_69e23d7f8d2006ac1b1941c6ef8f5e26a770b127.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="/home/deekin/.android/build-cache/6bee8cbb870caffb91be8bb8a03763027af31c39/output/jars/classes.jar"
+        jumboMode="false"
         optimize="true"
-        revision="25.0.0"
-        sha1="9f0c6535be47cfaa52a637848b690f7b72276e71">
-        <dex dex="C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_7a24361f80482d15c43889e70758b06f343cab01\classes.dex" />
+        revision="25.0.2"
+        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
+        <dex dex="/home/deekin/GIT/Proyecto-PAD/MusicOT/app/build/intermediates/pre-dexed/debug/classes_c01104a24edf3b6fc3dc3415538a3a4289ce811c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/deekin/.android/build-cache/3d9889bf310b8ae9f651d7cf703efbbfa165d523/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
+        <dex dex="/home/deekin/GIT/Proyecto-PAD/MusicOT/app/build/intermediates/pre-dexed/debug/classes_422c80d4fce555cc0e1856ea84f08d5282be9e84.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/deekin/.android/build-cache/3d9889bf310b8ae9f651d7cf703efbbfa165d523/output/jars/libs/internal_impl-23.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
+        <dex dex="/home/deekin/GIT/Proyecto-PAD/MusicOT/app/build/intermediates/pre-dexed/debug/internal_impl-23.4.0_a4f3d10eb6469f1d8931bd97f6c49fb50cfd9d88.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/deekin/.android/build-cache/772ac4f9e97bd47e176753d6b6b52153e6797619/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="379471b2bd17d9737c050345c08e8c7d16589784">
+        <dex dex="/home/deekin/GIT/Proyecto-PAD/MusicOT/app/build/intermediates/pre-dexed/debug/classes_ae98b6bfc09622a7fdc6984f63c55a3498d28e3e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/deekin/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/23.4.0/support-annotations-23.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
+        <dex dex="/home/deekin/GIT/Proyecto-PAD/MusicOT/app/build/intermediates/pre-dexed/debug/support-annotations-23.4.0_7ba0fdb5e9117728730b3e76cb7c6abdfed9db87.jar" />
     </item>
 
 </items>
