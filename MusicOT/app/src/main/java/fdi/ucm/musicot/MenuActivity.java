@@ -34,6 +34,8 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     public static ReproductorFragmentMini fragmentMini;
     private TableLayout fragmentArtistasContenedor;
 
+    public static MenuActivity menuActivity;
+
     public static Reproductor reproductor = null;
     private LinearLayout miniReproductorFragment;
 
@@ -88,6 +90,8 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         }
         transicionarMenuFragmento(R.id.mini_bot_reproductor, Utils.currentMiniFragment);
         cambiaFragment(R.id.fragment_contentmenu1, Utils.currentFragment);
+
+        menuActivity = this;
     }
 
     @Override
@@ -192,7 +196,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
      * @param id
      * @param newFragment
      */
-    private void transicionarMenuFragmento(int id, Fragment newFragment){
+    public void transicionarMenuFragmento(int id, Fragment newFragment){
 
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

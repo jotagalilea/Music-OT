@@ -74,13 +74,12 @@ public class ArtistasFragment extends Fragment {
      * @param artista
      * @return
      */
-    private LinearLayout generateLinearArtista(Artista artista, MenuActivity menuActivity){
+    private LinearLayout generateLinearArtista(final Artista artista, MenuActivity menuActivity){
 
         LinearLayout linearLayout = new LinearLayout(menuActivity);
 
         linearLayout.setOrientation(LinearLayout.VERTICAL);
-
-
+        linearLayout.setId(artista.hashCode());
         //----- ImageView -----
         ImageView imageView = new ImageView(menuActivity);
 
@@ -129,9 +128,12 @@ public class ArtistasFragment extends Fragment {
 
         // Creación de un mensaje de alerta:
         linearLayout.setOnClickListener(new View.OnClickListener() {
+
+            Artista art;
+
             @Override
             public void onClick(View view) {
-                AlertDialog alertDialog = new AlertDialog.Builder(CancionesActivity.this).create();
+                /*AlertDialog alertDialog = new AlertDialog.Builder(CancionesActivity.this).create();
                 alertDialog.setTitle("Alert");
                 alertDialog.setMessage("cancion pulsada. Bieeeeen!!");
                 alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
@@ -140,7 +142,14 @@ public class ArtistasFragment extends Fragment {
                                 dialog.dismiss();
                             }
                         });
-                alertDialog.show();
+                alertDialog.show();*/
+
+                art = artista;
+
+                MenuActivity.reproductor.rellenarLista(art);
+                MenuActivity.fragmentReproductor.actualizaDatosCancion();
+
+                MenuActivity.menuActivity.transicionarMenuFragmento(R.id.fragment_contentmenu1, MenuActivity.fragmentReproductor);
             }
         });
 

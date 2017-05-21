@@ -130,7 +130,7 @@ public class CancionesFragment extends Fragment {
      * @param cancion
      * @return
      */
-    private LinearLayout generateLinearCanciones(Cancion cancion){
+    private LinearLayout generateLinearCanciones(final Cancion cancion){
 
         LinearLayout linearLayout = new LinearLayout(menuActivity);
 
@@ -178,6 +178,16 @@ public class CancionesFragment extends Fragment {
 
         textViewAlbum.setText(cancion.getAlbum().getTitulo());
         textViewAlbum.setBackgroundColor(Color.GREEN);
+
+        linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MenuActivity.reproductor.rellenarLista(cancion);
+                MenuActivity.fragmentReproductor.actualizaDatosCancion();
+
+                MenuActivity.menuActivity.transicionarMenuFragmento(R.id.fragment_contentmenu1, MenuActivity.fragmentReproductor);
+            }
+        });
 
         //Se añaden los componentes al LinearLayout
         linearLayout.addView(imageView);

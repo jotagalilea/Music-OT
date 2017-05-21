@@ -44,6 +44,10 @@ public class Reproductor {
     public void rellenarLista(Album album){
 
         listaPlayer = rellenarListaCanciones(album.getCanciones());
+
+        currSong = 0;
+
+        currentSong = listaPlayer[0];
     }
 
     public void rellenarLista(Cancion cancion){
@@ -52,12 +56,20 @@ public class Reproductor {
 
         canArray[0] = cancion;
 
+        currSong = 0;
+
         listaPlayer = rellenarListaCanciones(canArray);
+
+        currentSong = listaPlayer[0];
     }
 
     public void rellenarLista(Artista artista){
 
         listaPlayer = rellenarListaCanciones(artista.getCanciones());
+
+        currSong = 0;
+
+        currentSong = listaPlayer[0];
     }
 
     public void botonReproducirCancion(){
@@ -87,7 +99,7 @@ public class Reproductor {
     private PaqueteCancionMedia[] rellenarListaCanciones(Cancion[] canciones){
 
         PaqueteCancionMedia[] listaPaquetes = new PaqueteCancionMedia[canciones.length];
-        MediaPlayer media = new MediaPlayer();
+        MediaPlayer media;
 
         for(int i=0; i<canciones.length; i++){
 
@@ -115,19 +127,19 @@ public class Reproductor {
                 currSong = 0;
             }
 
-            currentSong.getMedia().stop();
-            currentSong.getMedia().prepareAsync();
+            currentSong.media.stop();
+            currentSong.media.prepareAsync();
 
             currentSong = listaPlayer[currSong];
             if (isPlaying) {
-                currentSong.getMedia().start();
+                currentSong.media.start();
             }
 
-            MenuActivity.fragmentReproductor.actualizaDatosCancion(Reproductor.currentSong);
+            MenuActivity.fragmentReproductor.actualizaDatosCancion(currentSong);
         }
     }
 
-    public void botonPrevSong(){
+    public void botonPrevSong() {
 
         if(currentSong != null) {
             currSong--;
@@ -136,7 +148,7 @@ public class Reproductor {
             }
 
             currentSong.getMedia().stop();
-            currentSong.getMedia().prepareAsync();
+            currentSong.media.prepareAsync();
 
             currentSong = listaPlayer[currSong];
             if (isPlaying) {

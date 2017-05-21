@@ -105,7 +105,28 @@ public class ReproductorFragment extends Fragment {
 
         updatePlayButton();
 
-        if(subStr.length() > 15){
+        if(subStr.length() > 20){
+            subStr = subStr.substring(0, 20) + "...";
+        }
+
+        textviewTituloCancion.setText(subStr);
+        MenuActivity.fragmentMini.tituloView.setText(subStr);
+
+    }
+
+    public void actualizaDatosCancion(){
+
+        String subStr = Reproductor.currentSong.getCancionData().getTitulo();
+
+        progressBar.setMax(Reproductor.currentSong.getMedia().getDuration());
+        progressBar.setProgress(Reproductor.currentSong.getMedia().getCurrentPosition());
+
+        MenuActivity.fragmentMini.progressBar.setMax(Reproductor.currentSong.getMedia().getDuration());
+        MenuActivity.fragmentMini.progressBar.setProgress(Reproductor.currentSong.getMedia().getCurrentPosition());
+
+        updatePlayButton();
+
+        if(subStr.length() > 25){
             subStr = subStr.substring(0, 25) + "...";
         }
 

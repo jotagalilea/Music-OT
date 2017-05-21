@@ -172,7 +172,7 @@ public class DAO {
             if (!artistExists) {
                 artistas.add(art);
             }
-            art.addCancion(c);
+            //art.addCancion(c);
 
             canciones.add(c);
         }

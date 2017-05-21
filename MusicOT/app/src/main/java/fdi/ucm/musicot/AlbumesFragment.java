@@ -109,7 +109,7 @@ public class AlbumesFragment extends Fragment {
      * @param album
      * @return
      */
-    private LinearLayout generateLinearAlbumes(Album album, MenuActivity menuActivity){
+    private LinearLayout generateLinearAlbumes(final Album album, MenuActivity menuActivity){
 
         LinearLayout linearLayout = new LinearLayout(menuActivity);
 
@@ -151,10 +151,11 @@ public class AlbumesFragment extends Fragment {
         linearLayout.setBackgroundColor(Color.CYAN);
 
         // Creación de un mensaje de alerta:
-        /*linearLayout.setOnClickListener(new View.OnClickListener() {
+        linearLayout.setOnClickListener(new View.OnClickListener() {
+            Album alb;
             @Override
             public void onClick(View view) {
-                AlertDialog alertDialog = new AlertDialog.Builder(CancionesActivity.this).create();
+                /*AlertDialog alertDialog = new AlertDialog.Builder(CancionesActivity.this).create();
                 alertDialog.setTitle("Alert");
                 alertDialog.setMessage("cancion pulsada. Bieeeeen!!");
                 alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
@@ -163,9 +164,16 @@ public class AlbumesFragment extends Fragment {
                                 dialog.dismiss();
                             }
                         });
-                alertDialog.show();
+                alertDialog.show();*/
+
+                alb = album;
+
+                MenuActivity.reproductor.rellenarLista(alb);
+                MenuActivity.fragmentReproductor.actualizaDatosCancion();
+
+                MenuActivity.menuActivity.transicionarMenuFragmento(R.id.fragment_contentmenu1, MenuActivity.fragmentReproductor);
             }
-        });*/
+        });
 
         return linearLayout;
     }
