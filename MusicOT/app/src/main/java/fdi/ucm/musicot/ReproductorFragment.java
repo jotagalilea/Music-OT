@@ -1,24 +1,17 @@
 package fdi.ucm.musicot;
 
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.os.Environment;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.usuario_local.music_ot.R;
 
-import java.io.IOException;
-
 import fdi.ucm.musicot.Misc.PaqueteCancionMedia;
-import fdi.ucm.musicot.Modelo.Cancion;
 import fdi.ucm.musicot.Modelo.Reproductor;
 
 /**
@@ -49,16 +42,6 @@ public class ReproductorFragment extends Fragment {
         reproductor = MenuActivity.reproductor;
 
         progressBar = (ProgressBar)view.findViewById(R.id.reproductorBar);
-        progressBar.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                if(motionEvent.getAction() == MotionEvent.ACTION_DOWN){
-                    System.out.println("Touch coordinates : " +
-                            String.valueOf(motionEvent.getX()) + "x" + String.valueOf(motionEvent.getY()));
-                }
-                return true;
-            }
-        });
 
         botonPlay = (ImageButton)view.findViewById(R.id.reproductorButtonPlay);
         botonNextSong = (ImageButton)view.findViewById(R.id.reproductorButtonNextSong);
