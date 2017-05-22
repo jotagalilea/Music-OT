@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "/home/deekin/GIT/Proyecto-PAD/MusicOT/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-w720dp-v13/values-w720dp-v13.xml",
+        "outputFile": "C:\\Users\\J\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-w720dp-v13\\values-w720dp-v13.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,31 @@
                     "endOffset": 127
                 },
                 "from": {
-                    "file": "/home/deekin/.android/build-cache/6bee8cbb870caffb91be8bb8a03763027af31c39/output/res/values-w720dp/values-w720dp.xml",
+                    "file": "C:\\Users\\J\\.android\\build-cache\\1307cab75b700edb9c535fd78d444b13a7ba05d1\\output\\res\\values-w720dp\\values-w720dp.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 231,
+                        "endColumn": 76,
+                        "endOffset": 303
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "C:\\home\\deekin\\GIT\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-w720dp-v13\\values-w720dp-v13.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 76,
+                    "endOffset": 127
+                },
+                "from": {
+                    "file": "C:\\home\\deekin\\.android\\build-cache\\6bee8cbb870caffb91be8bb8a03763027af31c39\\output\\res\\values-w720dp\\values-w720dp.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,

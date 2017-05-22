@@ -1,6 +1,10 @@
 [
     {
-        "merged": "/home/deekin/GIT/Proyecto-PAD/MusicOT/app/build/intermediates/res/merged/debug/layout-sw600dp-v13/design_layout_snackbar.xml",
-        "source": "/home/deekin/.android/build-cache/772ac4f9e97bd47e176753d6b6b52153e6797619/output/res/layout-sw600dp/design_layout_snackbar.xml"
+        "merged": "C:\\home\\deekin\\GIT\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\merged\\debug\\layout-sw600dp-v13\\design_layout_snackbar.xml",
+        "source": "C:\\home\\deekin\\.android\\build-cache\\772ac4f9e97bd47e176753d6b6b52153e6797619\\output\\res\\layout-sw600dp\\design_layout_snackbar.xml"
+    },
+    {
+        "merged": "C:\\Users\\J\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\merged\\debug\\layout-sw600dp-v13\\design_layout_snackbar.xml",
+        "source": "C:\\Users\\J\\.android\\build-cache\\75a815ce19273abce7ef334703f9b928beccdc6c\\output\\res\\layout-sw600dp\\design_layout_snackbar.xml"
     }
 ]

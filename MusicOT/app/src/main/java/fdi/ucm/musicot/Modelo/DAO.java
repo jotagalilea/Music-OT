@@ -12,6 +12,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import fdi.ucm.musicot.MenuActivity;
 import fdi.ucm.musicot.Misc.Utils;
 
 /**
@@ -63,9 +64,14 @@ public class DAO {
         albumes = new ArrayList<>();
         artistas = new ArrayList<>();
 
+        /*LoaderTh t = new LoaderTh();
+        t.start();*/
         File dir = Utils.parseMountDirectory();
+        //File dir = new File("/mnt/sdcard/music");
         MediaMetadataRetriever mmr = new MediaMetadataRetriever();
+        //MenuActivity.menuActivity.getContentResolver();
         cargarCancionesDeLaSD(dir.getAbsolutePath(), mmr);
+
 
 
         /*for (int i = 0; i < NUM_TEMAS; i++) {
@@ -105,8 +111,17 @@ public class DAO {
 
     private String[] extensions = { "mp3" };
 
-    public void cargarCancionesDeLaSD(String path, MediaMetadataRetriever mmr) {
+    /*public class LoaderTh extends Thread{
+        @Override
+        public void run() {
+            super.run();
+            File dir = Utils.parseMountDirectory();
+            MediaMetadataRetriever mmr = new MediaMetadataRetriever();
+            cargarCancionesDeLaSD(dir.getAbsolutePath(), mmr);
+        }
+    }*/
 
+    public void cargarCancionesDeLaSD(String path, MediaMetadataRetriever mmr) {
         try {
             File file = new File(path);
             if (file.isDirectory()) {

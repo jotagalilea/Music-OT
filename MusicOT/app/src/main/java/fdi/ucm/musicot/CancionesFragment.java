@@ -163,7 +163,7 @@ public class CancionesFragment extends Fragment {
 
         textView.setLayoutParams( textParams );
 
-        textView.setText(cancion.getTitulo());
+        textView.setText(cancion.getTitulo().substring(0, 10));
         textView.setBackgroundColor(Color.RED);
 
         //----- TextViewAlbum -----
