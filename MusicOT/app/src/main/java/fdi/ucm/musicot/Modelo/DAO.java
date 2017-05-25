@@ -12,7 +12,6 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import fdi.ucm.musicot.MenuActivity;
 import fdi.ucm.musicot.Misc.Utils;
 
 /**
@@ -47,6 +46,12 @@ public class DAO {
     private static ArrayList<Album> albumes;
     private static ArrayList<Artista> artistas;
 
+    String albumName;
+    String artistName;
+    String titulo;
+    int duracion;
+    byte[] imagen;
+
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!! COSAS QUE FALTAN POR HACER !!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -64,14 +69,9 @@ public class DAO {
         albumes = new ArrayList<>();
         artistas = new ArrayList<>();
 
-        /*LoaderTh t = new LoaderTh();
-        t.start();*/
         File dir = Utils.parseMountDirectory();
-        //File dir = new File("/mnt/sdcard/music");
         MediaMetadataRetriever mmr = new MediaMetadataRetriever();
-        //MenuActivity.menuActivity.getContentResolver();
         cargarCancionesDeLaSD(dir.getAbsolutePath(), mmr);
-
 
 
         /*for (int i = 0; i < NUM_TEMAS; i++) {
@@ -111,17 +111,8 @@ public class DAO {
 
     private String[] extensions = { "mp3" };
 
-    /*public class LoaderTh extends Thread{
-        @Override
-        public void run() {
-            super.run();
-            File dir = Utils.parseMountDirectory();
-            MediaMetadataRetriever mmr = new MediaMetadataRetriever();
-            cargarCancionesDeLaSD(dir.getAbsolutePath(), mmr);
-        }
-    }*/
-
     public void cargarCancionesDeLaSD(String path, MediaMetadataRetriever mmr) {
+
         try {
             File file = new File(path);
             if (file.isDirectory()) {
@@ -151,10 +142,11 @@ public class DAO {
         try {
             mmr.setDataSource(f.getAbsolutePath());
 
-            String albumName = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM);
-            String artistName = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST);
-            String titulo = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE);
-            byte[] imagen = mmr.getEmbeddedPicture();
+            albumName = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM);
+            artistName = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST);
+            titulo = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE);
+            duracion = Integer.valueOf(mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION));
+            imagen = mmr.getEmbeddedPicture();
 
             if (titulo == null)
                 titulo = f.getName();
@@ -162,9 +154,9 @@ public class DAO {
                 artistName = "Desconocido";
             if (albumName == null)
                 albumName = "Desconocido";
-            Bitmap caratula = null;
+            /*Bitmap caratula = null;
             if (imagen != null)
-                caratula = BitmapFactory.decodeByteArray(imagen, 0, imagen.length);
+                caratula = BitmapFactory.decodeByteArray(imagen, 0, imagen.length);*/
 
             Artista art = artistaExiste(artistName);
             Album alb = albumExiste(albumName, artistName);
@@ -172,12 +164,16 @@ public class DAO {
             boolean albumExists = alb != null;
             if (!artistExists)
                 art = new Artista(artistName);
-            if (!albumExists)
+            if (!albumExists){
+                Bitmap caratula = null;
+                byte[] imagen = mmr.getEmbeddedPicture();
+                if (imagen != null)
+                    caratula = BitmapFactory.decodeByteArray(imagen, 0, imagen.length);
                 alb = new Album(albumName, art, caratula);
+            }
 
-            Cancion c = new Cancion(titulo, alb, art, f);
+            Cancion c = new Cancion(titulo, alb, art, f, duracion);
 
-            art.addCancion(c);
             if (!albumExists) {
                 art.addAlbum(alb);
                 albumes.add(alb);
@@ -187,7 +183,7 @@ public class DAO {
             if (!artistExists) {
                 artistas.add(art);
             }
-            //art.addCancion(c);
+            art.addCancion(c);
 
             canciones.add(c);
         }
