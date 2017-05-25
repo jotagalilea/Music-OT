@@ -163,7 +163,7 @@ public class CancionesFragment extends Fragment {
 
         textView.setLayoutParams( textParams );
 
-        textView.setText(cancion.getTitulo().substring(0, 10));
+        textView.setText(cancion.getTitulo());
         textView.setBackgroundColor(Color.RED);
 
         //----- TextViewAlbum -----
@@ -185,7 +185,7 @@ public class CancionesFragment extends Fragment {
                 MenuActivity.reproductor.rellenarLista(cancion);
                 MenuActivity.fragmentReproductor.actualizaDatosCancion();
 
-                MenuActivity.menuActivity.transicionarMenuFragmento(R.id.fragment_contentmenu1, MenuActivity.fragmentReproductor);
+                MenuActivity.menuActivity.cambiaFragment(R.id.fragment_contentmenu1, MenuActivity.fragmentReproductor);
             }
         });
 

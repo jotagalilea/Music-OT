@@ -3,9 +3,11 @@ package fdi.ucm.musicot;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -27,6 +29,7 @@ public class ReproductorFragment extends Fragment {
     ImageButton botonPrevSong;
     TextView textviewTituloCancion;
     Reproductor reproductor;
+    ImageView imagenReproductor;
     public static ProgressBar progressBar;
 
     public ReproductorFragment() {
@@ -47,6 +50,7 @@ public class ReproductorFragment extends Fragment {
         botonNextSong = (ImageButton)view.findViewById(R.id.reproductorButtonNextSong);
         botonPrevSong = (ImageButton)view.findViewById(R.id.reproductorButtonPrevSong);
         textviewTituloCancion = (TextView) view.findViewById(R.id.reproductorTituloCancionRep);
+        imagenReproductor = (ImageView) view.findViewById(R.id.imagenReproductor);
 
         botonPlay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,8 +87,12 @@ public class ReproductorFragment extends Fragment {
         progressBar.setMax(Reproductor.currentSong.getMedia().getDuration());
         progressBar.setProgress(Reproductor.currentSong.getMedia().getCurrentPosition());
 
-        MenuActivity.fragmentMini.progressBar.setMax(Reproductor.currentSong.getMedia().getDuration());
+        MenuActivity.fragmentMini.progressBar.setMax(Reproductor.currentSong.getCancionData().getDuracion());
         MenuActivity.fragmentMini.progressBar.setProgress(Reproductor.currentSong.getMedia().getCurrentPosition());
+
+        if(Reproductor.currentSong.cancionData.getAlbum().getCaratula() != null){
+            MenuActivity.fragmentReproductor.imagenReproductor.setImageBitmap(Reproductor.currentSong.cancionData.getAlbum().getCaratula());
+        }
 
         updatePlayButton();
 
@@ -106,6 +114,10 @@ public class ReproductorFragment extends Fragment {
 
         MenuActivity.fragmentMini.progressBar.setMax(Reproductor.currentSong.getMedia().getDuration());
         MenuActivity.fragmentMini.progressBar.setProgress(Reproductor.currentSong.getMedia().getCurrentPosition());
+
+        if(Reproductor.currentSong.cancionData.getAlbum().getCaratula() != null){
+            MenuActivity.fragmentReproductor.imagenReproductor.setImageBitmap(Reproductor.currentSong.cancionData.getAlbum().getCaratula());
+        }
 
         updatePlayButton();
 

@@ -149,7 +149,7 @@ public class ArtistasFragment extends Fragment {
                 MenuActivity.reproductor.rellenarLista(art);
                 MenuActivity.fragmentReproductor.actualizaDatosCancion();
 
-                MenuActivity.menuActivity.transicionarMenuFragmento(R.id.fragment_contentmenu1, MenuActivity.fragmentReproductor);
+                MenuActivity.menuActivity.cambiaFragment(R.id.fragment_contentmenu1, MenuActivity.fragmentReproductor);
             }
         });
 

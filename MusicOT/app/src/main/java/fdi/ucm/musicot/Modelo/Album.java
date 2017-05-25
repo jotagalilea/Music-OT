@@ -23,6 +23,13 @@ public class Album {
         this.caratula = null;
     }
 
+    public Album(String titulo, Artista artista){
+        this.titulo = titulo;
+        this.artista = artista;
+        this.canciones = new Cancion[0];
+        this.caratula = null;
+    }
+
     public Album(String titulo, Artista artista, Bitmap cover){
         this.titulo = titulo;
         this.artista = artista;

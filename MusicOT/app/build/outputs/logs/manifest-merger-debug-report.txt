@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\src\main\AndroidManifest.xml:2:1-26:12
+ADDED from C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\src\main\AndroidManifest.xml:2:1-25:12
 	package
 		ADDED from C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\src\main\AndroidManifest.xml:3:5-49
 		INJECTED from C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\src\main\AndroidManifest.xml
@@ -18,11 +18,10 @@ ADDED from C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\src\main\Android
 	android:name
 		ADDED from C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\src\main\AndroidManifest.xml:5:22-77
 application
-ADDED from C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\src\main\AndroidManifest.xml:7:5-24:19
+ADDED from C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\src\main\AndroidManifest.xml:7:5-23:19
 MERGED from [com.android.support:design:23.1.1] C:\Users\J\.android\build-cache\75a815ce19273abce7ef334703f9b928beccdc6c\output\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:appcompat-v7:23.1.1] C:\Users\J\.android\build-cache\1307cab75b700edb9c535fd78d444b13a7ba05d1\output\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:support-v4:23.4.0] C:\Users\J\.android\build-cache\d1d0884ec5c346724e9c59ac2cbbf088a811cc21\output\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\J\.android\build-cache\242b36cdc453d9fb8723f1139a5e48d466d34777\output\AndroidManifest.xml:9:5-20
 	android:label
 		ADDED from C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\src\main\AndroidManifest.xml:10:9-41
 	android:supportsRtl
@@ -51,17 +50,12 @@ category#android.intent.category.LAUNCHER
 ADDED from C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\src\main\AndroidManifest.xml:20:17-77
 	android:name
 		ADDED from C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\src\main\AndroidManifest.xml:20:27-74
-activity#fdi.ucm.musicot.BienvenidaActivity
-ADDED from C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\src\main\AndroidManifest.xml:23:9-80
-	android:name
-		ADDED from C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\src\main\AndroidManifest.xml:23:19-68
 uses-sdk
 INJECTED from C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support:design:23.1.1] C:\Users\J\.android\build-cache\75a815ce19273abce7ef334703f9b928beccdc6c\output\AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:appcompat-v7:23.1.1] C:\Users\J\.android\build-cache\1307cab75b700edb9c535fd78d444b13a7ba05d1\output\AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:recyclerview-v7:23.4.0] C:\Users\J\.android\build-cache\869670480d5e9a89d64e96fea9abf5e5eb0ffc44\output\AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:support-v4:23.4.0] C:\Users\J\.android\build-cache\d1d0884ec5c346724e9c59ac2cbbf088a811cc21\output\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\J\.android\build-cache\242b36cdc453d9fb8723f1139a5e48d466d34777\output\AndroidManifest.xml:5:5-7:41
 	android:targetSdkVersion
 		INJECTED from C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\src\main\AndroidManifest.xml

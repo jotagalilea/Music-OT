@@ -3,21 +3,21 @@
 
     <item
         is-multidex="true"
+        jar="C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0dd30b5e906f65e17c36c7f9ee3455ce4720c272">
+        <dex dex="C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_7a24361f80482d15c43889e70758b06f343cab01\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="caff8e51a24901cfc9cd7e1cf83d84f4cb0c103b">
         <dex dex="C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_c8f879f0974e74494295d48a73bac1c5eeed399a\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="e37f229e951a3ec1823342cb305bc54af75327c0">
-        <dex dex="C:\Users\J\Documents\GitHub\Proyecto-PAD\MusicOT\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_7a24361f80482d15c43889e70758b06f343cab01\classes.dex" />
     </item>
 
 </items>

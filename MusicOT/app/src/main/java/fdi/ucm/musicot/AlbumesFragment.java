@@ -171,7 +171,7 @@ public class AlbumesFragment extends Fragment {
                 MenuActivity.reproductor.rellenarLista(alb);
                 MenuActivity.fragmentReproductor.actualizaDatosCancion();
 
-                MenuActivity.menuActivity.transicionarMenuFragmento(R.id.fragment_contentmenu1, MenuActivity.fragmentReproductor);
+                MenuActivity.menuActivity.cambiaFragment(R.id.fragment_contentmenu1, MenuActivity.fragmentReproductor);
             }
         });
 

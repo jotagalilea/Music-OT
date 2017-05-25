@@ -21,20 +21,26 @@ public class Reproductor {
 
     public static boolean isPlaying = false;
     public static boolean isDeployed = false;
-    public static PaqueteCancionMedia[] listaPlayer;
+    public static Cancion[] listaPlayer;
     ProgressTracker progressTracker;
-    String[] urlCanciones;
     public static PaqueteCancionMedia currentSong;
 
     int currSong;
 
     public Reproductor(){
 
-        listaPlayer = new PaqueteCancionMedia[1];
+        listaPlayer = new Cancion[1];
 
-        listaPlayer[0] = new PaqueteCancionMedia((Cancion)DAO.getCanciones().toArray()[0]);
+        listaPlayer[0] = DAO.getCanciones().get(0);
 
-        currentSong = listaPlayer[0];
+        currentSong = new PaqueteCancionMedia(new MediaPlayer(), listaPlayer[0]);
+
+        try {
+            currentSong.media.setDataSource(currentSong.cancionData.getRuta().getPath());
+            currentSong.media.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         currSong = 0;
 
         progressTracker = new ProgressTracker();
@@ -44,10 +50,6 @@ public class Reproductor {
     public void rellenarLista(Album album){
 
         listaPlayer = rellenarListaCanciones(album.getCanciones());
-
-        currSong = 0;
-
-        currentSong = listaPlayer[0];
     }
 
     public void rellenarLista(Cancion cancion){
@@ -56,20 +58,12 @@ public class Reproductor {
 
         canArray[0] = cancion;
 
-        currSong = 0;
-
         listaPlayer = rellenarListaCanciones(canArray);
-
-        currentSong = listaPlayer[0];
     }
 
     public void rellenarLista(Artista artista){
 
         listaPlayer = rellenarListaCanciones(artista.getCanciones());
-
-        currSong = 0;
-
-        currentSong = listaPlayer[0];
     }
 
     public void botonReproducirCancion(){
@@ -96,25 +90,32 @@ public class Reproductor {
      * Genera la lista de canciones de la lista de reproducción seleccionada, y actualiza la lista .
      * @return
      */
-    private PaqueteCancionMedia[] rellenarListaCanciones(Cancion[] canciones){
+    private Cancion[] rellenarListaCanciones(Cancion[] canciones){
 
-        PaqueteCancionMedia[] listaPaquetes = new PaqueteCancionMedia[canciones.length];
-        MediaPlayer media;
+        Cancion[] listaPaquetes = new Cancion[canciones.length];
 
         for(int i=0; i<canciones.length; i++){
-
-            try {
-                media = new MediaPlayer();
-                media.setDataSource(canciones[i].getRuta().getPath());
-                media.prepare();
-                listaPaquetes[i] = new PaqueteCancionMedia(media, canciones[i]);
-            } catch (IOException e) {
-                e.printStackTrace();
-                // TODO añadir aqui una función que avise al usuario de que no se ha encontrado la cancion en disco y actualice la lista
-            }
+            listaPaquetes[i] = canciones[i];
         }
 
-        listaPlayer = listaPaquetes;
+        currSong = 0;
+
+        currentSong.cancionData = listaPaquetes[0];
+
+        currentSong.media.stop();
+        currentSong.media.reset();
+        try {
+            currentSong.media.setDataSource(listaPaquetes[0].getRuta().getPath());
+            currentSong.media.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if(isPlaying){
+            currentSong.media.start();
+        }
+
+        MenuActivity.fragmentReproductor.actualizaDatosCancion();
 
         return listaPaquetes;
     }
@@ -128,9 +129,14 @@ public class Reproductor {
             }
 
             currentSong.media.stop();
-            currentSong.media.prepareAsync();
-
-            currentSong = listaPlayer[currSong];
+            currentSong.media.reset();
+            try {
+                currentSong.cancionData = listaPlayer[currSong];
+                currentSong.media.setDataSource(listaPlayer[currSong].getRuta().getPath());
+                currentSong.media.prepare();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             if (isPlaying) {
                 currentSong.media.start();
             }
@@ -147,10 +153,15 @@ public class Reproductor {
                 currSong = listaPlayer.length - 1;
             }
 
-            currentSong.getMedia().stop();
-            currentSong.media.prepareAsync();
-
-            currentSong = listaPlayer[currSong];
+            currentSong.media.stop();
+            currentSong.media.reset();
+            try {
+                currentSong.cancionData = listaPlayer[currSong];
+                currentSong.media.setDataSource(listaPlayer[currSong].getRuta().getPath());
+                currentSong.media.prepare();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             if (isPlaying) {
                 currentSong.getMedia().start();
             }
