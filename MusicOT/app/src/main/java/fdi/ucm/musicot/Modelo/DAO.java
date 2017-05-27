@@ -70,6 +70,7 @@ public class DAO {
         artistas = new ArrayList<>();
 
         File dir = Utils.parseMountDirectory();
+        //File dir = new File("/mnt/sdcard/Music/Judas_Priest[1974-2016]");
         MediaMetadataRetriever mmr = new MediaMetadataRetriever();
         cargarCancionesDeLaSD(dir.getAbsolutePath(), mmr);
 
@@ -166,9 +167,11 @@ public class DAO {
                 art = new Artista(artistName);
             if (!albumExists){
                 Bitmap caratula = null;
-                byte[] imagen = mmr.getEmbeddedPicture();
-                if (imagen != null)
-                    caratula = BitmapFactory.decodeByteArray(imagen, 0, imagen.length);
+                if (albumName != "Desconocido") {
+                    byte[] imagen = mmr.getEmbeddedPicture();
+                    if (imagen != null)
+                        caratula = BitmapFactory.decodeByteArray(imagen, 0, imagen.length);
+                }
                 alb = new Album(albumName, art, caratula);
             }
 
