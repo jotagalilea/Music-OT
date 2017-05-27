@@ -2308,8 +2308,8 @@ containing a value of this type.
         public static final int nav_artista=0x7f0c0095;
         public static final int nav_buscar=0x7f0c0097;
         public static final int nav_configuracion=0x7f0c0098;
-        public static final int nav_favoritos=0x7f0c0096;
         public static final int nav_inicio=0x7f0c0092;
+        public static final int nav_listas=0x7f0c0096;
         public static final int nav_temas=0x7f0c0093;
         public static final int nav_view=0x7f0c006a;
         public static final int navigation_header_container=0x7f0c0071;

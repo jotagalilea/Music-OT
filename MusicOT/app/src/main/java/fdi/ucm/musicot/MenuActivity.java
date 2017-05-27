@@ -164,6 +164,10 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+    public void menuListasOnClick(MenuItem menuItem){
+        cambiaFragment(R.id.fragment_contentmenu1, fragmentListas);
+    }
+
     public void cambiaFragment(int idNewFragment, Fragment newFragment){
 
         if(Reproductor.isDeployed

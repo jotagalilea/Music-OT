@@ -662,8 +662,8 @@ int id nav_albumes 0x7f0c0094
 int id nav_artista 0x7f0c0095
 int id nav_buscar 0x7f0c0097
 int id nav_configuracion 0x7f0c0098
-int id nav_favoritos 0x7f0c0096
 int id nav_inicio 0x7f0c0092
+int id nav_listas 0x7f0c0096
 int id nav_temas 0x7f0c0093
 int id nav_view 0x7f0c006a
 int id navigation_header_container 0x7f0c0071
