@@ -45,6 +45,7 @@ public class DAO {
     private static ArrayList<Cancion> canciones;
     private static ArrayList<Album> albumes;
     private static ArrayList<Artista> artistas;
+    private ListasReproduccion listasReproduccion;
 
     String albumName;
     String artistName;
@@ -68,9 +69,10 @@ public class DAO {
         canciones = new ArrayList<>();
         albumes = new ArrayList<>();
         artistas = new ArrayList<>();
+        listasReproduccion = new ListasReproduccion();
 
-        File dir = Utils.parseMountDirectory();
-        //File dir = new File("/mnt/sdcard/Music/Judas_Priest[1974-2016]");
+        //File dir = Utils.parseMountDirectory();
+        File dir = new File("/mnt/sdcard/Music/Judas_Priest[1974-2016]");
         MediaMetadataRetriever mmr = new MediaMetadataRetriever();
         cargarCancionesDeLaSD(dir.getAbsolutePath(), mmr);
 
@@ -304,6 +306,7 @@ public class DAO {
     public static ArrayList<Artista> getArtistas(){
         return artistas;
     }
+    public ListasReproduccion getListasReproduccion() { return listasReproduccion; }
     /*public Cancion[] getCanciones() {
         return Arrays.copyOf(this.canciones, canciones.length);
     }

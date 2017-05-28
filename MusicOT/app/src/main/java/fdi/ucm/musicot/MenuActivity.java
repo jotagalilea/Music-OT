@@ -1,7 +1,6 @@
 package fdi.ucm.musicot;
 
 import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.app.Fragment;
@@ -14,7 +13,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 
 import com.example.usuario_local.music_ot.R;
@@ -30,6 +28,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     private ArtistasFragment fragmentArtistas;
     private CancionesFragment fragmentCanciones;
     private AlbumesFragment fragmentAlbumes;
+    private ListasReproduccionFragment fragmentListasReproduccion;
     public static ReproductorFragment fragmentReproductor;
     public static ReproductorFragmentMini fragmentMini;
     private TableLayout fragmentArtistasContenedor;
@@ -66,6 +65,10 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         fragmentAlbumes = new AlbumesFragment();
         fragmentAlbumes.setRetainInstance(true);
         fragmentAlbumes.setMenuActivity(this);
+
+        fragmentListasReproduccion = new ListasReproduccionFragment();
+        fragmentListasReproduccion.setRetainInstance(true);
+        fragmentListasReproduccion.setMenuActivity(this);
 
         fragmentReproductor = new ReproductorFragment();
         fragmentReproductor.setRetainInstance(true);
@@ -165,7 +168,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void menuListasOnClick(MenuItem menuItem){
-        cambiaFragment(R.id.fragment_contentmenu1, fragmentListas);
+        cambiaFragment(R.id.fragment_contentmenu1, fragmentListasReproduccion);
     }
 
     public void cambiaFragment(int idNewFragment, Fragment newFragment){
