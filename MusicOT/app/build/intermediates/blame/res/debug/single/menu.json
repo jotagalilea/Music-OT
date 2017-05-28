@@ -1,34 +1,18 @@
 [
     {
-        "merged": "C:\\home\\deekin\\GIT\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu.xml",
-        "source": "C:\\home\\deekin\\GIT\\Proyecto-PAD\\MusicOT\\app\\src\\main\\res\\menu\\menu.xml"
+        "merged": "/home/deekin/GIT/Proyecto-PAD/MusicOT/app/build/intermediates/res/merged/debug/menu/menu.xml",
+        "source": "/home/deekin/GIT/Proyecto-PAD/MusicOT/app/src/main/res/menu/menu.xml"
     },
     {
-        "merged": "C:\\Users\\J\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_canciones.xml",
-        "source": "C:\\Users\\J\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\src\\main\\res\\menu\\menu_canciones.xml"
+        "merged": "/home/deekin/GIT/Proyecto-PAD/MusicOT/app/build/intermediates/res/merged/debug/menu/menu_albumes.xml",
+        "source": "/home/deekin/GIT/Proyecto-PAD/MusicOT/app/src/main/res/menu/menu_albumes.xml"
     },
     {
-        "merged": "C:\\Users\\J\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\merged\\debug\\menu\\activity_menu_drawer.xml",
-        "source": "C:\\Users\\J\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\src\\main\\res\\menu\\activity_menu_drawer.xml"
+        "merged": "/home/deekin/GIT/Proyecto-PAD/MusicOT/app/build/intermediates/res/merged/debug/menu/menu_canciones.xml",
+        "source": "/home/deekin/GIT/Proyecto-PAD/MusicOT/app/src/main/res/menu/menu_canciones.xml"
     },
     {
-        "merged": "C:\\Users\\J\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_albumes.xml",
-        "source": "C:\\Users\\J\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\src\\main\\res\\menu\\menu_albumes.xml"
-    },
-    {
-        "merged": "C:\\Users\\J\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu.xml",
-        "source": "C:\\Users\\J\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\src\\main\\res\\menu\\menu.xml"
-    },
-    {
-        "merged": "C:\\home\\deekin\\GIT\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\merged\\debug\\menu\\activity_menu_drawer.xml",
-        "source": "C:\\home\\deekin\\GIT\\Proyecto-PAD\\MusicOT\\app\\src\\main\\res\\menu\\activity_menu_drawer.xml"
-    },
-    {
-        "merged": "C:\\home\\deekin\\GIT\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_canciones.xml",
-        "source": "C:\\home\\deekin\\GIT\\Proyecto-PAD\\MusicOT\\app\\src\\main\\res\\menu\\menu_canciones.xml"
-    },
-    {
-        "merged": "C:\\home\\deekin\\GIT\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_albumes.xml",
-        "source": "C:\\home\\deekin\\GIT\\Proyecto-PAD\\MusicOT\\app\\src\\main\\res\\menu\\menu_albumes.xml"
+        "merged": "/home/deekin/GIT/Proyecto-PAD/MusicOT/app/build/intermediates/res/merged/debug/menu/activity_menu_drawer.xml",
+        "source": "/home/deekin/GIT/Proyecto-PAD/MusicOT/app/src/main/res/menu/activity_menu_drawer.xml"
     }
 ]

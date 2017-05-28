@@ -1,8 +1,11 @@
 package fdi.ucm.musicot;
 
 import android.graphics.Color;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,16 +55,27 @@ public class ArtistasFragment extends Fragment {
         tabla.setStretchAllColumns(true);
 
         TableRow fila = new TableRow(menuActivity);
+
+        fila.setBackgroundResource(R.drawable.listabackground);
+        TableLayout.LayoutParams tableParams;
+
+        tableParams = new TableLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        tableParams.setMargins(2, 5, 2, 5);
+
+        fila.setLayoutParams(tableParams);
         tabla.addView(fila);
         byte i = 0;
 
         for (Artista artista: DAO.getArtistas()) {
-            if (i < 3){
+            if (i < 1){
                 i++;
             }
             else {
                 i = 1;
                 fila = new TableRow(menuActivity);
+                fila.setBackgroundResource(R.drawable.listabackground);
+                fila.setLayoutParams(tableParams);
                 tabla.addView(fila);
             }
             fila.addView(generateLinearArtista(artista, menuActivity));
@@ -78,57 +92,51 @@ public class ArtistasFragment extends Fragment {
 
         LinearLayout linearLayout = new LinearLayout(menuActivity);
 
-        linearLayout.setOrientation(LinearLayout.VERTICAL);
-        linearLayout.setId(artista.hashCode());
+        linearLayout.setOrientation(LinearLayout.HORIZONTAL);
+        linearLayout.setPadding(3,0,0,0);
         //----- ImageView -----
         ImageView imageView = new ImageView(menuActivity);
 
-        imageView.setLayoutParams(
-                new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT, Utils.convertirAdp(50, menuActivity))
+        LinearLayout.LayoutParams imageParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT, Utils.convertirAdp(50, menuActivity)
         );
-        imageView.setImageDrawable(
-                getResources().getDrawable(R.drawable.ic_menu_artista));
-        // TODO Averiguar como funciona lo de poner imagenes en el ImageView.
-        // TODO Hacer que las imágenes salgan cuadradas.
+        imageParams.width = Utils.convertirAdp(50,menuActivity);
+        imageParams.height = Utils.convertirAdp(50,menuActivity);
+        imageParams.leftMargin = Utils.convertirAdp(5,menuActivity);
+        imageParams.rightMargin = Utils.convertirAdp(5,menuActivity);
 
+        if(artista.getAlbumes() != null && artista.getAlbumes().length > 0){
+
+            imageView.setImageBitmap(artista.getAlbumes()[0].getCaratula());
+        } else{
+
+            imageView.setImageResource(R.drawable.ic_menu_artista);
+        }
+
+        imageView.setLayoutParams(imageParams);
         //----- TextView -----
         TextView textView = new TextView(menuActivity);
 
         LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, Utils.convertirAdp(20, menuActivity)
+                LinearLayout.LayoutParams.WRAP_CONTENT, Utils.convertirAdp(20, menuActivity)
         );
-        textParams.gravity = Gravity.CENTER;
 
         textView.setLayoutParams( textParams );
+        textView.setEllipsize(TextUtils.TruncateAt.END);
 
         textView.setText(artista.getNombre());
-        textView.setBackgroundColor(Color.RED);
-
-        //----- TextViewAlbum -----
-        TextView textViewAlbum = new TextView(menuActivity);
-
-        LinearLayout.LayoutParams textParamsAlbum = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, Utils.convertirAdp(20, menuActivity)
-        );
-        textParamsAlbum.gravity = Gravity.CENTER;
-
-        textViewAlbum.setLayoutParams( textParamsAlbum );
-
-        textViewAlbum.setText(String.valueOf(artista.getAlbumes().length));
-        textViewAlbum.setBackgroundColor(Color.GREEN);
+        textView.setTextSize(17);
+        textView.setTypeface(null, Typeface.BOLD);
+        textView.setSingleLine(true);
 
         //Se añaden los componentes al LinearLayout
         linearLayout.addView(imageView);
         linearLayout.addView(textView);
-        linearLayout.addView(textViewAlbum);
 
         linearLayout.setBackgroundColor(Color.CYAN);
 
-
         // Creación de un mensaje de alerta:
         linearLayout.setOnClickListener(new View.OnClickListener() {
-
             Artista art;
 
             @Override
@@ -143,7 +151,6 @@ public class ArtistasFragment extends Fragment {
                             }
                         });
                 alertDialog.show();*/
-
                 art = artista;
 
                 MenuActivity.reproductor.rellenarLista(art);
@@ -152,7 +159,6 @@ public class ArtistasFragment extends Fragment {
                 MenuActivity.menuActivity.cambiaFragment(R.id.fragment_contentmenu1, MenuActivity.fragmentReproductor);
             }
         });
-
 
         return linearLayout;
     }

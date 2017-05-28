@@ -2220,8 +2220,9 @@ containing a value of this type.
         public static final int ic_rep_pause=0x7f020056;
         public static final int ic_rep_play_button=0x7f020057;
         public static final int ic_rep_prevsong=0x7f020058;
-        public static final int notification_template_icon_bg=0x7f02005a;
-        public static final int side_nav_bar=0x7f020059;
+        public static final int listabackground=0x7f020059;
+        public static final int notification_template_icon_bg=0x7f02005b;
+        public static final int side_nav_bar=0x7f02005a;
     }
     public static final class id {
         public static final int action0=0x7f0c0085;

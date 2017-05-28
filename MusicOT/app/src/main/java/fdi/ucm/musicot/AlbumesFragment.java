@@ -1,9 +1,13 @@
 package fdi.ucm.musicot;
 
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +19,8 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.example.usuario_local.music_ot.R;
+
+import org.xmlpull.v1.XmlPullParser;
 
 import java.util.ArrayList;
 
@@ -85,16 +91,26 @@ public class AlbumesFragment extends Fragment {
         mContieneAlbumes.setStretchAllColumns(true);
 
         TableRow fila = new TableRow(menuActivity);
+        fila.setBackgroundResource(R.drawable.listabackground);
+        TableLayout.LayoutParams tableParams;
+
+        tableParams = new TableLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        tableParams.setMargins(2, 5, 2, 5);
+
+        fila.setLayoutParams(tableParams);
         mContieneAlbumes.addView(fila);
         byte i = 0;
 
         for (Album album: listaAlbumes) {
-            if (i < 3){
+            if (i < 1){
                 i++;
             }
             else {
                 i = 1;
                 fila = new TableRow(menuActivity);
+                fila.setBackgroundResource(R.drawable.listabackground);
+                fila.setLayoutParams(tableParams);
                 mContieneAlbumes.addView(fila);
             }
             fila.addView(generateLinearAlbumes(album, menuActivity));
@@ -112,22 +128,31 @@ public class AlbumesFragment extends Fragment {
     private LinearLayout generateLinearAlbumes(final Album album, MenuActivity menuActivity){
 
         LinearLayout linearLayout = new LinearLayout(menuActivity);
+        LinearLayout linearLayoutText = new LinearLayout(menuActivity);
 
-        linearLayout.setOrientation(LinearLayout.VERTICAL);
+        linearLayout.setOrientation(LinearLayout.HORIZONTAL);
+        linearLayout.setPadding(3,0,0,0);
+
+        linearLayoutText.setOrientation(LinearLayout.VERTICAL);
 
         //----- ImageView -----
         ImageView imageView = new ImageView(menuActivity);
 
-        imageView.setLayoutParams(
-                new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT, Utils.convertirAdp(50, menuActivity))
-        );
+        LinearLayout.LayoutParams paramsImageView = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT, Utils.convertirAdp(50, menuActivity));
+
+        paramsImageView.width = Utils.convertirAdp(50,menuActivity);
+        paramsImageView.height = Utils.convertirAdp(50,menuActivity);
+        paramsImageView.leftMargin = Utils.convertirAdp(5,menuActivity);
+        paramsImageView.rightMargin = Utils.convertirAdp(5,menuActivity);
+
+        imageView.setLayoutParams(paramsImageView);
         Bitmap cover = album.getCaratula();
-        if (cover != null)
+        if (cover != null) {
             imageView.setImageBitmap(cover);
-        else
-            imageView.setImageDrawable(
-                    getResources().getDrawable(R.drawable.ic_menu_temas));
+        }else {
+            imageView.setImageResource(R.drawable.ic_menu_temas);
+        }
 
         // TODO Hacer que las imágenes salgan cuadradas.
 
@@ -135,18 +160,42 @@ public class AlbumesFragment extends Fragment {
         TextView textView = new TextView(menuActivity);
 
         LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, Utils.convertirAdp(20, menuActivity)
+                LinearLayout.LayoutParams.WRAP_CONTENT, Utils.convertirAdp(20, menuActivity)
         );
-        textParams.gravity = Gravity.CENTER;
 
         textView.setLayoutParams( textParams );
 
         textView.setText(album.getTitulo());
-        textView.setBackgroundColor(Color.RED);
+        textView.setTextSize(17);
+        textView.setTypeface(null, Typeface.BOLD);
+
+        textView.setSingleLine(true);
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+
+        //----- TextViewArtista -----
+        TextView textViewArtista = new TextView(menuActivity);
+
+        LinearLayout.LayoutParams textParamsArtista = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT, Utils.convertirAdp(20, menuActivity)
+        );
+        textParams.gravity = Gravity.CENTER;
+
+        textViewArtista.setLayoutParams( textParamsArtista );
+
+        textViewArtista.setText(album.getArtista().getNombre());
+        textViewArtista.setTextSize(13);
+        //textViewArtista.setBackgroundColor(Color.YELLOW);
+
+        textViewArtista.setSingleLine(true);
+        textViewArtista.setEllipsize(TextUtils.TruncateAt.END);
+        textViewArtista.setTypeface(null, Typeface.ITALIC);
+        textViewArtista.setTextColor(Color.GRAY);
 
         //Se añaden los componentes al LinearLayout
         linearLayout.addView(imageView);
-        linearLayout.addView(textView);
+        linearLayoutText.addView(textView);
+        linearLayoutText.addView(textViewArtista);
+        linearLayout.addView(linearLayoutText);
 
         linearLayout.setBackgroundColor(Color.CYAN);
 

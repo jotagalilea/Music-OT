@@ -576,8 +576,9 @@ int drawable ic_rep_nextsong 0x7f020055
 int drawable ic_rep_pause 0x7f020056
 int drawable ic_rep_play_button 0x7f020057
 int drawable ic_rep_prevsong 0x7f020058
-int drawable notification_template_icon_bg 0x7f02005a
-int drawable side_nav_bar 0x7f020059
+int drawable listabackground 0x7f020059
+int drawable notification_template_icon_bg 0x7f02005b
+int drawable side_nav_bar 0x7f02005a
 int id action0 0x7f0c0085
 int id action_bar 0x7f0c005a
 int id action_bar_activity_content 0x7f0c0000

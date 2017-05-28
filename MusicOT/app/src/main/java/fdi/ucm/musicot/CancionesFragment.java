@@ -1,12 +1,12 @@
 package fdi.ucm.musicot;
 
 import android.app.FragmentManager;
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.net.Uri;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -83,7 +83,7 @@ public class CancionesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        int maxColumnas = 3;
+        int maxColumnas = 1;
         listaCanciones = DAO.getCanciones();
 
         View view = inflater.inflate(R.layout.fragment_canciones, null, false);
@@ -103,6 +103,13 @@ public class CancionesFragment extends Fragment {
         listaCanciones = MenuActivity.dao.getListaCanciones();
 
         TableRow fila = new TableRow(menuActivity);
+        TableLayout.LayoutParams tableParams;
+
+        tableParams = new TableLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        tableParams.setMargins(2, 5, 2, 5);
+
+        fila.setLayoutParams(tableParams);
         mContieneCanciones.addView(fila);
         byte i = 1;
         fila.addView(generateLinearCanciones(listaCanciones.get(0)));
@@ -113,6 +120,8 @@ public class CancionesFragment extends Fragment {
             else {
                 i = 1;
                 fila = new TableRow(menuActivity);
+                fila.setBackgroundResource(R.drawable.listabackground);
+                fila.setLayoutParams(tableParams);
                 mContieneCanciones.addView(fila);
             }
             fila.addView(generateLinearCanciones(tema));
@@ -133,17 +142,22 @@ public class CancionesFragment extends Fragment {
     private LinearLayout generateLinearCanciones(final Cancion cancion){
 
         LinearLayout linearLayout = new LinearLayout(menuActivity);
+        LinearLayout linearLayoutInternal = new LinearLayout(menuActivity);
 
-        linearLayout.setOrientation(LinearLayout.VERTICAL);
-
-
+        linearLayout.setOrientation(LinearLayout.HORIZONTAL);
+        linearLayoutInternal.setOrientation(LinearLayout.VERTICAL);
         //----- ImageView -----
         ImageView imageView = new ImageView(menuActivity);
 
-        imageView.setLayoutParams(
-                new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT, Utils.convertirAdp(50, menuActivity))
+        LinearLayout.LayoutParams imageParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT, Utils.convertirAdp(50, menuActivity)
         );
+        imageParams.width = Utils.convertirAdp(50,menuActivity);
+        imageParams.height = Utils.convertirAdp(50,menuActivity);
+        imageParams.leftMargin = Utils.convertirAdp(5,menuActivity);
+        imageParams.rightMargin = Utils.convertirAdp(5,menuActivity);
+
+        imageView.setLayoutParams(imageParams);
         Bitmap cover = cancion.getAlbum().getCaratula();
         if (cover != null)
             imageView.setImageBitmap(cover);
@@ -157,27 +171,53 @@ public class CancionesFragment extends Fragment {
         TextView textView = new TextView(menuActivity);
 
         LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, Utils.convertirAdp(20, menuActivity)
+                LinearLayout.LayoutParams.WRAP_CONTENT, Utils.convertirAdp(20, menuActivity)
         );
-        textParams.gravity = Gravity.CENTER;
+        textParams.gravity = Gravity.LEFT;
 
         textView.setLayoutParams( textParams );
 
         textView.setText(cancion.getTitulo());
-        textView.setBackgroundColor(Color.RED);
+        //textView.setBackgroundColor(Color.RED);
+        textView.setTextSize(17);
+        textView.setTypeface(null, Typeface.BOLD);
+
+
+        textView.setSingleLine(true);
+        textView.setEllipsize(TextUtils.TruncateAt.END);
 
         //----- TextViewAlbum -----
         TextView textViewAlbum = new TextView(menuActivity);
 
         LinearLayout.LayoutParams textParamsAlbum = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, Utils.convertirAdp(20, menuActivity)
+                LinearLayout.LayoutParams.WRAP_CONTENT, Utils.convertirAdp(20, menuActivity)
         );
-        textParamsAlbum.gravity = Gravity.CENTER;
 
         textViewAlbum.setLayoutParams( textParamsAlbum );
 
         textViewAlbum.setText(cancion.getAlbum().getTitulo());
-        textViewAlbum.setBackgroundColor(Color.GREEN);
+        //textViewAlbum.setBackgroundColor(Color.GREEN);
+        textViewAlbum.setSingleLine(true);
+        textViewAlbum.setEllipsize(TextUtils.TruncateAt.END);
+        textViewAlbum.setTypeface(null, Typeface.ITALIC);
+        textViewAlbum.setTextSize(13);
+
+        //----- TextViewArtist -----
+
+        TextView textViewArtist = new TextView(menuActivity);
+
+        LinearLayout.LayoutParams textParamsArtist = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT, Utils.convertirAdp(20, menuActivity)
+        );
+        textParamsArtist.gravity = Gravity.LEFT;
+
+        textViewArtist.setLayoutParams( textParamsArtist );
+
+        textViewArtist.setText(cancion.getArtista().getNombre());
+        textViewArtist.setSingleLine(true);
+        textViewArtist.setEllipsize(TextUtils.TruncateAt.END);
+        textViewArtist.setTypeface(null, Typeface.ITALIC);
+        textViewArtist.setTextSize(13);
 
         linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -191,8 +231,10 @@ public class CancionesFragment extends Fragment {
 
         //Se añaden los componentes al LinearLayout
         linearLayout.addView(imageView);
-        linearLayout.addView(textView);
-        linearLayout.addView(textViewAlbum);
+        linearLayoutInternal.addView(textView);
+        linearLayoutInternal.addView(textViewAlbum);
+        linearLayoutInternal.addView(textViewArtist);
+        linearLayout.addView(linearLayoutInternal);
 
         linearLayout.setBackgroundColor(Color.CYAN);
 

@@ -1,20 +1,20 @@
 package fdi.ucm.musicot;
 
 import android.app.FragmentTransaction;
-import android.content.Intent;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 
 import com.example.usuario_local.music_ot.R;
@@ -99,9 +99,39 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
+        } else if(!Utils.currentFragment.equals(fragmentReproductor)){
+
+                cambiaFragment(R.id.fragment_contentmenu1, fragmentReproductor);
+            } else{
+
+            exitProcess();
+            //super.onBackPressed();
         }
+    }
+
+    public void exitProcess(){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setMessage("¿Esta seguro que desea salir?")
+                .setTitle("Salir");
+
+        // Add the buttons
+        builder.setPositiveButton("Volver", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+
+                dialog.dismiss();
+            }
+        });
+        builder.setNegativeButton("Salir", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+
+                System.exit(0);
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     @Override
@@ -165,7 +195,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void menuListasOnClick(MenuItem menuItem){
-        cambiaFragment(R.id.fragment_contentmenu1, fragmentListas);
+        //cambiaFragment(R.id.fragment_contentmenu1, fragmentListas);
     }
 
     public void cambiaFragment(int idNewFragment, Fragment newFragment){
@@ -191,7 +221,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
      */
     public void menuArtistasOnClick(MenuItem menuItem){
 
-        transicionarMenuFragmento(R.id.fragment_contentmenu1, fragmentArtistas);
+        cambiaFragment(R.id.fragment_contentmenu1, fragmentArtistas);
     }
 
     /**

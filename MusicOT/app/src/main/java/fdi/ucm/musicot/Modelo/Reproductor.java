@@ -79,7 +79,7 @@ public class Reproductor {
                 currentSong.getMedia().start();
             }
 
-            MenuActivity.fragmentReproductor.actualizaDatosCancion(currentSong);
+            MenuActivity.fragmentReproductor.actualizaDatosCancion();
         }else{
 
         }
@@ -141,7 +141,7 @@ public class Reproductor {
                 currentSong.media.start();
             }
 
-            MenuActivity.fragmentReproductor.actualizaDatosCancion(currentSong);
+            MenuActivity.fragmentReproductor.actualizaDatosCancion();
         }
     }
 
@@ -166,7 +166,7 @@ public class Reproductor {
                 currentSong.getMedia().start();
             }
 
-            MenuActivity.fragmentReproductor.actualizaDatosCancion(Reproductor.currentSong);
+            MenuActivity.fragmentReproductor.actualizaDatosCancion();
         }
     }
 

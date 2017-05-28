@@ -2,8 +2,8 @@ package fdi.ucm.musicot;
 
 import android.os.Bundle;
 import android.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import com.example.usuario_local.music_ot.R;
 
-import fdi.ucm.musicot.Misc.PaqueteCancionMedia;
 import fdi.ucm.musicot.Modelo.Reproductor;
 
 /**
@@ -74,13 +73,13 @@ public class ReproductorFragment extends Fragment {
             }
         });
 
-        actualizaDatosCancion(Reproductor.currentSong);
+        actualizaDatosCancion();
 
         return view;
 
     }
 
-    public void actualizaDatosCancion(PaqueteCancionMedia cancion){
+    /*public void actualizaDatosCancion(PaqueteCancionMedia cancion){
 
         String subStr = cancion.getCancionData().getTitulo();
 
@@ -96,14 +95,18 @@ public class ReproductorFragment extends Fragment {
 
         updatePlayButton();
 
-        if(subStr.length() > 20){
+        /*if(subStr.length() > 20){
             subStr = subStr.substring(0, 20) + "...";
         }
 
         textviewTituloCancion.setText(subStr);
+        textviewTituloCancion.setSingleLine(true);
+        textviewTituloCancion.setEllipsize(TextUtils.TruncateAt.END);
         MenuActivity.fragmentMini.tituloView.setText(subStr);
+        MenuActivity.fragmentMini.tituloView.setSingleLine(true);
+        MenuActivity.fragmentMini.tituloView.setEllipsize(TextUtils.TruncateAt.END);
 
-    }
+    }*/
 
     public void actualizaDatosCancion(){
 
@@ -121,12 +124,14 @@ public class ReproductorFragment extends Fragment {
 
         updatePlayButton();
 
-        if(subStr.length() > 25){
+        /*if(subStr.length() > 25){
             subStr = subStr.substring(0, 25) + "...";
-        }
+        }*/
 
         textviewTituloCancion.setText(subStr);
         MenuActivity.fragmentMini.tituloView.setText(subStr);
+        MenuActivity.fragmentMini.tituloView.setSingleLine(true);
+        MenuActivity.fragmentMini.tituloView.setEllipsize(TextUtils.TruncateAt.END);
 
     }
 
