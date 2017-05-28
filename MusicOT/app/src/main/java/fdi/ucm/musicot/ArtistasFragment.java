@@ -153,10 +153,21 @@ public class ArtistasFragment extends Fragment {
                 alertDialog.show();*/
                 art = artista;
 
-                MenuActivity.reproductor.rellenarLista(art);
-                MenuActivity.fragmentReproductor.actualizaDatosCancion();
+                if(MenuActivity.fragmentListaCanciones.initiated()){
 
-                MenuActivity.menuActivity.cambiaFragment(R.id.fragment_contentmenu1, MenuActivity.fragmentReproductor);
+                    MenuActivity.fragmentListaCanciones.setArtista(art);
+                    MenuActivity.fragmentListaCanciones.vaciarLista();
+                    MenuActivity.fragmentListaCanciones.rellenarLista(art);
+                    MenuActivity.reproductor.rellenarLista(art);
+
+                } else{
+
+                    MenuActivity.fragmentListaCanciones.setArtista(art);
+                }
+
+                MenuActivity.menuActivity.cambiaFragment(R.id.fragment_contentmenu1, MenuActivity.fragmentListaCanciones);
+
+                MenuActivity.fragmentReproductor.actualizaDatosCancion();
             }
         });
 

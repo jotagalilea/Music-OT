@@ -32,6 +32,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     private AlbumesFragment fragmentAlbumes;
     public static ReproductorFragment fragmentReproductor;
     public static ReproductorFragmentMini fragmentMini;
+    public static ListaCancionesFragment fragmentListaCanciones;
     private TableLayout fragmentArtistasContenedor;
 
     public static MenuActivity menuActivity;
@@ -41,6 +42,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         if(dao == null) {
             dao = new DAO();
         }
@@ -53,6 +55,9 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_menu);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        fragmentListaCanciones = new ListaCancionesFragment();
+        fragmentListaCanciones.setRetainInstance(true);
 
         //Inicializamos los fragmentos de la actividad MAIN
         fragmentArtistas = new ArtistasFragment();
@@ -102,10 +107,13 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         } else if(!Utils.currentFragment.equals(fragmentReproductor)){
 
                 cambiaFragment(R.id.fragment_contentmenu1, fragmentReproductor);
-            } else{
 
+            } else if (Utils.currentFragment.equals(fragmentListaCanciones)) {
+
+                super.onBackPressed();
+
+        } else{
             exitProcess();
-            //super.onBackPressed();
         }
     }
 

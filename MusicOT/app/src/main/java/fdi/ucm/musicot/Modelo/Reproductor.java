@@ -66,6 +66,36 @@ public class Reproductor {
         listaPlayer = rellenarListaCanciones(artista.getCanciones());
     }
 
+    public int rellenarLista(Artista artista, Cancion cancion){
+
+        int i = 0;
+        boolean encontrada = false;
+
+        listaPlayer = rellenarListaCanciones(artista.getCanciones());
+
+        while(i < artista.getCanciones().length && !encontrada){
+            encontrada = artista.getCanciones()[0].equals(cancion);
+            i++;
+        }
+
+        return i;
+    }
+
+    public int rellenarLista(Album album, Cancion cancion){
+
+        int i = 0;
+        boolean encontrada = false;
+
+        listaPlayer = rellenarListaCanciones(album.getCanciones());
+
+        while(i < album.getCanciones().length && !encontrada){
+            encontrada = album.getCanciones()[0].equals(cancion);
+            i++;
+        }
+
+        return i;
+    }
+
     public void botonReproducirCancion(){
 
         if(currentSong != null) {
@@ -190,6 +220,24 @@ public class Reproductor {
                     e.printStackTrace();
                 }
             }
+        }
+    }
+
+    public void setCurrentSongDeCancion(Cancion cancion,int numeroTema){
+
+        currSong = numeroTema-1;
+
+        currentSong.media.stop();
+        currentSong.media.reset();
+        try {
+            currentSong.cancionData = cancion;
+            currentSong.media.setDataSource(cancion.getRuta().getPath());
+            currentSong.media.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (isPlaying) {
+            currentSong.media.start();
         }
     }
 }

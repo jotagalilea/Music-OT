@@ -217,10 +217,21 @@ public class AlbumesFragment extends Fragment {
 
                 alb = album;
 
-                MenuActivity.reproductor.rellenarLista(alb);
-                MenuActivity.fragmentReproductor.actualizaDatosCancion();
+                if(MenuActivity.fragmentListaCanciones.initiated()){
 
-                MenuActivity.menuActivity.cambiaFragment(R.id.fragment_contentmenu1, MenuActivity.fragmentReproductor);
+                    MenuActivity.fragmentListaCanciones.setAlbum(alb);
+                    MenuActivity.fragmentListaCanciones.vaciarLista();
+                    MenuActivity.fragmentListaCanciones.rellenarLista(alb);
+                    MenuActivity.reproductor.rellenarLista(alb);
+
+                } else{
+
+                    MenuActivity.fragmentListaCanciones.setAlbum(alb);
+                }
+
+                MenuActivity.menuActivity.cambiaFragment(R.id.fragment_contentmenu1, MenuActivity.fragmentListaCanciones);
+
+                MenuActivity.fragmentReproductor.actualizaDatosCancion();
             }
         });
 

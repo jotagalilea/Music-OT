@@ -4,12 +4,12 @@
         "source": "/home/deekin/GIT/Proyecto-PAD/MusicOT/app/src/main/res/drawable/side_nav_bar.xml"
     },
     {
-        "merged": "/home/deekin/GIT/Proyecto-PAD/MusicOT/app/build/intermediates/res/merged/debug/drawable/abc_ratingbar_full_material.xml",
-        "source": "/home/deekin/.android/build-cache/6bee8cbb870caffb91be8bb8a03763027af31c39/output/res/drawable/abc_ratingbar_full_material.xml"
-    },
-    {
         "merged": "/home/deekin/GIT/Proyecto-PAD/MusicOT/app/build/intermediates/res/merged/debug/drawable/design_fab_background.xml",
         "source": "/home/deekin/.android/build-cache/772ac4f9e97bd47e176753d6b6b52153e6797619/output/res/drawable/design_fab_background.xml"
+    },
+    {
+        "merged": "/home/deekin/GIT/Proyecto-PAD/MusicOT/app/build/intermediates/res/merged/debug/drawable/abc_ratingbar_full_material.xml",
+        "source": "/home/deekin/.android/build-cache/6bee8cbb870caffb91be8bb8a03763027af31c39/output/res/drawable/abc_ratingbar_full_material.xml"
     },
     {
         "merged": "/home/deekin/GIT/Proyecto-PAD/MusicOT/app/build/intermediates/res/merged/debug/drawable/listabackground.xml",
