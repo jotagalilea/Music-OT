@@ -24,6 +24,7 @@ public class ReproductorFragmentMini extends Fragment {
     public static ProgressBar progressBar;
     public static ImageButton butonPlay;
     public static TextView tituloView;
+    public static TextView albumView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -33,6 +34,7 @@ public class ReproductorFragmentMini extends Fragment {
         reproductor = MenuActivity.reproductor;
 
         tituloView = (TextView) view.findViewById(R.id.tituloCancion_mini);
+        albumView = (TextView) view.findViewById(R.id.albumCancion_mini);
         progressBar = (ProgressBar) view.findViewById(R.id.progressBar_mini);
         butonPlay = (ImageButton) view.findViewById(R.id.mini_P);
 

@@ -27,6 +27,8 @@ public class ReproductorFragment extends Fragment {
     ImageButton botonNextSong;
     ImageButton botonPrevSong;
     TextView textviewTituloCancion;
+    TextView textViewAlbumCancion;
+    TextView textViewArtistaCancion;
     Reproductor reproductor;
     ImageView imagenReproductor;
     public static ProgressBar progressBar;
@@ -49,6 +51,8 @@ public class ReproductorFragment extends Fragment {
         botonNextSong = (ImageButton)view.findViewById(R.id.reproductorButtonNextSong);
         botonPrevSong = (ImageButton)view.findViewById(R.id.reproductorButtonPrevSong);
         textviewTituloCancion = (TextView) view.findViewById(R.id.reproductorTituloCancionRep);
+        textViewAlbumCancion = (TextView) view.findViewById(R.id.reproductorAlbumCancionRep);
+        textViewArtistaCancion = (TextView) view.findViewById(R.id.reproductorArtistaCancionRep);
         imagenReproductor = (ImageView) view.findViewById(R.id.imagenReproductor);
 
         botonPlay.setOnClickListener(new View.OnClickListener() {
@@ -129,6 +133,9 @@ public class ReproductorFragment extends Fragment {
         }*/
 
         textviewTituloCancion.setText(subStr);
+        textViewAlbumCancion.setText(Reproductor.currentSong.getCancionData().getAlbum().getTitulo());
+        textViewArtistaCancion.setText(Reproductor.currentSong.getCancionData().getArtista().getNombre());
+        MenuActivity.fragmentMini.albumView.setText(Reproductor.currentSong.getCancionData().getAlbum().getTitulo());
         MenuActivity.fragmentMini.tituloView.setText(subStr);
         MenuActivity.fragmentMini.tituloView.setSingleLine(true);
         MenuActivity.fragmentMini.tituloView.setEllipsize(TextUtils.TruncateAt.END);
