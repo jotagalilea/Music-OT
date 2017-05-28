@@ -204,16 +204,6 @@ public class AlbumesFragment extends Fragment {
             Album alb;
             @Override
             public void onClick(View view) {
-                /*AlertDialog alertDialog = new AlertDialog.Builder(CancionesActivity.this).create();
-                alertDialog.setTitle("Alert");
-                alertDialog.setMessage("cancion pulsada. Bieeeeen!!");
-                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        });
-                alertDialog.show();*/
 
                 alb = album;
 
@@ -222,7 +212,6 @@ public class AlbumesFragment extends Fragment {
                     MenuActivity.fragmentListaCanciones.setAlbum(alb);
                     MenuActivity.fragmentListaCanciones.vaciarLista();
                     MenuActivity.fragmentListaCanciones.rellenarLista(alb);
-                    MenuActivity.reproductor.rellenarLista(alb);
 
                 } else{
 

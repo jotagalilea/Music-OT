@@ -106,13 +106,13 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
             drawer.closeDrawer(GravityCompat.START);
         } else if(!Utils.currentFragment.equals(fragmentReproductor)){
 
-                cambiaFragment(R.id.fragment_contentmenu1, fragmentReproductor);
-
-            } else if (Utils.currentFragment.equals(fragmentListaCanciones)) {
-
+            if (Utils.currentFragment.equals(fragmentListaCanciones)) {
                 super.onBackPressed();
+            } else{
+                cambiaFragment(R.id.fragment_contentmenu1, fragmentReproductor);
+            }
 
-        } else{
+        }  else {
             exitProcess();
         }
     }

@@ -3,7 +3,9 @@ package fdi.ucm.musicot.Modelo;
 import java.io.File;
 
 /**
- * Created by deekin on 25/04/17.
+ * Created by Javier on 25/04/17.
+ *
+ * Contiene la información de una canción
  */
 
 public class Cancion {

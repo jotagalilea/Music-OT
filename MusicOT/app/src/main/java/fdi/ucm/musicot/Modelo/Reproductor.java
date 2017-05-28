@@ -17,6 +17,9 @@ import fdi.ucm.musicot.Misc.Utils;
 import fdi.ucm.musicot.ReproductorFragment;
 import fdi.ucm.musicot.ReproductorFragmentMini;
 
+/**
+ * Objeto encargado de la reproducción del programa
+ */
 public class Reproductor {
 
     public static boolean isPlaying = false;
@@ -29,54 +32,71 @@ public class Reproductor {
 
     public Reproductor(){
 
-        listaPlayer = new Cancion[1];
+        currentSong = new PaqueteCancionMedia(new MediaPlayer(), new Cancion());
 
-        listaPlayer[0] = DAO.getCanciones().get(0);
-
-        currentSong = new PaqueteCancionMedia(new MediaPlayer(), listaPlayer[0]);
-
-        try {
-            currentSong.media.setDataSource(currentSong.cancionData.getRuta().getPath());
-            currentSong.media.prepare();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        currSong = 0;
+        listaPlayer = rellenarListaCanciones(DAO.getAlbumes().get(0).getCanciones());
 
         progressTracker = new ProgressTracker();
         progressTracker.start();
     }
 
+    /**
+     * Rellena la lista de reproducción actual con las canciones que el album tiene relacionadas
+     * @param album
+     */
     public void rellenarLista(Album album){
 
         listaPlayer = rellenarListaCanciones(album.getCanciones());
     }
 
-    public void rellenarLista(Cancion cancion){
+    /**
+     * Rellena la lista de reproducción con el album de la canción dada, y devuelve la posición de
+     * la canción en el album
+     * @param cancion
+     * @return posicion
+     */
+    public int rellenarLista(Cancion cancion){
 
-        Cancion[] canArray = new Cancion[1];
+        int i = 0;
+        boolean encontrada = false;
 
-        canArray[0] = cancion;
+        while(i < cancion.getAlbum().getCanciones().length && !encontrada){
+            encontrada = cancion.getAlbum().getCanciones()[i].equals(cancion);
+            i++;
+        }
 
-        listaPlayer = rellenarListaCanciones(canArray);
+        listaPlayer = rellenarListaCanciones(cancion.getAlbum().getCanciones(),i-1);
+
+        return i;
     }
 
+    /**
+     * Rellena la lista de preoducción actual con las canciones relacionadas con el artista dado
+     * @param artista
+     */
     public void rellenarLista(Artista artista){
 
         listaPlayer = rellenarListaCanciones(artista.getCanciones());
     }
 
+    /**
+     * Rellena la lista de reproducción con las canciones relacionadas con el artista y devuelve
+     * la posicion de la canción en la lista de reproducción de la canción dada
+     * @param artista
+     * @param cancion
+     * @return posicion
+     */
     public int rellenarLista(Artista artista, Cancion cancion){
 
         int i = 0;
         boolean encontrada = false;
 
-        listaPlayer = rellenarListaCanciones(artista.getCanciones());
-
         while(i < artista.getCanciones().length && !encontrada){
-            encontrada = artista.getCanciones()[0].equals(cancion);
+            encontrada = artista.getCanciones()[i].equals(cancion);
             i++;
         }
+
+        listaPlayer = rellenarListaCanciones(artista.getCanciones(),i-1);
 
         return i;
     }
@@ -86,12 +106,12 @@ public class Reproductor {
         int i = 0;
         boolean encontrada = false;
 
-        listaPlayer = rellenarListaCanciones(album.getCanciones());
-
         while(i < album.getCanciones().length && !encontrada){
-            encontrada = album.getCanciones()[0].equals(cancion);
+            encontrada = album.getCanciones()[i].equals(cancion);
             i++;
         }
+
+        listaPlayer = rellenarListaCanciones(album.getCanciones(),i-1);
 
         return i;
     }
@@ -115,12 +135,11 @@ public class Reproductor {
         }
     }
 
-
     /**
      * Genera la lista de canciones de la lista de reproducción seleccionada, y actualiza la lista .
      * @return
      */
-    private Cancion[] rellenarListaCanciones(Cancion[] canciones){
+    private Cancion[] rellenarListaCanciones(Cancion[] canciones, int currSong){
 
         Cancion[] listaPaquetes = new Cancion[canciones.length];
 
@@ -128,14 +147,14 @@ public class Reproductor {
             listaPaquetes[i] = canciones[i];
         }
 
-        currSong = 0;
+        this.currSong = currSong;
 
-        currentSong.cancionData = listaPaquetes[0];
+        currentSong.cancionData = listaPaquetes[currSong];
 
         currentSong.media.stop();
         currentSong.media.reset();
         try {
-            currentSong.media.setDataSource(listaPaquetes[0].getRuta().getPath());
+            currentSong.media.setDataSource(listaPaquetes[currSong].getRuta().getPath());
             currentSong.media.prepare();
         } catch (IOException e) {
             e.printStackTrace();
@@ -147,6 +166,37 @@ public class Reproductor {
 
         MenuActivity.fragmentReproductor.actualizaDatosCancion();
 
+        return listaPaquetes;
+    }
+
+    private Cancion[] rellenarListaCanciones(Cancion[] canciones){
+
+        Cancion[] listaPaquetes = new Cancion[canciones.length];
+
+        for(int i=0; i<canciones.length; i++){
+            listaPaquetes[i] = canciones[i];
+        }
+
+        this.currSong = 0;
+
+        currentSong.cancionData = listaPaquetes[currSong];
+
+        currentSong.media.stop();
+        currentSong.media.reset();
+        try {
+            currentSong.media.setDataSource(listaPaquetes[currSong].getRuta().getPath());
+            currentSong.media.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if(isPlaying){
+            currentSong.media.start();
+        }
+
+        if(MenuActivity.fragmentReproductor != null) {
+            MenuActivity.fragmentReproductor.actualizaDatosCancion();
+        }
         return listaPaquetes;
     }
 
@@ -200,6 +250,9 @@ public class Reproductor {
         }
     }
 
+    /**
+     * Clase Thread encargada de mantener las barras de progreso actualizadas.
+     */
     public class ProgressTracker extends Thread{
 
         @Override

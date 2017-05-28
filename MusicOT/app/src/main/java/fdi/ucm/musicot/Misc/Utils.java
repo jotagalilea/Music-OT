@@ -33,6 +33,10 @@ public class Utils {
                 TypedValue.COMPLEX_UNIT_DIP, num, item.getResources().getDisplayMetrics());
     }
 
+    /**
+     * Obtiene la dirección del sdcard en el dispositivo que se encuentra abierto en ese momento.
+     * @return
+     */
     public static File parseMountDirectory() {
         File dir_00 = new File("/storage/extSdCard");
         File dir_01 = new File("/storage/sdcard1");

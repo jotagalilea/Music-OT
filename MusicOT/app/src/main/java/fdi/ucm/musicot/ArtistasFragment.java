@@ -158,7 +158,7 @@ public class ArtistasFragment extends Fragment {
                     MenuActivity.fragmentListaCanciones.setArtista(art);
                     MenuActivity.fragmentListaCanciones.vaciarLista();
                     MenuActivity.fragmentListaCanciones.rellenarLista(art);
-                    MenuActivity.reproductor.rellenarLista(art);
+                    //MenuActivity.reproductor.rellenarLista(art);
 
                 } else{
 

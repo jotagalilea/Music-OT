@@ -32,6 +32,11 @@ public class PaqueteCancionMedia {
         this.media =  media;
     }
 
+    public PaqueteCancionMedia() {
+        media = null;
+        cancionData = null;
+    }
+
     public MediaPlayer getMedia() {
         return media;
     }

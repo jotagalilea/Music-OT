@@ -7,8 +7,9 @@ import java.util.Comparator;
 
 /**
  * Created by Javier on 27/04/2017.
+ *
+ * Almacena la información necesaria de una album en concreto
  */
-
 public class Album {
 
     String titulo;
@@ -48,6 +49,10 @@ public class Album {
     //----- UTILS -----
     //-----------------
 
+    /**
+     * Añade una canción a la lista de canciones que componene el album
+     * @param newCancion
+     */
     public void addCancion(Cancion newCancion){
 
         Cancion[] res = new Cancion[canciones.length+1];

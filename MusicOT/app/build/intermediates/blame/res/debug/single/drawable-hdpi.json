@@ -176,12 +176,12 @@
         "source": "/home/deekin/GIT/Proyecto-PAD/MusicOT/app/src/main/res/drawable-hdpi/ic_rep_prevsong.png"
     },
     {
-        "merged": "/home/deekin/GIT/Proyecto-PAD/MusicOT/app/build/intermediates/res/merged/debug/drawable-hdpi/abc_ic_menu_share_mtrl_alpha.png",
-        "source": "/home/deekin/.android/build-cache/6bee8cbb870caffb91be8bb8a03763027af31c39/output/res/drawable-hdpi/abc_ic_menu_share_mtrl_alpha.png"
-    },
-    {
         "merged": "/home/deekin/GIT/Proyecto-PAD/MusicOT/app/build/intermediates/res/merged/debug/drawable-hdpi/ic_menu_artista.png",
         "source": "/home/deekin/GIT/Proyecto-PAD/MusicOT/app/src/main/res/drawable-hdpi/ic_menu_artista.png"
+    },
+    {
+        "merged": "/home/deekin/GIT/Proyecto-PAD/MusicOT/app/build/intermediates/res/merged/debug/drawable-hdpi/abc_ic_menu_share_mtrl_alpha.png",
+        "source": "/home/deekin/.android/build-cache/6bee8cbb870caffb91be8bb8a03763027af31c39/output/res/drawable-hdpi/abc_ic_menu_share_mtrl_alpha.png"
     },
     {
         "merged": "/home/deekin/GIT/Proyecto-PAD/MusicOT/app/build/intermediates/res/merged/debug/drawable-hdpi/ic_rep_play_button.png",

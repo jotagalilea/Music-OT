@@ -26,6 +26,8 @@ import fdi.ucm.musicot.Modelo.Cancion;
 import fdi.ucm.musicot.Modelo.DAO;
 import fdi.ucm.musicot.Modelo.RetenCanciones;
 
+import static fdi.ucm.musicot.MenuActivity.menuActivity;
+
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -222,10 +224,12 @@ public class CancionesFragment extends Fragment {
         linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MenuActivity.reproductor.rellenarLista(cancion);
+                int i = MenuActivity.reproductor.rellenarLista(cancion);
+                MenuActivity.reproductor.setCurrentSongDeCancion(cancion, i);
+
                 MenuActivity.fragmentReproductor.actualizaDatosCancion();
 
-                MenuActivity.menuActivity.cambiaFragment(R.id.fragment_contentmenu1, MenuActivity.fragmentReproductor);
+                menuActivity.cambiaFragment(R.id.fragment_contentmenu1, MenuActivity.fragmentReproductor);
             }
         });
 
