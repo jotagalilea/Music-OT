@@ -1,6 +1,10 @@
 [
     {
-        "merged": "/home/deekin/GIT/Proyecto-PAD/MusicOT/app/build/intermediates/res/merged/debug/mipmap-hdpi/ic_launcher.png",
-        "source": "/home/deekin/GIT/Proyecto-PAD/MusicOT/app/src/main/res/mipmap-hdpi/ic_launcher.png"
+        "merged": "C:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi\\ic_launcher.png",
+        "source": "C:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\home\\deekin\\GIT\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi\\ic_launcher.png",
+        "source": "C:\\home\\deekin\\GIT\\Proyecto-PAD\\MusicOT\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
     }
 ]

@@ -67,7 +67,7 @@
         </LinearLayout>
 
 
-        <ProgressBar
+        <SeekBar
             android:layout_gravity="center"
             android:id="@+id/reproductorBar"
             android:background="@android:color/darker_gray"

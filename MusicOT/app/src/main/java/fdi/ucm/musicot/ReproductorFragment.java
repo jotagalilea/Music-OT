@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.example.usuario_local.music_ot.R;
@@ -31,7 +32,7 @@ public class ReproductorFragment extends Fragment {
     TextView textViewArtistaCancion;
     Reproductor reproductor;
     ImageView imagenReproductor;
-    public static ProgressBar progressBar;
+    public static SeekBar progressBar;
 
     public ReproductorFragment() {
         // Required empty public constructor
@@ -45,7 +46,7 @@ public class ReproductorFragment extends Fragment {
 
         reproductor = MenuActivity.reproductor;
 
-        progressBar = (ProgressBar)view.findViewById(R.id.reproductorBar);
+        progressBar = (SeekBar) view.findViewById(R.id.reproductorBar);
 
         botonPlay = (ImageButton)view.findViewById(R.id.reproductorButtonPlay);
         botonNextSong = (ImageButton)view.findViewById(R.id.reproductorButtonNextSong);
@@ -74,6 +75,25 @@ public class ReproductorFragment extends Fragment {
             public void onClick(View view) {
 
                 reproductor.botonNextSong();
+            }
+        });
+
+        //Reacción del programa cuando se pulsa el SeekBar
+        progressBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+
+                MenuActivity.reproductor.pulsaSeekBar(seekBar, i, b);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
             }
         });
 

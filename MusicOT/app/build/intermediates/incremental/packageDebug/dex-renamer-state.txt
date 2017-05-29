@@ -1,0 +1,7 @@
+#Mon May 29 21:37:53 CEST 2017
+base.0=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_e38bc93500e5f4fb5def8eccac55f988ebc14352
+renamed.1=classes2.dex
+renamed.0=classes.dex
+file.1=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_632b602e98f17f37bae9553a821fae53127b85e7\\classes.dex
+base.1=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_632b602e98f17f37bae9553a821fae53127b85e7
+file.0=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_e38bc93500e5f4fb5def8eccac55f988ebc14352\\classes.dex

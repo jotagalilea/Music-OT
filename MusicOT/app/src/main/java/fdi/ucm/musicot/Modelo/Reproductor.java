@@ -5,7 +5,9 @@ import android.content.DialogInterface;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Environment;
+import android.os.Handler;
 import android.view.View;
+import android.widget.SeekBar;
 
 import com.example.usuario_local.music_ot.R;
 
@@ -250,12 +252,35 @@ public class Reproductor {
         }
     }
 
+    public void pulsaSeekBar(SeekBar seekBar, int position, boolean fromUser) {
+
+        if(currentSong.media != null && fromUser){
+            currentSong.media.seekTo(position);
+        }
+    }
+
     /**
      * Clase Thread encargada de mantener las barras de progreso actualizadas.
      */
     public class ProgressTracker extends Thread{
 
+        private Handler mHandler = new Handler();
+
         @Override
+        public void run() {
+            if(currentSong.media != null && ReproductorFragment.progressBar != null){
+                int mCurrentPosition = currentSong.media.getCurrentPosition();
+                ReproductorFragment.progressBar.setProgress(mCurrentPosition);
+            }
+            if(ReproductorFragmentMini.progressBar != null && currentSong != null){
+                int mCurrentPosition = currentSong.media.getCurrentPosition();
+                ReproductorFragmentMini.progressBar.setProgress(mCurrentPosition);
+            }
+
+            mHandler.postDelayed(this, 1000);
+        }
+
+        /*@Override
         public void run() {
             super.run();
 
@@ -273,7 +298,7 @@ public class Reproductor {
                     e.printStackTrace();
                 }
             }
-        }
+        }*/
     }
 
     public void setCurrentSongDeCancion(Cancion cancion,int numeroTema){

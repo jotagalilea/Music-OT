@@ -219,8 +219,11 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
             findViewById(R.id.mini_bot_reproductor).setVisibility(View.INVISIBLE);
         }
 
+        if(idNewFragment == R.id.fragment_contentmenu1){
+            Utils.currentFragment = newFragment;
+        }
+
         transicionarMenuFragmento(idNewFragment, newFragment);
-        Utils.currentFragment = newFragment;
     }
 
     /**
