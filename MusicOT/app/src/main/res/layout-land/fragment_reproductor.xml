@@ -1,0 +1,130 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    tools:context="fdi.ucm.musicot.ReproductorFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true">
+        <ImageView
+            android:id="@+id/imagenReproductor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_rep_play_button"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentTop="true"></ImageView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:id="@+id/linearLayout2"
+            android:background="@color/colorRepLandBackground">
+            <TextView
+                android:id="@+id/reproductorTituloCancionRep"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text=""
+                android:ellipsize="end"
+                android:textColor="@color/colorTituloTextRep"
+                android:textSize="17sp"
+                android:layout_above="@+id/reproductorAlbumCancionRep"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:id="@+id/reproductorAlbumCancionRep"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/reproductorButtonPlay"
+                android:layout_centerHorizontal="true"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text=""
+                android:textColor="@color/colorAlbumTextRep"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/reproductorArtistaCancionRep"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text=""
+                android:ellipsize="end"
+                android:textSize="14sp"
+                android:layout_above="@+id/reproductorButtonPlay"
+                android:layout_centerHorizontal="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:background="@color/colorRepLandBackground"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true">
+
+            <SeekBar
+                android:id="@+id/reproductorBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="31dp"
+                android:layout_gravity="center"
+                android:background="@android:color/darker_gray" />
+
+            <LinearLayout
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/linearLayout"
+                android:orientation="horizontal">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:layout_gravity="bottom"
+                    android:id="@+id/reproductorButtonPrevSong"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginEnd="25dp"
+                    android:src="@drawable/ic_rep_prevsong" />
+
+                <ImageButton
+                    android:layout_gravity="bottom"
+                    android:id="@+id/reproductorButtonPlay"
+                    android:layout_width="100dp"
+                    android:layout_height="62dp"
+                    android:src="@drawable/ic_rep_play_button"/>
+
+                <ImageButton
+                    android:layout_gravity="bottom"
+                    android:id="@+id/reproductorButtonNextSong"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/ic_rep_nextsong"
+                    android:layout_marginStart="22dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

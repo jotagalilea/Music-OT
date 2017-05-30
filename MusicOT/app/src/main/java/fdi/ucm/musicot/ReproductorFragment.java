@@ -16,6 +16,8 @@ import com.example.usuario_local.music_ot.R;
 
 import fdi.ucm.musicot.Modelo.Reproductor;
 
+import static fdi.ucm.musicot.MenuActivity.reproductor;
+
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -30,7 +32,6 @@ public class ReproductorFragment extends Fragment {
     TextView textviewTituloCancion;
     TextView textViewAlbumCancion;
     TextView textViewArtistaCancion;
-    Reproductor reproductor;
     ImageView imagenReproductor;
     public static SeekBar progressBar;
 
@@ -43,8 +44,6 @@ public class ReproductorFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_reproductor, container, false);
-
-        reproductor = MenuActivity.reproductor;
 
         progressBar = (SeekBar) view.findViewById(R.id.reproductorBar);
 
@@ -83,7 +82,7 @@ public class ReproductorFragment extends Fragment {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
 
-                MenuActivity.reproductor.pulsaSeekBar(seekBar, i, b);
+                reproductor.pulsaSeekBar(seekBar, i, b);
             }
 
             @Override
@@ -169,8 +168,4 @@ public class ReproductorFragment extends Fragment {
     }
 
 ///// CODIGO REPRODUCTOR ////
-
-    public void setReproductor(Reproductor reproductor){
-        this.reproductor = reproductor;
-    }
 }

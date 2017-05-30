@@ -6,26 +6,38 @@
     android:layout_gravity="center"
     tools:context="fdi.ucm.musicot.ReproductorFragment">
 
-    <RelativeLayout
+    <ImageView
+        android:id="@+id/imagenReproductor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_rep_play_button"
+        android:layout_above="@+id/linearLayout3"
+        android:layout_alignParentTop="true" />
+
+    <LinearLayout
+        android:background="@color/colorRepLandBackground"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true">
-        <ImageView
-            android:id="@+id/imagenReproductor"
+        android:layout_alignParentStart="true"
+        android:id="@+id/linearLayout3">
+
+        <SeekBar
+            android:id="@+id/reproductorBar"
+            style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_rep_play_button"
-            android:layout_above="@+id/reproductorBar"
-            android:layout_below="@+id/linearLayout"></ImageView>
+            android:layout_height="31dp"
+            android:layout_gravity="center"
+            android:background="@android:color/darker_gray" />
+
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
             android:layout_above="@+id/reproductorButtonPlay"
             android:layout_alignParentEnd="true"
-            android:layout_toEndOf="@+id/linearLayout"
             android:id="@+id/linearLayout2">
             <TextView
                 android:id="@+id/reproductorTituloCancionRep"
@@ -36,9 +48,7 @@
                 android:text=""
                 android:ellipsize="end"
                 android:textColor="@color/colorTituloTextRep"
-                android:textSize="17sp"
-                android:layout_above="@+id/reproductorAlbumCancionRep"
-                android:layout_centerHorizontal="true" />
+                android:textSize="17sp" />
 
             <TextView
                 android:id="@+id/reproductorAlbumCancionRep"
@@ -66,51 +76,36 @@
                 android:layout_centerHorizontal="true" />
         </LinearLayout>
 
-
-        <SeekBar
-            android:layout_gravity="center"
-            android:id="@+id/reproductorBar"
-            android:background="@android:color/darker_gray"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="match_parent"
-            android:layout_height="31dp"
-            android:layout_above="@+id/linearLayout2"
-            android:layout_alignParentStart="true" />
-
         <LinearLayout
             android:layout_gravity="center"
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/linearLayout"
-            android:orientation="horizontal">
+            android:weightSum="1">
+
+            <ImageButton
+                android:id="@+id/reproductorButtonPrevSong"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="36dp"
+                android:src="@drawable/ic_rep_prevsong"
+                android:layout_weight="0.27" />
+
+            <ImageButton
+                android:id="@+id/reproductorButtonPlay"
+                android:layout_width="100dp"
+                android:layout_height="75dp"
+                android:src="@drawable/ic_rep_play_button" />
+
+            <ImageButton
+                android:id="@+id/reproductorButtonNextSong"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_rep_nextsong"
+                android:layout_marginStart="35dp"
+                android:layout_weight="0.05" />
 
         </LinearLayout>
-
-        <ImageButton
-            android:id="@+id/reproductorButtonPlay"
-            android:layout_width="100dp"
-            android:layout_height="75dp"
-            android:src="@drawable/ic_rep_play_button"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
-
-        <ImageButton
-            android:id="@+id/reproductorButtonNextSong"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="50dp"
-            android:src="@drawable/ic_rep_nextsong" />
-
-        <ImageButton
-            android:id="@+id/reproductorButtonPrevSong"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/ic_rep_prevsong"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="52dp" />
-    </RelativeLayout>
-
+    </LinearLayout>
 
 </RelativeLayout>

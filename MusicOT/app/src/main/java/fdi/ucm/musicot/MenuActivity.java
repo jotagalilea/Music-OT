@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -38,7 +39,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     public static MenuActivity menuActivity;
 
     public static Reproductor reproductor = null;
-    private LinearLayout miniReproductorFragment;
+    //private LinearLayout miniReproductorFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,29 +57,40 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        fragmentListaCanciones = new ListaCancionesFragment();
-        fragmentListaCanciones.setRetainInstance(true);
+        if(fragmentListaCanciones == null) {
+            fragmentListaCanciones = new ListaCancionesFragment();
+            fragmentListaCanciones.setRetainInstance(true);
+        }
 
-        //Inicializamos los fragmentos de la actividad MAIN
-        fragmentArtistas = new ArtistasFragment();
-        fragmentArtistas.setRetainInstance(true);
-        fragmentArtistas.setMenuActivity(this);
+        if(fragmentArtistas == null) {
+            //Inicializamos los fragmentos de la actividad MAIN
+            fragmentArtistas = new ArtistasFragment();
+            fragmentArtistas.setRetainInstance(true);
+            fragmentArtistas.setMenuActivity(this);
+        }
 
-        fragmentCanciones = new CancionesFragment();
-        fragmentCanciones.setRetainInstance(true);
-        fragmentCanciones.setMenuActivity(this);
+        if(fragmentCanciones == null) {
+            fragmentCanciones = new CancionesFragment();
+            fragmentCanciones.setRetainInstance(true);
+            fragmentCanciones.setMenuActivity(this);
+        }
 
-        fragmentAlbumes = new AlbumesFragment();
-        fragmentAlbumes.setRetainInstance(true);
-        fragmentAlbumes.setMenuActivity(this);
+        if(fragmentAlbumes == null) {
+            fragmentAlbumes = new AlbumesFragment();
+            fragmentAlbumes.setRetainInstance(true);
+            fragmentAlbumes.setMenuActivity(this);
+        }
 
-        fragmentReproductor = new ReproductorFragment();
-        fragmentReproductor.setRetainInstance(true);
+        if(fragmentReproductor == null) {
+            fragmentReproductor = new ReproductorFragment();
+            //fragmentReproductor.setRetainInstance(true);
+        }
 
-        fragmentMini = new ReproductorFragmentMini();
-        fragmentMini.setRetainInstance(true);
-
-        miniReproductorFragment = (LinearLayout) findViewById(R.id.mini_bot_reproductor);
+        if(fragmentMini == null) {
+            fragmentMini = new ReproductorFragmentMini();
+            fragmentMini.setRetainInstance(true);
+        }
+        //miniReproductorFragment = (LinearLayout) findViewById(R.id.mini_bot_reproductor);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -97,6 +109,12 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         cambiaFragment(R.id.fragment_contentmenu1, Utils.currentFragment);
 
         menuActivity = this;
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+
+        super.onSaveInstanceState(outState);
     }
 
     @Override
@@ -208,15 +226,23 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
     public void cambiaFragment(int idNewFragment, Fragment newFragment){
 
+        FragmentManager manager = getFragmentManager();
+
         if(Reproductor.isDeployed
                 && idNewFragment==R.id.fragment_contentmenu1
                 && newFragment != fragmentReproductor){
 
-            findViewById(R.id.mini_bot_reproductor).setVisibility(View.VISIBLE);
+            manager.beginTransaction()
+                    .show(fragmentMini)
+                    .commit();
+            //findViewById(R.id.mini_bot_reproductor).setVisibility(View.VISIBLE);
         }else if(idNewFragment == R.id.fragment_contentmenu1
                 && newFragment == fragmentReproductor){
 
-            findViewById(R.id.mini_bot_reproductor).setVisibility(View.INVISIBLE);
+            manager.beginTransaction()
+                    .hide(fragmentMini)
+                    .commit();
+            //findViewById(R.id.mini_bot_reproductor).setVisibility(View.INVISIBLE);
         }
 
         if(idNewFragment == R.id.fragment_contentmenu1){
