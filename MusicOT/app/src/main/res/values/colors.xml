@@ -6,4 +6,7 @@
     <color name="colorTituloTextRep">#111111</color>
     <color name="colorAlbumTextRep">#666666</color>
     <color name="colorRepLandBackground">#afe1e1e1</color>
+    <color name="colorRepProgressBarLan">#afa9a9a9</color>
+    <color name="colorIconMenu">#ffffff</color>
+    <color name="colorIconMenu_noct">#ff000000</color>
 </resources>

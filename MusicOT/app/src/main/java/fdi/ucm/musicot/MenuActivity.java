@@ -129,8 +129,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
             } else{
                 cambiaFragment(R.id.fragment_contentmenu1, fragmentReproductor);
             }
-
-        }  else {
+        } else {
             exitProcess();
         }
     }

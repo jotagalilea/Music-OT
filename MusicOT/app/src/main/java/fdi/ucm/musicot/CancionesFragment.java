@@ -26,17 +26,13 @@ import fdi.ucm.musicot.Modelo.Cancion;
 import fdi.ucm.musicot.Modelo.DAO;
 import fdi.ucm.musicot.Modelo.RetenCanciones;
 
-import static fdi.ucm.musicot.MenuActivity.menuActivity;
-
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
  * to handle interaction events.
- * Use the {@link CancionesFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class CancionesFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -47,29 +43,10 @@ public class CancionesFragment extends Fragment {
     ArrayList<Cancion> listaCanciones;
     TableLayout mContieneCanciones;
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
     public CancionesFragment() {
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CancionesFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static CancionesFragment newInstance(String param1, String param2) {
-        CancionesFragment fragment = new CancionesFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override
@@ -132,9 +109,6 @@ public class CancionesFragment extends Fragment {
         return view;
     }
 
-//////////////////////////////
-
-
     /**
      * Convierte el objeto Canción introducido en un formato XML de layout para presentarlo en TableLayout
      *
@@ -166,8 +140,6 @@ public class CancionesFragment extends Fragment {
         else
             imageView.setImageDrawable(
                 getResources().getDrawable(R.drawable.ic_menu_temas));
-
-        // TODO Hacer que las imágenes salgan cuadradas.
 
         //----- TextView -----
         TextView textView = new TextView(menuActivity);
@@ -257,7 +229,6 @@ public class CancionesFragment extends Fragment {
     /////////////////////////
     /// SETTERS & GETTERS ///
     /////////////////////////
-
 
     public void setMenuActivity(MenuActivity menuActivity) {
         this.menuActivity = menuActivity;
