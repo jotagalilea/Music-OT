@@ -35,6 +35,13 @@ public class Reproductor {
     public Reproductor(){
 
         currentSong = new PaqueteCancionMedia(new MediaPlayer(), new Cancion());
+        currentSong.media.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mediaPlayer) {
+                botonNextSong();
+            }
+        });
+
 
         listaPlayer = rellenarListaCanciones(DAO.getAlbumes().get(0).getCanciones());
 
