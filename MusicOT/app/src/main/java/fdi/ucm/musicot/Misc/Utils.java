@@ -16,7 +16,7 @@ import java.io.File;
  */
 public class Utils {
 
-    public static Fragment currentFragment = null;
+    public static Fragment currentFragment;
     public static Fragment currentMiniFragment;
 
     /**
