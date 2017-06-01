@@ -115,7 +115,7 @@ public class CancionesFragment extends Fragment {
      * @param cancion
      * @return
      */
-    private LinearLayout generateLinearCanciones(final Cancion cancion){
+    public LinearLayout generateLinearCanciones(final Cancion cancion){
 
         LinearLayout linearLayout = new LinearLayout(menuActivity);
         LinearLayout linearLayoutInternal = new LinearLayout(menuActivity);
@@ -199,7 +199,7 @@ public class CancionesFragment extends Fragment {
                 int i = MenuActivity.reproductor.rellenarLista(cancion);
                 MenuActivity.reproductor.setCurrentSongDeCancion(cancion, i);
 
-                MenuActivity.fragmentReproductor.actualizaDatosCancion();
+                MenuActivity.observer.actualizaDatosCancion();
 
                 menuActivity.cambiaFragment(R.id.fragment_contentmenu1, MenuActivity.fragmentReproductor);
             }

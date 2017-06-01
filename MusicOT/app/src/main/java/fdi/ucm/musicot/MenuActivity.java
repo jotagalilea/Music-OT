@@ -12,14 +12,19 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TableLayout;
 
 import com.example.usuario_local.music_ot.R;
 
+import java.util.ArrayList;
+
+import fdi.ucm.musicot.Misc.DatosCancionEventHandler;
+import fdi.ucm.musicot.Misc.Observer;
+import fdi.ucm.musicot.Misc.OnKeyDownEventHandler;
 import fdi.ucm.musicot.Misc.Utils;
 import fdi.ucm.musicot.Modelo.DAO;
 import fdi.ucm.musicot.Modelo.Reproductor;
@@ -28,18 +33,20 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
     public static DAO dao;
 
+    public static BusquedaFragment fragmentBusqueda;
     private ArtistasFragment fragmentArtistas;
     private CancionesFragment fragmentCanciones;
     private AlbumesFragment fragmentAlbumes;
     public static ReproductorFragment fragmentReproductor;
     public static ReproductorFragmentMini fragmentMini;
     public static ListaCancionesFragment fragmentListaCanciones;
+    private View searchButtonView;
     private TableLayout fragmentArtistasContenedor;
 
+    public static Observer observer;
     public static MenuActivity menuActivity;
 
     public static Reproductor reproductor = null;
-    //private LinearLayout miniReproductorFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +59,20 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
             reproductor = new Reproductor();
         }
 
+        if(observer == null) {
+            observer = new Observer();
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        if(fragmentBusqueda == null){
+            fragmentBusqueda = new BusquedaFragment();
+            //Observadores
+            observer.addToList(fragmentBusqueda);
+        }
 
         if(fragmentListaCanciones == null) {
             fragmentListaCanciones = new ListaCancionesFragment();
@@ -63,7 +80,6 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         }
 
         if(fragmentArtistas == null) {
-            //Inicializamos los fragmentos de la actividad MAIN
             fragmentArtistas = new ArtistasFragment();
             fragmentArtistas.setRetainInstance(true);
             fragmentArtistas.setMenuActivity(this);
@@ -83,14 +99,17 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
         if(fragmentReproductor == null) {
             fragmentReproductor = new ReproductorFragment();
-            //fragmentReproductor.setRetainInstance(true);
+            fragmentReproductor.setRetainInstance(true);
+            //Observadores
+            observer.addToList(fragmentReproductor);
         }
 
         if(fragmentMini == null) {
             fragmentMini = new ReproductorFragmentMini();
             fragmentMini.setRetainInstance(true);
+            //Observadores
+            observer.addToList(fragmentMini);
         }
-        //miniReproductorFragment = (LinearLayout) findViewById(R.id.mini_bot_reproductor);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -175,6 +194,13 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            return true;
+        }
+
+        if(id == R.id.app_bar_search){
+
+
+
             return true;
         }
 
@@ -284,5 +310,13 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     public DAO getDAO(){
 
         return this.dao;
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        observer.onKeyDown(keyCode);
+
+        return super.onKeyDown(keyCode, event);
     }
 }

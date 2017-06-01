@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.usuario_local.music_ot.R;
 
+import fdi.ucm.musicot.Misc.DatosCancionEventHandler;
 import fdi.ucm.musicot.Modelo.Reproductor;
 
 import static fdi.ucm.musicot.MenuActivity.reproductor;
@@ -24,7 +25,7 @@ import static fdi.ucm.musicot.MenuActivity.reproductor;
  * to handle interaction events.
  * create an instance of this fragment.
  */
-public class ReproductorFragment extends Fragment {
+public class ReproductorFragment extends Fragment implements DatosCancionEventHandler {
 
     ImageButton botonPlay;
     ImageButton botonNextSong;
@@ -96,40 +97,11 @@ public class ReproductorFragment extends Fragment {
             }
         });
 
-        actualizaDatosCancion();
+        MenuActivity.observer.actualizaDatosCancion();
 
         return view;
 
     }
-
-    /*public void actualizaDatosCancion(PaqueteCancionMedia cancion){
-
-        String subStr = cancion.getCancionData().getTitulo();
-
-        progressBar.setMax(Reproductor.currentSong.getMedia().getDuration());
-        progressBar.setProgress(Reproductor.currentSong.getMedia().getCurrentPosition());
-
-        MenuActivity.fragmentMini.progressBar.setMax(Reproductor.currentSong.getCancionData().getDuracion());
-        MenuActivity.fragmentMini.progressBar.setProgress(Reproductor.currentSong.getMedia().getCurrentPosition());
-
-        if(Reproductor.currentSong.cancionData.getAlbum().getCaratula() != null){
-            MenuActivity.fragmentReproductor.imagenReproductor.setImageBitmap(Reproductor.currentSong.cancionData.getAlbum().getCaratula());
-        }
-
-        updatePlayButton();
-
-        /*if(subStr.length() > 20){
-            subStr = subStr.substring(0, 20) + "...";
-        }
-
-        textviewTituloCancion.setText(subStr);
-        textviewTituloCancion.setSingleLine(true);
-        textviewTituloCancion.setEllipsize(TextUtils.TruncateAt.END);
-        MenuActivity.fragmentMini.tituloView.setText(subStr);
-        MenuActivity.fragmentMini.tituloView.setSingleLine(true);
-        MenuActivity.fragmentMini.tituloView.setEllipsize(TextUtils.TruncateAt.END);
-
-    }*/
 
     public void actualizaDatosCancion(){
 
@@ -138,33 +110,21 @@ public class ReproductorFragment extends Fragment {
         progressBar.setMax(Reproductor.currentSong.getMedia().getDuration());
         progressBar.setProgress(Reproductor.currentSong.getMedia().getCurrentPosition());
 
-        MenuActivity.fragmentMini.progressBar.setMax(Reproductor.currentSong.getMedia().getDuration());
-        MenuActivity.fragmentMini.progressBar.setProgress(Reproductor.currentSong.getMedia().getCurrentPosition());
-
         if(Reproductor.currentSong.cancionData.getAlbum().getCaratula() != null){
             MenuActivity.fragmentReproductor.imagenReproductor.setImageBitmap(Reproductor.currentSong.cancionData.getAlbum().getCaratula());
         }
 
         updatePlayButton();
 
-        /*if(subStr.length() > 25){
-            subStr = subStr.substring(0, 25) + "...";
-        }*/
-
         textviewTituloCancion.setText(subStr);
         textViewAlbumCancion.setText(Reproductor.currentSong.getCancionData().getAlbum().getTitulo());
         textViewArtistaCancion.setText(Reproductor.currentSong.getCancionData().getArtista().getNombre());
-        MenuActivity.fragmentMini.albumView.setText(Reproductor.currentSong.getCancionData().getAlbum().getTitulo());
-        MenuActivity.fragmentMini.tituloView.setText(subStr);
-        MenuActivity.fragmentMini.tituloView.setSingleLine(true);
-        MenuActivity.fragmentMini.tituloView.setEllipsize(TextUtils.TruncateAt.END);
 
     }
 
     public void updatePlayButton() {
 
         this.botonPlay.setImageResource(!Reproductor.isPlaying?R.drawable.ic_rep_play_button:R.drawable.ic_rep_pause);
-        ReproductorFragmentMini.butonPlay.setImageResource(!Reproductor.isPlaying?R.drawable.ic_rep_play_button:R.drawable.ic_rep_pause);
     }
 
 ///// CODIGO REPRODUCTOR ////

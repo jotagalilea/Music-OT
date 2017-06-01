@@ -6,4 +6,9 @@
 
     <string name="action_settings">Configuración</string>
     <string name="action_search">Buscar</string>
+
+    <string name="search_fragment_artist">Artista</string>
+    <string name="search_fragment_song">Canción</string>
+    <string name="search_fragment_album">Álbum</string>
+    <string name="search_fragment_search">Canción/Album/Artist</string>
 </resources>

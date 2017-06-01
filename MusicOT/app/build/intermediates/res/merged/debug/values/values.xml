@@ -294,6 +294,10 @@
     <string name="character_counter_pattern" translatable="false">%1$d / %2$d</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="search_fragment_album">Álbum</string>
+    <string name="search_fragment_artist">Artista</string>
+    <string name="search_fragment_search">Canción/Album/Artist</string>
+    <string name="search_fragment_song">Canción</string>
     <string name="status_bar_notification_info_overflow">999+</string>
     <style name="AlertDialog.AppCompat" parent="Base.AlertDialog.AppCompat"/>
     <style name="AlertDialog.AppCompat.Light" parent="Base.AlertDialog.AppCompat.Light"/>

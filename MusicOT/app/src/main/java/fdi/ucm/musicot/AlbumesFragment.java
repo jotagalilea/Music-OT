@@ -220,7 +220,7 @@ public class AlbumesFragment extends Fragment {
 
                 MenuActivity.menuActivity.cambiaFragment(R.id.fragment_contentmenu1, MenuActivity.fragmentListaCanciones);
 
-                MenuActivity.fragmentReproductor.actualizaDatosCancion();
+                MenuActivity.observer.actualizaDatosCancion();
             }
         });
 

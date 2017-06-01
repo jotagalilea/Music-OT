@@ -138,7 +138,7 @@ public class Reproductor {
                 currentSong.getMedia().start();
             }
 
-            MenuActivity.fragmentReproductor.actualizaDatosCancion();
+            MenuActivity.observer.actualizaDatosCancion();
         }else{
 
         }
@@ -173,7 +173,7 @@ public class Reproductor {
             currentSong.media.start();
         }
 
-        MenuActivity.fragmentReproductor.actualizaDatosCancion();
+        MenuActivity.observer.actualizaDatosCancion();
 
         return listaPaquetes;
     }
@@ -204,7 +204,7 @@ public class Reproductor {
         }
 
         if(MenuActivity.fragmentReproductor != null) {
-            MenuActivity.fragmentReproductor.actualizaDatosCancion();
+            MenuActivity.observer.actualizaDatosCancion();
         }
         return listaPaquetes;
     }
@@ -230,7 +230,7 @@ public class Reproductor {
                 currentSong.media.start();
             }
 
-            MenuActivity.fragmentReproductor.actualizaDatosCancion();
+            MenuActivity.observer.actualizaDatosCancion();
         }
     }
 
@@ -255,7 +255,7 @@ public class Reproductor {
                 currentSong.getMedia().start();
             }
 
-            MenuActivity.fragmentReproductor.actualizaDatosCancion();
+            MenuActivity.observer.actualizaDatosCancion();
         }
     }
 

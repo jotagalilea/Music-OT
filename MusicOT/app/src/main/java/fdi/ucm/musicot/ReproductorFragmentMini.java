@@ -2,6 +2,7 @@ package fdi.ucm.musicot;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,13 +12,14 @@ import android.widget.TextView;
 
 import com.example.usuario_local.music_ot.R;
 
+import fdi.ucm.musicot.Misc.DatosCancionEventHandler;
 import fdi.ucm.musicot.Modelo.Reproductor;
 
 /**
  * Created by DeekinIII on 18/05/2017.
  */
 
-public class ReproductorFragmentMini extends Fragment {
+public class ReproductorFragmentMini extends Fragment implements DatosCancionEventHandler {
 
     public static boolean deployed;
     Reproductor reproductor;
@@ -50,6 +52,29 @@ public class ReproductorFragmentMini extends Fragment {
 
     public void setRepFrag(Reproductor repFrag){
         this.reproductor = repFrag;
+    }
+
+    ////////////////////////
+    /////// OBSERVER ///////
+    ////////////////////////
+
+    @Override
+    public void actualizaDatosCancion() {
+
+        String subStr = Reproductor.currentSong.getCancionData().getTitulo();
+
+        progressBar.setMax(Reproductor.currentSong.getMedia().getDuration());
+        progressBar.setProgress(Reproductor.currentSong.getMedia().getCurrentPosition());
+
+        albumView.setText(Reproductor.currentSong.getCancionData().getAlbum().getTitulo());
+        tituloView.setText(subStr);
+        tituloView.setSingleLine(true);
+        tituloView.setEllipsize(TextUtils.TruncateAt.END);
+    }
+
+    @Override
+    public void updatePlayButton() {
+        butonPlay.setImageResource(!Reproductor.isPlaying?R.drawable.ic_rep_play_button:R.drawable.ic_rep_pause);
     }
 }
 

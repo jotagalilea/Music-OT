@@ -225,7 +225,7 @@ public class ListaCancionesFragment extends Fragment {
                 int i = MenuActivity.reproductor.rellenarLista(album, cancion);
                 MenuActivity.reproductor.setCurrentSongDeCancion(cancion, i);
 
-                MenuActivity.fragmentReproductor.actualizaDatosCancion();
+                MenuActivity.observer.actualizaDatosCancion();
 
                 menuActivity.cambiaFragment(R.id.fragment_contentmenu1, MenuActivity.fragmentReproductor);
             }
@@ -340,7 +340,7 @@ public class ListaCancionesFragment extends Fragment {
                 int i = MenuActivity.reproductor.rellenarLista(artista, cancion);
                 MenuActivity.reproductor.setCurrentSongDeCancion(cancion, i);
 
-                MenuActivity.fragmentReproductor.actualizaDatosCancion();
+                MenuActivity.observer.actualizaDatosCancion();
 
                 menuActivity.cambiaFragment(R.id.fragment_contentmenu1, MenuActivity.fragmentReproductor);
             }

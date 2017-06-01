@@ -80,6 +80,10 @@
         "source": "C:\\home\\deekin\\.android\\build-cache\\6bee8cbb870caffb91be8bb8a03763027af31c39\\output\\res\\drawable\\abc_cab_background_internal_bg.xml"
     },
     {
+        "merged": "C:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_search_black_24dp.xml",
+        "source": "C:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\src\\main\\res\\drawable\\ic_search_black_24dp.xml"
+    },
+    {
         "merged": "C:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\listabackground.xml",
         "source": "C:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\src\\main\\res\\drawable\\listabackground.xml"
     },

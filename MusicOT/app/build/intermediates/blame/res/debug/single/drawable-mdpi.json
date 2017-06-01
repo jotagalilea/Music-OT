@@ -16,12 +16,12 @@
         "source": "C:\\home\\deekin\\.android\\build-cache\\6bee8cbb870caffb91be8bb8a03763027af31c39\\output\\res\\drawable-mdpi\\abc_ic_menu_cut_mtrl_alpha.png"
     },
     {
-        "merged": "C:\\home\\deekin\\GIT\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_ic_ab_back_mtrl_am_alpha.png",
-        "source": "C:\\home\\deekin\\.android\\build-cache\\6bee8cbb870caffb91be8bb8a03763027af31c39\\output\\res\\drawable-mdpi\\abc_ic_ab_back_mtrl_am_alpha.png"
-    },
-    {
         "merged": "C:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_menu_inicio.png",
         "source": "C:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\src\\main\\res\\drawable-mdpi\\ic_menu_inicio.png"
+    },
+    {
+        "merged": "C:\\home\\deekin\\GIT\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_ic_ab_back_mtrl_am_alpha.png",
+        "source": "C:\\home\\deekin\\.android\\build-cache\\6bee8cbb870caffb91be8bb8a03763027af31c39\\output\\res\\drawable-mdpi\\abc_ic_ab_back_mtrl_am_alpha.png"
     },
     {
         "merged": "C:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_ic_search_api_mtrl_alpha.png",
