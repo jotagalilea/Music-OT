@@ -1,4 +1,4 @@
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,82 +13,98 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="@string/search_fragment_search"
             android:inputType="textPersonName"
-            android:textColor="@android:color/darker_gray"
-            android:text="@string/search_fragment_search" />
-
-        <LinearLayout
-            android:layout_marginTop="15dp"
-            android:orientation="vertical"
+            android:text="" />
+        <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/fragment_search_editText"
-            android:layout_alignParentStart="true">
-
+            android:layout_below="@+id/fragment_search_editText">
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
                 android:orientation="vertical"
-                android:id="@+id/fragment_search_cancion_result">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/search_fragment_album"
-                    android:textColor="@android:color/holo_red_dark"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-                <LinearLayout
-                    android:background="@android:color/black"
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:orientation="vertical">
-                </LinearLayout>
-
-            </LinearLayout>
-            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:id="@+id/fragment_search_album_result">
+                android:layout_alignParentStart="true">
 
-                <TextView
-                    android:id="@+id/textView3"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/search_fragment_album"
-                    android:textColor="@android:color/holo_red_dark"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-                <LinearLayout
-                    android:background="@android:color/black"
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
                     android:orientation="vertical">
-                </LinearLayout>
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/fragment_search_artist_result"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
 
-                <TextView
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/search_fragment_song"
+                        android:textColor="@android:color/holo_red_dark"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+                    <LinearLayout
+                        android:background="@android:color/black"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:orientation="vertical">
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/fragment_search_song_result"></LinearLayout>
+
+                </LinearLayout>
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@android:color/holo_red_dark"
-                    android:textStyle="bold"
-                    android:textSize="20sp"
-                    android:text="@string/search_fragment_artist"/>
-                <LinearLayout
-                    android:background="@android:color/black"
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
                     android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/search_fragment_album"
+                        android:textColor="@android:color/holo_red_dark"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+                    <LinearLayout
+                        android:background="@android:color/black"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:orientation="vertical">
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/fragment_search_album_result"></LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/holo_red_dark"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:text="@string/search_fragment_artist"/>
+                    <LinearLayout
+                        android:background="@android:color/black"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:orientation="vertical">
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/fragment_search_artist_result"></LinearLayout>
                 </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
 
     </RelativeLayout>
 
-</android.support.v4.widget.NestedScrollView>
+</LinearLayout>

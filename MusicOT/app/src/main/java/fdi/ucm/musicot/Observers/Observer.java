@@ -1,6 +1,4 @@
-package fdi.ucm.musicot.Misc;
-
-import android.view.KeyEvent;
+package fdi.ucm.musicot.Observers;
 
 import java.util.ArrayList;
 
@@ -10,18 +8,18 @@ import java.util.ArrayList;
 
 public class Observer {
 
-    ArrayList<OnKeyDownEventHandler> keyDownEventHandlers;
+    ArrayList<OnKeyUpEventHandler> keyUpEventHandlers;
     ArrayList<DatosCancionEventHandler> datosCancionEventHandlers;
 
     public Observer(){
 
-        keyDownEventHandlers = new ArrayList<OnKeyDownEventHandler>();
+        keyUpEventHandlers = new ArrayList<OnKeyUpEventHandler>();
         datosCancionEventHandlers = new ArrayList<DatosCancionEventHandler>();
     }
 
-    public void addToList(OnKeyDownEventHandler onKeyDownEventHandler){
+    public void addToList(OnKeyUpEventHandler onKeyUpEventHandler){
 
-        keyDownEventHandlers.add(onKeyDownEventHandler);
+        keyUpEventHandlers.add(onKeyUpEventHandler);
     }
 
     public void addToList(DatosCancionEventHandler datosCancionEventHandler){
@@ -33,11 +31,19 @@ public class Observer {
     /////// OBSERVADORES ///////
     ////////////////////////////
 
-    public void onKeyDown(int keyCode) {
+    public void onKeyUp(int keyCode) {
 
-        for (OnKeyDownEventHandler instance: keyDownEventHandlers) {
+        for (OnKeyUpEventHandler instance: keyUpEventHandlers) {
 
             instance.keyPressed(keyCode);
+        }
+    }
+
+    public void onTextModified() {
+
+        for (OnKeyUpEventHandler instance: keyUpEventHandlers) {
+
+            instance.textModified();
         }
     }
 

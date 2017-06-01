@@ -2295,10 +2295,10 @@ containing a value of this type.
         public static final int fill_vertical=0x7f0c0021;
         public static final int fixed=0x7f0c0037;
         public static final int fragment_contentmenu1=0x7f0c006d;
-        public static final int fragment_search_album_result=0x7f0c007e;
+        public static final int fragment_search_album_result=0x7f0c007f;
         public static final int fragment_search_artist_result=0x7f0c0080;
-        public static final int fragment_search_cancion_result=0x7f0c007d;
         public static final int fragment_search_editText=0x7f0c007c;
+        public static final int fragment_search_song_result=0x7f0c007d;
         public static final int home=0x7f0c0004;
         public static final int homeAsUp=0x7f0c000f;
         public static final int icon=0x7f0c0042;
@@ -2387,7 +2387,7 @@ containing a value of this type.
         public static final int text2=0x7f0c0098;
         public static final int textSpacerNoButtons=0x7f0c004d;
         public static final int textView=0x7f0c008f;
-        public static final int textView3=0x7f0c007f;
+        public static final int textView3=0x7f0c007e;
         public static final int time=0x7f0c0096;
         public static final int title=0x7f0c0043;
         public static final int title_template=0x7f0c0048;

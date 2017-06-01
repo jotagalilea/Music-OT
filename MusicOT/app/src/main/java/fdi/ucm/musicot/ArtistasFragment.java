@@ -24,6 +24,8 @@ import fdi.ucm.musicot.Modelo.DAO;
 
 import java.util.List;
 
+import static fdi.ucm.musicot.MenuActivity.menuActivity;
+
 /**
  * A fragment representing a list of Items.
  * <p/>
@@ -31,7 +33,6 @@ import java.util.List;
 public class ArtistasFragment extends Fragment {
 
     TableLayout tabla;
-    MenuActivity menuActivity;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -88,7 +89,7 @@ public class ArtistasFragment extends Fragment {
      * @param artista
      * @return
      */
-    private LinearLayout generateLinearArtista(final Artista artista, MenuActivity menuActivity){
+    public static LinearLayout generateLinearArtista(final Artista artista, MenuActivity menuActivity){
 
         LinearLayout linearLayout = new LinearLayout(menuActivity);
 
@@ -158,7 +159,6 @@ public class ArtistasFragment extends Fragment {
                     MenuActivity.fragmentListaCanciones.setArtista(art);
                     MenuActivity.fragmentListaCanciones.vaciarLista();
                     MenuActivity.fragmentListaCanciones.rellenarLista(art);
-                    //MenuActivity.reproductor.rellenarLista(art);
 
                 } else{
 
@@ -180,9 +180,5 @@ public class ArtistasFragment extends Fragment {
 
     public void setTabla(TableLayout tabla) {
         this.tabla = tabla;
-    }
-
-    public void setMenuActivity(MenuActivity menuActivity) {
-        this.menuActivity = menuActivity;
     }
 }

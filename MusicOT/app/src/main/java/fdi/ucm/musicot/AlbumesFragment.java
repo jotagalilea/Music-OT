@@ -27,6 +27,8 @@ import java.util.ArrayList;
 import fdi.ucm.musicot.Misc.Utils;
 import fdi.ucm.musicot.Modelo.Album;
 
+import static fdi.ucm.musicot.MenuActivity.menuActivity;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -46,7 +48,6 @@ public class AlbumesFragment extends Fragment {
     private String mParam2;
 
     private TableLayout mContieneAlbumes;
-    private MenuActivity menuActivity;
 
     public AlbumesFragment() {
     }
@@ -125,7 +126,7 @@ public class AlbumesFragment extends Fragment {
      * @param album
      * @return
      */
-    private LinearLayout generateLinearAlbumes(final Album album, MenuActivity menuActivity){
+    public static LinearLayout generateLinearAlbumes(final Album album, MenuActivity menuActivity){
 
         LinearLayout linearLayout = new LinearLayout(menuActivity);
         LinearLayout linearLayoutText = new LinearLayout(menuActivity);
@@ -230,9 +231,5 @@ public class AlbumesFragment extends Fragment {
     /////////////////////////
     /// SETTERS & GETTERS ///
     /////////////////////////
-
-    public void setMenuActivity(MenuActivity menuActivity) {
-        this.menuActivity = menuActivity;
-    }
 }
 

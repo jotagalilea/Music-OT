@@ -1,4 +1,4 @@
-package fdi.ucm.musicot.Misc;
+package fdi.ucm.musicot.Observers;
 
 /**
  * Created by Deekin on 01/06/2017.

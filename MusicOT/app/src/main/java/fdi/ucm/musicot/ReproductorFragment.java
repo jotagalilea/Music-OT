@@ -2,19 +2,17 @@ package fdi.ucm.musicot;
 
 import android.os.Bundle;
 import android.app.Fragment;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.example.usuario_local.music_ot.R;
 
-import fdi.ucm.musicot.Misc.DatosCancionEventHandler;
+import fdi.ucm.musicot.Observers.DatosCancionEventHandler;
 import fdi.ucm.musicot.Modelo.Reproductor;
 
 import static fdi.ucm.musicot.MenuActivity.reproductor;
@@ -114,7 +112,7 @@ public class ReproductorFragment extends Fragment implements DatosCancionEventHa
             MenuActivity.fragmentReproductor.imagenReproductor.setImageBitmap(Reproductor.currentSong.cancionData.getAlbum().getCaratula());
         }
 
-        updatePlayButton();
+        MenuActivity.observer.updatePlayButton();
 
         textviewTituloCancion.setText(subStr);
         textViewAlbumCancion.setText(Reproductor.currentSong.getCancionData().getAlbum().getTitulo());

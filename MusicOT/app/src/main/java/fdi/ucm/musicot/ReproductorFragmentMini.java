@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.example.usuario_local.music_ot.R;
 
-import fdi.ucm.musicot.Misc.DatosCancionEventHandler;
+import fdi.ucm.musicot.Observers.DatosCancionEventHandler;
 import fdi.ucm.musicot.Modelo.Reproductor;
 
 /**

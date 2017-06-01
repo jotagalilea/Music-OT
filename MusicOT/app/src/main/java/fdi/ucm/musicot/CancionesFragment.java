@@ -26,6 +26,8 @@ import fdi.ucm.musicot.Modelo.Cancion;
 import fdi.ucm.musicot.Modelo.DAO;
 import fdi.ucm.musicot.Modelo.RetenCanciones;
 
+import static fdi.ucm.musicot.MenuActivity.menuActivity;
+
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -36,8 +38,6 @@ public class CancionesFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
-    private MenuActivity menuActivity;
 
     RetenCanciones retenCanciones;
     ArrayList<Cancion> listaCanciones;
@@ -115,7 +115,7 @@ public class CancionesFragment extends Fragment {
      * @param cancion
      * @return
      */
-    public LinearLayout generateLinearCanciones(final Cancion cancion){
+    public static LinearLayout generateLinearCanciones(final Cancion cancion){
 
         LinearLayout linearLayout = new LinearLayout(menuActivity);
         LinearLayout linearLayoutInternal = new LinearLayout(menuActivity);
@@ -138,8 +138,7 @@ public class CancionesFragment extends Fragment {
         if (cover != null)
             imageView.setImageBitmap(cover);
         else
-            imageView.setImageDrawable(
-                getResources().getDrawable(R.drawable.ic_menu_temas));
+            imageView.setImageResource(R.drawable.ic_menu_temas);
 
         //----- TextView -----
         TextView textView = new TextView(menuActivity);
@@ -229,8 +228,4 @@ public class CancionesFragment extends Fragment {
     /////////////////////////
     /// SETTERS & GETTERS ///
     /////////////////////////
-
-    public void setMenuActivity(MenuActivity menuActivity) {
-        this.menuActivity = menuActivity;
-    }
 }

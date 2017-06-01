@@ -20,11 +20,7 @@ import android.widget.TableLayout;
 
 import com.example.usuario_local.music_ot.R;
 
-import java.util.ArrayList;
-
-import fdi.ucm.musicot.Misc.DatosCancionEventHandler;
-import fdi.ucm.musicot.Misc.Observer;
-import fdi.ucm.musicot.Misc.OnKeyDownEventHandler;
+import fdi.ucm.musicot.Observers.Observer;
 import fdi.ucm.musicot.Misc.Utils;
 import fdi.ucm.musicot.Modelo.DAO;
 import fdi.ucm.musicot.Modelo.Reproductor;
@@ -82,19 +78,16 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         if(fragmentArtistas == null) {
             fragmentArtistas = new ArtistasFragment();
             fragmentArtistas.setRetainInstance(true);
-            fragmentArtistas.setMenuActivity(this);
         }
 
         if(fragmentCanciones == null) {
             fragmentCanciones = new CancionesFragment();
             fragmentCanciones.setRetainInstance(true);
-            fragmentCanciones.setMenuActivity(this);
         }
 
         if(fragmentAlbumes == null) {
             fragmentAlbumes = new AlbumesFragment();
             fragmentAlbumes.setRetainInstance(true);
-            fragmentAlbumes.setMenuActivity(this);
         }
 
         if(fragmentReproductor == null) {
@@ -141,15 +134,17 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else if(!Utils.currentFragment.equals(fragmentReproductor)){
+        } else {
 
-            if (Utils.currentFragment.equals(fragmentListaCanciones)) {
+            if (Utils.currentFragment.equals(fragmentReproductor)) {
+                exitProcess();
+            }else if (Utils.currentFragment.equals(fragmentListaCanciones)) {
                 super.onBackPressed();
+            }else if(Utils.currentFragment.equals(fragmentBusqueda)){
+                cambiaFragment(R.id.fragment_contentmenu1, fragmentReproductor);
             } else{
                 cambiaFragment(R.id.fragment_contentmenu1, fragmentReproductor);
             }
-        } else {
-            exitProcess();
         }
     }
 
@@ -161,16 +156,16 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
                 .setTitle("Salir");
 
         // Add the buttons
-        builder.setPositiveButton("Volver", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-
-                dialog.dismiss();
-            }
-        });
         builder.setNegativeButton("Salir", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
 
                 System.exit(0);
+            }
+        });
+        builder.setPositiveButton("Volver", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+
+                dialog.dismiss();
             }
         });
 
@@ -191,6 +186,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+        FragmentManager manager = getFragmentManager();
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
@@ -199,8 +195,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
         if(id == R.id.app_bar_search){
 
-
-
+            cambiaFragment(R.id.fragment_contentmenu1, fragmentBusqueda);
             return true;
         }
 
@@ -212,8 +207,8 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_albumes) {
-            // Handle the camera action
+        if (id == R.id.nav_buscar) {
+            cambiaFragment(R.id.fragment_contentmenu1, fragmentBusqueda);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -311,12 +306,13 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
         return this.dao;
     }
-
+/*
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
 
-        observer.onKeyDown(keyCode);
+        observer.onKeyUp(keyCode);
 
         return super.onKeyDown(keyCode, event);
     }
+    */
 }
