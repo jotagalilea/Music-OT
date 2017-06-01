@@ -133,8 +133,6 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
             exitProcess();
         } else if (Utils.currentFragment.equals(fragmentListaCanciones)) {
             super.onBackPressed();
-        } else if(Utils.currentFragment.equals(fragmentBusqueda)){
-            cambiaFragment(R.id.fragment_contentmenu1, fragmentReproductor);
         } else {
             cambiaFragment(R.id.fragment_contentmenu1, fragmentReproductor);
         }
@@ -197,6 +195,10 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+
+        if(id == R.id.nav_inicio){
+            cambiaFragment(R.id.fragment_contentmenu1, fragmentReproductor);
+        }
 
         if (id == R.id.nav_buscar) {
             cambiaFragment(R.id.fragment_contentmenu1, fragmentBusqueda);
@@ -278,7 +280,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
         observer.onKeyUp(keyCode);
 
-        return super.onKeyDown(keyCode, event);
+        return super.onKeyUp(keyCode, event);
     }
 
 }
