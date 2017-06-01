@@ -62,7 +62,7 @@ public class ArtistasFragment extends Fragment {
 
         tableParams = new TableLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        tableParams.setMargins(2, 5, 2, 5);
+        tableParams.setMargins(2, 5, 2, 0);
 
         fila.setLayoutParams(tableParams);
         tabla.addView(fila);
@@ -79,7 +79,7 @@ public class ArtistasFragment extends Fragment {
                 fila.setLayoutParams(tableParams);
                 tabla.addView(fila);
             }
-            fila.addView(generateLinearArtista(artista, menuActivity));
+            fila.addView(generateLinearArtista(artista));
         }
     }
 
@@ -89,7 +89,7 @@ public class ArtistasFragment extends Fragment {
      * @param artista
      * @return
      */
-    public static LinearLayout generateLinearArtista(final Artista artista, MenuActivity menuActivity){
+    public static LinearLayout generateLinearArtista(final Artista artista){
 
         LinearLayout linearLayout = new LinearLayout(menuActivity);
 

@@ -111,7 +111,7 @@ public class ListaCancionesFragment extends Fragment {
 
         tableParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        tableParams.setMargins(2, 5, 2, 5);
+        tableParams.setMargins(2, 5, 2, 0);
 
         for (Cancion tema: artista.getCanciones()) {
             fila = generateLinearCanciones(tema, artista);

@@ -103,26 +103,29 @@ public class ReproductorFragment extends Fragment implements DatosCancionEventHa
 
     public void actualizaDatosCancion(){
 
-        String subStr = Reproductor.currentSong.getCancionData().getTitulo();
+        if(progressBar != null) {
+            String subStr = Reproductor.currentSong.getCancionData().getTitulo();
 
-        progressBar.setMax(Reproductor.currentSong.getMedia().getDuration());
-        progressBar.setProgress(Reproductor.currentSong.getMedia().getCurrentPosition());
+            progressBar.setMax(Reproductor.currentSong.getMedia().getDuration());
+            progressBar.setProgress(Reproductor.currentSong.getMedia().getCurrentPosition());
 
-        if(Reproductor.currentSong.cancionData.getAlbum().getCaratula() != null){
-            MenuActivity.fragmentReproductor.imagenReproductor.setImageBitmap(Reproductor.currentSong.cancionData.getAlbum().getCaratula());
+            if (Reproductor.currentSong.cancionData.getAlbum().getCaratula() != null) {
+                MenuActivity.fragmentReproductor.imagenReproductor.setImageBitmap(Reproductor.currentSong.cancionData.getAlbum().getCaratula());
+            }
+
+            MenuActivity.observer.updatePlayButton();
+
+            textviewTituloCancion.setText(subStr);
+            textViewAlbumCancion.setText(Reproductor.currentSong.getCancionData().getAlbum().getTitulo());
+            textViewArtistaCancion.setText(Reproductor.currentSong.getCancionData().getArtista().getNombre());
         }
-
-        MenuActivity.observer.updatePlayButton();
-
-        textviewTituloCancion.setText(subStr);
-        textViewAlbumCancion.setText(Reproductor.currentSong.getCancionData().getAlbum().getTitulo());
-        textViewArtistaCancion.setText(Reproductor.currentSong.getCancionData().getArtista().getNombre());
-
     }
 
     public void updatePlayButton() {
 
-        this.botonPlay.setImageResource(!Reproductor.isPlaying?R.drawable.ic_rep_play_button:R.drawable.ic_rep_pause);
+        if(botonPlay != null) {
+            botonPlay.setImageResource(!Reproductor.isPlaying ? R.drawable.ic_rep_play_button : R.drawable.ic_rep_pause);
+        }
     }
 
 ///// CODIGO REPRODUCTOR ////

@@ -80,9 +80,13 @@ public class BusquedaFragment extends Fragment implements OnKeyUpEventHandler {
         if(Utils.currentFragment.equals(MenuActivity.fragmentBusqueda)){
 
             LinearLayout line;
-            LinearLayout.LayoutParams lineParams = new TableLayout.LayoutParams(
+            LinearLayout content;
+            LinearLayout.LayoutParams contentParams = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            lineParams.setMargins(2, 5, 2, 5);
+            contentParams.setMargins(2, 2, 2, 2);
+            LinearLayout.LayoutParams lineParams = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            lineParams.setMargins(2, 5, 2, 0);
 
             this.cancionResults.removeAllViews();
             this.albumResults.removeAllViews();
@@ -92,9 +96,12 @@ public class BusquedaFragment extends Fragment implements OnKeyUpEventHandler {
 
                 if(cancion.getTitulo().toLowerCase().contains(this.searchInputText.getText().toString().toLowerCase())){
 
-                    line = CancionesFragment.generateLinearCanciones(cancion);
-                    //line.setBackgroundResource(R.drawable.listabackground);
+                    line = new LinearLayout(MenuActivity.menuActivity);
+                    content = CancionesFragment.generateLinearCanciones(cancion);
+                    content.setLayoutParams(contentParams);
+                    line.setBackgroundResource(R.drawable.listabackground);
                     line.setLayoutParams(lineParams);
+                    line.addView(content);
                     cancionResults.addView(line);
 
                 }
@@ -104,10 +111,12 @@ public class BusquedaFragment extends Fragment implements OnKeyUpEventHandler {
 
                 if(album.getTitulo().toLowerCase().contains(this.searchInputText.getText().toString().toLowerCase())){
 
-
-                    line = AlbumesFragment.generateLinearAlbumes(album, MenuActivity.menuActivity);
-                    //line.setBackgroundResource(R.drawable.listabackground);
+                    line = new LinearLayout(MenuActivity.menuActivity);
+                    content = AlbumesFragment.generateLinearAlbumes(album);
+                    content.setLayoutParams(contentParams);
+                    line.setBackgroundResource(R.drawable.listabackground);
                     line.setLayoutParams(lineParams);
+                    line.addView(content);
                     albumResults.addView(line);
 
                 }
@@ -117,9 +126,12 @@ public class BusquedaFragment extends Fragment implements OnKeyUpEventHandler {
 
                 if(artista.getNombre().toLowerCase().contains(this.searchInputText.getText().toString().toLowerCase())){
 
-                    line = ArtistasFragment.generateLinearArtista(artista, MenuActivity.menuActivity);
-                    //line.setBackgroundResource(R.drawable.listabackground);
+                    line = new LinearLayout(MenuActivity.menuActivity);
+                    content = ArtistasFragment.generateLinearArtista(artista);
+                    content.setLayoutParams(contentParams);
+                    line.setBackgroundResource(R.drawable.listabackground);
                     line.setLayoutParams(lineParams);
+                    line.addView(content);
                     artistResults.addView(line);
                 }
             }

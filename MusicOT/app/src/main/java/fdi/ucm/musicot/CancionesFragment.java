@@ -86,7 +86,7 @@ public class CancionesFragment extends Fragment {
 
         tableParams = new TableLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        tableParams.setMargins(2, 5, 2, 5);
+        tableParams.setMargins(2, 5, 2, 0);
 
         fila.setLayoutParams(tableParams);
         mContieneCanciones.addView(fila);

@@ -124,27 +124,19 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
-
-        super.onSaveInstanceState(outState);
-    }
-
-    @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
+        } else if (Utils.currentFragment.equals(fragmentReproductor)) {
+            exitProcess();
+        } else if (Utils.currentFragment.equals(fragmentListaCanciones)) {
+            super.onBackPressed();
+        } else if(Utils.currentFragment.equals(fragmentBusqueda)){
+            cambiaFragment(R.id.fragment_contentmenu1, fragmentReproductor);
         } else {
-
-            if (Utils.currentFragment.equals(fragmentReproductor)) {
-                exitProcess();
-            }else if (Utils.currentFragment.equals(fragmentListaCanciones)) {
-                super.onBackPressed();
-            }else if(Utils.currentFragment.equals(fragmentBusqueda)){
-                cambiaFragment(R.id.fragment_contentmenu1, fragmentReproductor);
-            } else{
-                cambiaFragment(R.id.fragment_contentmenu1, fragmentReproductor);
-            }
+            cambiaFragment(R.id.fragment_contentmenu1, fragmentReproductor);
         }
     }
 
@@ -194,7 +186,6 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         }
 
         if(id == R.id.app_bar_search){
-
             cambiaFragment(R.id.fragment_contentmenu1, fragmentBusqueda);
             return true;
         }
@@ -211,37 +202,21 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
             cambiaFragment(R.id.fragment_contentmenu1, fragmentBusqueda);
         }
 
+        if(id == R.id.nav_temas){
+            cambiaFragment(R.id.fragment_contentmenu1, fragmentCanciones);
+        }
+
+        if(id == R.id.nav_albumes){
+            cambiaFragment(R.id.fragment_contentmenu1, fragmentAlbumes);
+        }
+
+        if(id == R.id.nav_artista){
+            cambiaFragment(R.id.fragment_contentmenu1, fragmentArtistas);
+        }
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    /**
-     * Va a la ventana Albumes ( onClick )
-     * @param menuItem
-     */
-    public void menuAlbumesOnClick(MenuItem menuItem){
-
-        cambiaFragment(R.id.fragment_contentmenu1, fragmentAlbumes);
-    }
-
-    public void menuInicioOnClick(MenuItem menuItem){
-
-        cambiaFragment(R.id.fragment_contentmenu1, fragmentReproductor);
-    }
-
-    /**
-     * Va a la ventana Canciones ( onClick )
-     * @param menuItem
-     */
-    public void menuTemasOnClick(MenuItem menuItem){
-
-        cambiaFragment(R.id.fragment_contentmenu1, fragmentCanciones);
-
-    }
-
-    public void menuListasOnClick(MenuItem menuItem){
-        //cambiaFragment(R.id.fragment_contentmenu1, fragmentListas);
     }
 
     public void cambiaFragment(int idNewFragment, Fragment newFragment){
@@ -273,15 +248,6 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     }
 
     /**
-     * Va a la ventana Canciones ( onClick )
-     * @param menuItem
-     */
-    public void menuArtistasOnClick(MenuItem menuItem){
-
-        cambiaFragment(R.id.fragment_contentmenu1, fragmentArtistas);
-    }
-
-    /**
      * Sustituye el fragmento del contenedor con la ID dada por el nuevo fragmento dado, también
      * encoge el menú lateral si está dsplegado
      * @param id
@@ -306,7 +272,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
         return this.dao;
     }
-/*
+
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
 
@@ -314,5 +280,5 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
         return super.onKeyDown(keyCode, event);
     }
-    */
+
 }

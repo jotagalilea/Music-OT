@@ -97,7 +97,7 @@ public class AlbumesFragment extends Fragment {
 
         tableParams = new TableLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        tableParams.setMargins(2, 5, 2, 5);
+        tableParams.setMargins(2, 5, 2, 0);
 
         fila.setLayoutParams(tableParams);
         mContieneAlbumes.addView(fila);
@@ -114,7 +114,7 @@ public class AlbumesFragment extends Fragment {
                 fila.setLayoutParams(tableParams);
                 mContieneAlbumes.addView(fila);
             }
-            fila.addView(generateLinearAlbumes(album, menuActivity));
+            fila.addView(generateLinearAlbumes(album));
         }
 
         return view;
@@ -126,7 +126,7 @@ public class AlbumesFragment extends Fragment {
      * @param album
      * @return
      */
-    public static LinearLayout generateLinearAlbumes(final Album album, MenuActivity menuActivity){
+    public static LinearLayout generateLinearAlbumes(final Album album){
 
         LinearLayout linearLayout = new LinearLayout(menuActivity);
         LinearLayout linearLayoutText = new LinearLayout(menuActivity);

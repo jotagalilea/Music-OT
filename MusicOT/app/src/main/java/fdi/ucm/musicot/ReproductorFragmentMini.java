@@ -16,7 +16,7 @@ import fdi.ucm.musicot.Observers.DatosCancionEventHandler;
 import fdi.ucm.musicot.Modelo.Reproductor;
 
 /**
- * Created by DeekinIII on 18/05/2017.
+ * Created by Javier on 18/05/2017.
  */
 
 public class ReproductorFragmentMini extends Fragment implements DatosCancionEventHandler {
@@ -46,6 +46,8 @@ public class ReproductorFragmentMini extends Fragment implements DatosCancionEve
                 reproductor.botonReproducirCancion();
             }
         });
+
+        MenuActivity.observer.actualizaDatosCancion();
 
         return view;
     }
