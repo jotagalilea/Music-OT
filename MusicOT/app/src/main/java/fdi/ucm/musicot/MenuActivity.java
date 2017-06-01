@@ -2,6 +2,7 @@ package fdi.ucm.musicot;
 
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.app.Fragment;
@@ -28,21 +29,17 @@ import fdi.ucm.musicot.Modelo.Reproductor;
 public class MenuActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     public static DAO dao;
+    public static Observer observer;
+    public static MenuActivity menuActivity;
+    public static Reproductor reproductor;
 
     public static BusquedaFragment fragmentBusqueda;
-    private ArtistasFragment fragmentArtistas;
-    private CancionesFragment fragmentCanciones;
-    private AlbumesFragment fragmentAlbumes;
+    public static ArtistasFragment fragmentArtistas;
+    public static CancionesFragment fragmentCanciones;
+    public static AlbumesFragment fragmentAlbumes;
     public static ReproductorFragment fragmentReproductor;
     public static ReproductorFragmentMini fragmentMini;
     public static ListaCancionesFragment fragmentListaCanciones;
-    private View searchButtonView;
-    private TableLayout fragmentArtistasContenedor;
-
-    public static Observer observer;
-    public static MenuActivity menuActivity;
-
-    public static Reproductor reproductor = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +64,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         if(fragmentBusqueda == null){
             fragmentBusqueda = new BusquedaFragment();
             //Observadores
-            observer.addToList(fragmentBusqueda);
+            observer.addOnKeyEventHandler(fragmentBusqueda);
         }
 
         if(fragmentListaCanciones == null) {
@@ -94,14 +91,14 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
             fragmentReproductor = new ReproductorFragment();
             fragmentReproductor.setRetainInstance(true);
             //Observadores
-            observer.addToList(fragmentReproductor);
+            observer.addDatosCancionEventHandler(fragmentReproductor);
         }
 
         if(fragmentMini == null) {
             fragmentMini = new ReproductorFragmentMini();
             fragmentMini.setRetainInstance(true);
             //Observadores
-            observer.addToList(fragmentMini);
+            observer.addDatosCancionEventHandler(fragmentMini);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -130,7 +127,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else if (Utils.currentFragment.equals(fragmentReproductor)) {
-            exitProcess();
+            minimizeApp();
         } else if (Utils.currentFragment.equals(fragmentListaCanciones)) {
             super.onBackPressed();
         } else {
@@ -148,13 +145,12 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         // Add the buttons
         builder.setNegativeButton("Salir", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-
+                Reproductor.currentSong.media.release();
                 System.exit(0);
             }
         });
         builder.setPositiveButton("Volver", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-
                 dialog.dismiss();
             }
         });
@@ -182,7 +178,6 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         if (id == R.id.action_settings) {
             return true;
         }
-
         if(id == R.id.app_bar_search){
             cambiaFragment(R.id.fragment_contentmenu1, fragmentBusqueda);
             return true;
@@ -199,21 +194,20 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         if(id == R.id.nav_inicio){
             cambiaFragment(R.id.fragment_contentmenu1, fragmentReproductor);
         }
-
         if (id == R.id.nav_buscar) {
             cambiaFragment(R.id.fragment_contentmenu1, fragmentBusqueda);
         }
-
         if(id == R.id.nav_temas){
             cambiaFragment(R.id.fragment_contentmenu1, fragmentCanciones);
         }
-
         if(id == R.id.nav_albumes){
             cambiaFragment(R.id.fragment_contentmenu1, fragmentAlbumes);
         }
-
         if(id == R.id.nav_artista){
             cambiaFragment(R.id.fragment_contentmenu1, fragmentArtistas);
+        }
+        if(id == R.id.nav_salir){
+            exitProcess();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -270,17 +264,19 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    public DAO getDAO(){
-
-        return this.dao;
-    }
-
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
-
         observer.onKeyUp(keyCode);
-
         return super.onKeyUp(keyCode, event);
     }
 
+    /**
+     * Minimiza la aplicación
+     */
+    public void minimizeApp() {
+        Intent startMain = new Intent(Intent.ACTION_MAIN);
+        startMain.addCategory(Intent.CATEGORY_HOME);
+        startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(startMain);
+    }
 }

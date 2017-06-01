@@ -22,6 +22,10 @@
             android:id="@+id/nav_listas"
             android:icon="@drawable/ic_menu_favoritos"
             android:title="Listas de reproducción"/>
+        <item
+            android:id="@+id/nav_salir"
+            android:icon="@drawable/ic_menu_salir"
+            android:title="Cerrar aplicación"/>
     </group>
 
     <item android:title="Misc.">

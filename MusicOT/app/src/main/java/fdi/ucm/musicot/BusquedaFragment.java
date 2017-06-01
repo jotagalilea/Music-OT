@@ -9,13 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TableLayout;
 
 import com.example.usuario_local.music_ot.R;
 
 import fdi.ucm.musicot.Modelo.Album;
 import fdi.ucm.musicot.Modelo.Artista;
-import fdi.ucm.musicot.Observers.OnKeyUpEventHandler;
+import fdi.ucm.musicot.Observers.OnKeyEventHandler;
 import fdi.ucm.musicot.Misc.Utils;
 import fdi.ucm.musicot.Modelo.Cancion;
 import fdi.ucm.musicot.Modelo.DAO;
@@ -23,7 +22,7 @@ import fdi.ucm.musicot.Modelo.DAO;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class BusquedaFragment extends Fragment implements OnKeyUpEventHandler {
+public class BusquedaFragment extends Fragment implements OnKeyEventHandler {
 
     View view;
     LinearLayout cancionResults;
@@ -103,7 +102,6 @@ public class BusquedaFragment extends Fragment implements OnKeyUpEventHandler {
                     line.setLayoutParams(lineParams);
                     line.addView(content);
                     cancionResults.addView(line);
-
                 }
             }
 
@@ -118,7 +116,6 @@ public class BusquedaFragment extends Fragment implements OnKeyUpEventHandler {
                     line.setLayoutParams(lineParams);
                     line.addView(content);
                     albumResults.addView(line);
-
                 }
             }
 

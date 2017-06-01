@@ -127,6 +127,4 @@ public class ReproductorFragment extends Fragment implements DatosCancionEventHa
             botonPlay.setImageResource(!Reproductor.isPlaying ? R.drawable.ic_rep_play_button : R.drawable.ic_rep_pause);
         }
     }
-
-///// CODIGO REPRODUCTOR ////
 }

@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Thu Jun 01 21:47:06 CEST 2017
+#Thu Jun 01 22:09:59 CEST 2017
 14.set=ANDROID_RESOURCE
 180.file=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\mipmap-mdpi-v4\\ic_launcher.png
 118.set=ANDROID_RESOURCE
@@ -17,7 +17,7 @@
 134.base=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_
 186.base=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_
 161.base=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_
-192.file=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\abc_textfield_search_default_mtrl_alpha.9.png
+192.file=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-v21\\abc_action_bar_item_background_material.xml
 132.set=ANDROID_RESOURCE
 179.set=ANDROID_RESOURCE
 59.base=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_
@@ -70,7 +70,7 @@
 187.base=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_
 110.base=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_
 162.base=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_
-193.file=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\ic_menu_artista.png
+193.file=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\abc_textfield_search_default_mtrl_alpha.9.png
 142.set=ANDROID_RESOURCE
 189.set=ANDROID_RESOURCE
 35.base=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_
@@ -121,7 +121,7 @@
 111.base=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_
 163.base=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_
 106.set=ANDROID_RESOURCE
-194.file=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\abc_ic_menu_copy_mtrl_am_alpha.png
+194.file=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\ic_menu_artista.png
 190.base=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_
 152.set=ANDROID_RESOURCE
 36.base=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_
@@ -174,6 +174,7 @@
 164.base=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_
 116.set=ANDROID_RESOURCE
 0.set=ANDROID_RESOURCE
+195.file=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\abc_ic_menu_copy_mtrl_am_alpha.png
 191.base=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_
 170.file=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\abc_activity_chooser_view.xml
 162.set=ANDROID_RESOURCE
@@ -258,7 +259,7 @@
 158.file=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-ldrtl-hdpi-v4\\abc_ic_menu_cut_mtrl_alpha.png
 133.file=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable\\abc_btn_check_material.xml
 64.set=ANDROID_RESOURCE
-185.file=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\abc_textfield_search_activated_mtrl_alpha.9.png
+185.file=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\ic_menu_salir.png
 6.set=ANDROID_RESOURCE
 160.file=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\menu\\activity_menu_drawer.xml
 168.set=ANDROID_RESOURCE
@@ -308,7 +309,7 @@
 159.file=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable\\abc_btn_default_mtrl_shape.xml
 134.file=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\notification_template_part_time.xml
 74.set=ANDROID_RESOURCE
-186.file=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\ic_menu_configuracion.png
+186.file=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\abc_textfield_search_activated_mtrl_alpha.9.png
 161.file=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\notification_template_big_media_narrow.xml
 192.base=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_
 172.set=ANDROID_RESOURCE
@@ -348,7 +349,7 @@
 6.file=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable\\abc_list_selector_background_transition_holo_light.xml
 181.base=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_
 121.set=ANDROID_RESOURCE
-count=195
+count=196
 27.base=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_
 77.set=ANDROID_RESOURCE
 79.base=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_
@@ -359,7 +360,7 @@ count=195
 81.base=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_
 135.file=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\app_bar_menu.xml
 84.set=ANDROID_RESOURCE
-187.file=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable\\listabackground.xml
+187.file=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\ic_menu_configuracion.png
 110.file=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\anim\\abc_shrink_fade_out_from_bottom.xml
 162.file=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\abc_ic_menu_paste_mtrl_am_alpha.png
 193.base=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_
@@ -411,13 +412,13 @@ count=195
 82.base=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_
 136.file=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\abc_btn_rating_star_off_mtrl_alpha.png
 94.set=ANDROID_RESOURCE
-188.file=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-ldrtl-hdpi-v4\\abc_ic_menu_copy_mtrl_am_alpha.png
+188.file=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable\\listabackground.xml
 111.file=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\abc_action_bar_up_container.xml
 163.file=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\design_layout_snackbar.xml
 194.base=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_
 192.set=ANDROID_RESOURCE
 55.set=ANDROID_RESOURCE
-190.file=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_\\resources.arsc
+190.file=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\abc_scrubber_control_off_mtrl_alpha.png
 159.set=ANDROID_RESOURCE
 16.set=ANDROID_RESOURCE
 36.file=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\abc_ic_menu_cut_mtrl_alpha.png
@@ -457,18 +458,20 @@ count=195
 102.set=ANDROID_RESOURCE
 97.set=ANDROID_RESOURCE
 56.base=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_
+195.set=ANDROID_RESOURCE
 31.base=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_
 58.set=ANDROID_RESOURCE
 83.base=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_
 62.file=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\abc_ic_search_api_mtrl_alpha.png
 137.file=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable\\abc_text_cursor_material.xml
-189.file=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\abc_scrubber_control_off_mtrl_alpha.png
+189.file=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-ldrtl-hdpi-v4\\abc_ic_menu_copy_mtrl_am_alpha.png
 112.file=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\design_navigation_menu.xml
 19.set=ANDROID_RESOURCE
 164.file=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\ic_menu_favoritos.png
+195.base=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_
 170.base=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_
 65.set=ANDROID_RESOURCE
-191.file=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-v21\\abc_action_bar_item_background_material.xml
+191.file=C\:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\resources-debug.ap_\\resources.arsc
 7.set=ANDROID_RESOURCE
 169.set=ANDROID_RESOURCE
 26.set=ANDROID_RESOURCE

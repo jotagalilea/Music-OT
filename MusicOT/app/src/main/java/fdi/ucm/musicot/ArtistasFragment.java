@@ -27,8 +27,7 @@ import java.util.List;
 import static fdi.ucm.musicot.MenuActivity.menuActivity;
 
 /**
- * A fragment representing a list of Items.
- * <p/>
+ * Fragmento encargado de la lista de artistas en disco
  */
 public class ArtistasFragment extends Fragment {
 

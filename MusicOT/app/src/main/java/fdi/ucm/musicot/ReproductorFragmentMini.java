@@ -63,20 +63,25 @@ public class ReproductorFragmentMini extends Fragment implements DatosCancionEve
     @Override
     public void actualizaDatosCancion() {
 
-        String subStr = Reproductor.currentSong.getCancionData().getTitulo();
+        //Nos aseguramos que está inicializado
+        if(progressBar != null) {
+            String subStr = Reproductor.currentSong.getCancionData().getTitulo();
 
-        progressBar.setMax(Reproductor.currentSong.getMedia().getDuration());
-        progressBar.setProgress(Reproductor.currentSong.getMedia().getCurrentPosition());
+            progressBar.setMax(Reproductor.currentSong.getMedia().getDuration());
+            progressBar.setProgress(Reproductor.currentSong.getMedia().getCurrentPosition());
 
-        albumView.setText(Reproductor.currentSong.getCancionData().getAlbum().getTitulo());
-        tituloView.setText(subStr);
-        tituloView.setSingleLine(true);
-        tituloView.setEllipsize(TextUtils.TruncateAt.END);
+            albumView.setText(Reproductor.currentSong.getCancionData().getAlbum().getTitulo());
+            tituloView.setText(subStr);
+            tituloView.setSingleLine(true);
+            tituloView.setEllipsize(TextUtils.TruncateAt.END);
+        }
     }
 
     @Override
     public void updatePlayButton() {
-        butonPlay.setImageResource(!Reproductor.isPlaying?R.drawable.ic_rep_play_button:R.drawable.ic_rep_pause);
+        if(butonPlay != null) {
+            butonPlay.setImageResource(!Reproductor.isPlaying ? R.drawable.ic_rep_play_button : R.drawable.ic_rep_pause);
+        }
     }
 }
 

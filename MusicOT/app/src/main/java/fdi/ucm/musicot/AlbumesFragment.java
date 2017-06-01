@@ -29,13 +29,8 @@ import fdi.ucm.musicot.Modelo.Album;
 
 import static fdi.ucm.musicot.MenuActivity.menuActivity;
 
-
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * to handle interaction events.
- * Use the {@link AlbumesFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * Fragmento encargado de la lista de albumes en disco
  */
 public class AlbumesFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match

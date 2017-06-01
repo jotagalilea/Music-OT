@@ -32,6 +32,10 @@
         "source": "C:\\Users\\Deekin\\.android\\build-cache\\fee569be024ac456fce7220e26c2cb22aea14bc9\\output\\res\\drawable-mdpi\\abc_ic_menu_paste_mtrl_am_alpha.png"
     },
     {
+        "merged": "C:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_menu_salir.png",
+        "source": "C:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\src\\main\\res\\drawable-mdpi\\ic_menu_salir.png"
+    },
+    {
         "merged": "C:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_rep_play_button.png",
         "source": "C:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\src\\main\\res\\drawable-mdpi\\ic_rep_play_button.png"
     },

@@ -29,10 +29,7 @@ import fdi.ucm.musicot.Modelo.RetenCanciones;
 import static fdi.ucm.musicot.MenuActivity.menuActivity;
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * to handle interaction events.
- * create an instance of this fragment.
+ * Fragmento encargado de la lista de canciones en disco
  */
 public class CancionesFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

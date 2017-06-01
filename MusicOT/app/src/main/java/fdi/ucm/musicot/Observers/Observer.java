@@ -6,23 +6,24 @@ import java.util.ArrayList;
  * Created by Javier on 01/06/2017.
  */
 
+
 public class Observer {
 
-    ArrayList<OnKeyUpEventHandler> keyUpEventHandlers;
+    ArrayList<OnKeyEventHandler> keyEventHandlers;
     ArrayList<DatosCancionEventHandler> datosCancionEventHandlers;
 
     public Observer(){
 
-        keyUpEventHandlers = new ArrayList<OnKeyUpEventHandler>();
+        keyEventHandlers = new ArrayList<OnKeyEventHandler>();
         datosCancionEventHandlers = new ArrayList<DatosCancionEventHandler>();
     }
 
-    public void addToList(OnKeyUpEventHandler onKeyUpEventHandler){
+    public void addOnKeyEventHandler(OnKeyEventHandler onKeyEventHandler){
 
-        keyUpEventHandlers.add(onKeyUpEventHandler);
+        keyEventHandlers.add(onKeyEventHandler);
     }
 
-    public void addToList(DatosCancionEventHandler datosCancionEventHandler){
+    public void addDatosCancionEventHandler(DatosCancionEventHandler datosCancionEventHandler){
 
         datosCancionEventHandlers.add(datosCancionEventHandler);
     }
@@ -33,7 +34,7 @@ public class Observer {
 
     public void onKeyUp(int keyCode) {
 
-        for (OnKeyUpEventHandler instance: keyUpEventHandlers) {
+        for (OnKeyEventHandler instance: keyEventHandlers) {
 
             instance.keyPressed(keyCode);
         }
@@ -41,7 +42,7 @@ public class Observer {
 
     public void onTextModified() {
 
-        for (OnKeyUpEventHandler instance: keyUpEventHandlers) {
+        for (OnKeyEventHandler instance: keyEventHandlers) {
 
             instance.textModified();
         }
