@@ -40,6 +40,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     public static ReproductorFragment fragmentReproductor;
     public static ReproductorFragmentMini fragmentMini;
     public static ListaCancionesFragment fragmentListaCanciones;
+    public static ListasReproduccionFragment fragmentListasReproduccion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +71,11 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         if(fragmentListaCanciones == null) {
             fragmentListaCanciones = new ListaCancionesFragment();
             fragmentListaCanciones.setRetainInstance(true);
+        }
+
+        if(fragmentListasReproduccion == null) {
+            fragmentListasReproduccion = new ListasReproduccionFragment();
+            fragmentListasReproduccion.setRetainInstance(true);
         }
 
         if(fragmentArtistas == null) {
@@ -205,6 +211,9 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         }
         if(id == R.id.nav_artista){
             cambiaFragment(R.id.fragment_contentmenu1, fragmentArtistas);
+        }
+        if(id == R.id.nav_listas){
+            cambiaFragment(R.id.fragment_contentmenu1, fragmentListasReproduccion);
         }
         if(id == R.id.nav_salir){
             exitProcess();

@@ -10,6 +10,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
@@ -40,13 +41,13 @@ public class ListasReproduccionFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_listas_reproduccion, container, false);
 
         tabla = (TableLayout) view.findViewById(R.id.contenedor_listas_reproduccion);
-        rellenarTablaInit(tabla, menuActivity);
+        rellenarTablaInit(tabla, menuActivity, view);
 
         return view;
     }
 
 
-    public void rellenarTablaInit(TableLayout tabla, MenuActivity menuActivity){
+    public void rellenarTablaInit(TableLayout tabla, MenuActivity menuActivity, View view){
 
         tabla.setStretchAllColumns(true);
 
@@ -62,7 +63,7 @@ public class ListasReproduccionFragment extends Fragment {
         fila.setLayoutParams(tableParams);
         tabla.addView(fila);
 
-        /////////////////////////////// RELLENAR CON LISTAS DUMMY //////////////////////////////////////
+
         ListasReproduccion listasRep = MenuActivity.dao.getListasReproduccion();
 
         if (!listasRep.getListasReproduccion().isEmpty()) {
@@ -76,17 +77,27 @@ public class ListasReproduccionFragment extends Fragment {
         }
 
         // Implementar aquí el botón para crear una lista nueva:
-        TableRow filaAddLista = new TableRow(menuActivity);
+        //TableRow filaBotonAddLista = new TableRow(menuActivity);
 
-        fila.setBackgroundResource(R.drawable.listabackground);
-        TableLayout.LayoutParams tableParams;
+        Button botonCrearLista = (Button) view.findViewById(R.id.boton_crear_lista);
+        botonCrearLista.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        ////////////////////////////////////////////////////
+        /*filaBotonAddLista.setBackgroundResource(R.drawable.listabackground);
+        //TableLayout.LayoutParams tableParams;
 
         tableParams = new TableLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         tableParams.setMargins(2, 5, 2, 0);
 
-        fila.setLayoutParams(tableParams);
-        tabla.addView(fila);
+        filaBotonAddLista.setLayoutParams(tableParams);
+        filaBotonAddLista.addView(botonCrearLista);
+        tabla.addView(filaBotonAddLista);*/
     }
 
 
