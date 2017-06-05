@@ -1,0 +1,5 @@
+MusicOT/.idea/workspace.xml
+*.bin
+*.lock
+MusicOT/app/build/intermediates/res/resources-debug.ap_
+*.rawproto
