@@ -5,7 +5,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.support.v7.app.ActionBar;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -17,10 +17,13 @@ import android.widget.TextView;
 
 import com.example.usuario_local.music_ot.R;
 
+import java.util.ArrayList;
+
 import fdi.ucm.musicot.Misc.Utils;
 import fdi.ucm.musicot.Modelo.Album;
 import fdi.ucm.musicot.Modelo.Artista;
 import fdi.ucm.musicot.Modelo.Cancion;
+import fdi.ucm.musicot.Observers.OnNightModeEvent;
 
 import static fdi.ucm.musicot.MenuActivity.menuActivity;
 
@@ -31,13 +34,19 @@ import static fdi.ucm.musicot.MenuActivity.menuActivity;
  * Use the {@link ListaCancionesFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ListaCancionesFragment extends Fragment {
+public class ListaCancionesFragment extends Fragment implements OnNightModeEvent {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
     private View view;
     private LinearLayout mContieneCanciones;
+
+    ArrayList<LinearLayout> filasContenedor = new ArrayList<>();
+    ArrayList<ImageView> listaImagenes = new ArrayList<>();
+    ArrayList<TextView> tituloAlbum = new ArrayList<>();
+    ArrayList<TextView> tituloCancion = new ArrayList<>();
+    ArrayList<TextView> tituloArtist = new ArrayList<>();
 
     private Album album = null;
     private Artista artista = null;
@@ -54,7 +63,7 @@ public class ListaCancionesFragment extends Fragment {
      * @param param2 Parameter 2.
      * @return A new instance of fragment ListaCancionesAlbumFragment.
      */
-    public static ListaCancionesFragment newInstance(String param1, String param2) {
+    public static ListaCancionesFragment newInstance(String param1, String param2){
         ListaCancionesFragment fragment = new ListaCancionesFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
@@ -114,7 +123,7 @@ public class ListaCancionesFragment extends Fragment {
         tableParams.setMargins(2, 5, 2, 0);
 
         for (Cancion tema: artista.getCanciones()) {
-            fila = generateLinearCanciones(tema, artista);
+            fila = generateLinearCanciones(tema, artista, true);
             fila.setBackgroundResource(R.drawable.listabackground);
             fila.setLayoutParams(tableParams);
             mContieneCanciones.addView(fila);
@@ -250,7 +259,7 @@ public class ListaCancionesFragment extends Fragment {
      * @param cancion
      * @return
      */
-    private LinearLayout generateLinearCanciones(final Cancion cancion, final Artista artista){
+    private LinearLayout generateLinearCanciones(final Cancion cancion, final Artista artista, boolean almacenar){
 
         LinearLayout linearLayoutBackgroundColor = new LinearLayout(menuActivity);
         LinearLayout linearLayout = new LinearLayout(menuActivity);
@@ -280,9 +289,7 @@ public class ListaCancionesFragment extends Fragment {
         else
             imageView.setImageResource(R.drawable.ic_menu_temas);
 
-        // TODO Hacer que las imágenes salgan cuadradas.
-
-        //----- TextView -----
+        //----- TextViewTitulo -----
         TextView textView = new TextView(menuActivity);
 
         LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(
@@ -354,7 +361,14 @@ public class ListaCancionesFragment extends Fragment {
         linearLayoutBackgroundColor.addView(linearLayoutInternal);
         linearLayout.addView(linearLayoutBackgroundColor);
 
-        linearLayoutBackgroundColor.setBackgroundColor(Color.CYAN);
+        //linearLayoutBackgroundColor.setBackgroundColor(Color.CYAN);
+
+        if(almacenar) {
+            tituloCancion.add(textView);
+            tituloAlbum.add(textViewAlbum);
+            tituloArtist.add(textViewArtist);
+            filasContenedor.add(linearLayoutInternal);
+        }
 
         return linearLayout;
     }
@@ -368,5 +382,39 @@ public class ListaCancionesFragment extends Fragment {
     public void setArtista(Artista artista) {
         album = null;
         this.artista = artista;
+    }
+
+    //// OnNightModeEvent
+
+    @Override
+    public void toNightMode() {
+        for (LinearLayout fila: filasContenedor) {
+            fila.setBackgroundColor(menuActivity.getResources().getColor(R.color.backgroundColorFilas_noct));
+        }
+        for (TextView titulo: tituloCancion) {
+            titulo.setTextColor(menuActivity.getResources().getColor(R.color.colorTituloTextRep_noct));
+        }
+        for (TextView album: tituloAlbum) {
+            album.setTextColor(menuActivity.getResources().getColor(R.color.colorAlbumTextRep_noct));
+        }
+        for (TextView artist: tituloArtist) {
+            artist.setTextColor(menuActivity.getResources().getColor(R.color.colorAlbumTextRep_noct));
+        }
+    }
+
+    @Override
+    public void toDayMode() {
+        for (LinearLayout fila: filasContenedor) {
+            fila.setBackgroundColor(menuActivity.getResources().getColor(R.color.backgroundColorFilas));
+        }
+        for (TextView titulo: tituloCancion) {
+            titulo.setTextColor(menuActivity.getResources().getColor(R.color.colorTituloTextRep));
+        }
+        for (TextView album: tituloAlbum) {
+            album.setTextColor(menuActivity.getResources().getColor(R.color.colorAlbumTextRep));
+        }
+        for (TextView artist: tituloArtist) {
+            artist.setTextColor(menuActivity.getResources().getColor(R.color.colorAlbumTextRep));
+        }
     }
 }

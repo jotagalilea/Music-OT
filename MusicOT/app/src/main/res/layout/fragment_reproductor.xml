@@ -11,17 +11,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_rep_play_button"
-        android:layout_above="@+id/linearLayout3"
+        android:layout_above="@+id/linearLayoutRepBottom"
         android:layout_alignParentTop="true" />
 
     <LinearLayout
-        android:background="@color/colorRepLandBackground"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/linearLayout3">
+        android:id="@+id/linearLayoutRepBottom">
 
         <SeekBar
             android:id="@+id/reproductorBar"

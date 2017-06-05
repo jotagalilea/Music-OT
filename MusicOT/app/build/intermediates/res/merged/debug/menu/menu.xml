@@ -6,14 +6,17 @@
         android:actionViewClass="android.widget.SearchView"
         android:icon="@drawable/ic_icon_search"
         android:orderInCategory="99"
-        android:title="Search"
+        android:title="@string/action_search"
         app:showAsAction="collapseActionView|ifRoom" />
 
     <item
         android:id="@+id/action_settings"
+        android:checkable="false"
+        android:enabled="true"
         android:icon="@drawable/ic_icon_settings"
         android:orderInCategory="101"
         android:title="@string/action_settings"
+        android:visible="true"
         app:showAsAction="always" />
 
 </menu>

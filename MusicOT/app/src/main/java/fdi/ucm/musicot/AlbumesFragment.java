@@ -26,21 +26,24 @@ import java.util.ArrayList;
 
 import fdi.ucm.musicot.Misc.Utils;
 import fdi.ucm.musicot.Modelo.Album;
+import fdi.ucm.musicot.Observers.OnNightModeEvent;
 
 import static fdi.ucm.musicot.MenuActivity.menuActivity;
 
 /**
  * Fragmento encargado de la lista de albumes en disco
  */
-public class AlbumesFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
+public class AlbumesFragment extends Fragment implements OnNightModeEvent{
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    public static ArrayList<TextView> textViews = new ArrayList<>();
+    public static ArrayList<TextView> albumTexts = new ArrayList<>();
+    public static ArrayList<LinearLayout> linearLayouts = new ArrayList<>();
 
     private TableLayout mContieneAlbumes;
 
@@ -109,7 +112,7 @@ public class AlbumesFragment extends Fragment {
                 fila.setLayoutParams(tableParams);
                 mContieneAlbumes.addView(fila);
             }
-            fila.addView(generateLinearAlbumes(album));
+            fila.addView(generateLinearAlbumes(album,true));
         }
 
         return view;
@@ -121,7 +124,7 @@ public class AlbumesFragment extends Fragment {
      * @param album
      * @return
      */
-    public static LinearLayout generateLinearAlbumes(final Album album){
+    public static LinearLayout generateLinearAlbumes(final Album album,boolean almacenar){
 
         LinearLayout linearLayout = new LinearLayout(menuActivity);
         LinearLayout linearLayoutText = new LinearLayout(menuActivity);
@@ -185,7 +188,7 @@ public class AlbumesFragment extends Fragment {
         textViewArtista.setSingleLine(true);
         textViewArtista.setEllipsize(TextUtils.TruncateAt.END);
         textViewArtista.setTypeface(null, Typeface.ITALIC);
-        textViewArtista.setTextColor(Color.GRAY);
+        //textViewArtista.setTextColor(Color.GRAY);
 
         //Se añaden los componentes al LinearLayout
         linearLayout.addView(imageView);
@@ -193,34 +196,68 @@ public class AlbumesFragment extends Fragment {
         linearLayoutText.addView(textViewArtista);
         linearLayout.addView(linearLayoutText);
 
-        linearLayout.setBackgroundColor(Color.CYAN);
+        if(almacenar){
+            textViews.add(textView);
+            albumTexts.add(textViewArtista);
+            linearLayouts.add(linearLayout);
+        }
 
-        // Creación de un mensaje de alerta:
+        if(MenuActivity.observer.getNightMode()){
+            textView.setTextColor(menuActivity.getResources().getColor(R.color.colorTituloTextRep_noct));
+            textViewArtista.setTextColor(menuActivity.getResources().getColor(R.color.colorAlbumTextRep_noct));
+            linearLayout.setBackgroundColor(menuActivity.getResources().getColor(R.color.backgroundColorFilas_noct));
+        } else{
+            textView.setTextColor(menuActivity.getResources().getColor(R.color.colorTituloTextRep));
+            textViewArtista.setTextColor(menuActivity.getResources().getColor(R.color.colorAlbumTextRep));
+            linearLayout.setBackgroundColor(menuActivity.getResources().getColor(R.color.backgroundColorFilas));
+        }
+
         linearLayout.setOnClickListener(new View.OnClickListener() {
-            Album alb;
             @Override
             public void onClick(View view) {
 
-                alb = album;
-
                 if(MenuActivity.fragmentListaCanciones.initiated()){
-
-                    MenuActivity.fragmentListaCanciones.setAlbum(alb);
+                    MenuActivity.fragmentListaCanciones.setAlbum(album);
                     MenuActivity.fragmentListaCanciones.vaciarLista();
-                    MenuActivity.fragmentListaCanciones.rellenarLista(alb);
-
+                    MenuActivity.fragmentListaCanciones.rellenarLista(album);
                 } else{
-
-                    MenuActivity.fragmentListaCanciones.setAlbum(alb);
+                    MenuActivity.fragmentListaCanciones.setAlbum(album);
                 }
 
                 MenuActivity.menuActivity.cambiaFragment(R.id.fragment_contentmenu1, MenuActivity.fragmentListaCanciones);
-
                 MenuActivity.observer.actualizaDatosCancion();
             }
         });
 
         return linearLayout;
+    }
+
+    //// OnNightModeEvent
+
+    @Override
+    public void toNightMode() {
+        for (TextView titulo: textViews) {
+            titulo.setTextColor(menuActivity.getResources().getColor(R.color.colorTituloTextRep_noct));
+        }
+        for (TextView album: albumTexts) {
+            album.setTextColor(menuActivity.getResources().getColor(R.color.colorAlbumTextRep_noct));
+        }
+        for (LinearLayout fila: linearLayouts) {
+            fila.setBackgroundColor(menuActivity.getResources().getColor(R.color.backgroundColorFilas_noct));
+        }
+    }
+
+    @Override
+    public void toDayMode() {
+        for (TextView titulo: textViews) {
+            titulo.setTextColor(menuActivity.getResources().getColor(R.color.colorTituloTextRep));
+        }
+        for (TextView album: albumTexts) {
+            album.setTextColor(menuActivity.getResources().getColor(R.color.colorAlbumTextRep));
+        }
+        for (LinearLayout fila: linearLayouts) {
+            fila.setBackgroundColor(menuActivity.getResources().getColor(R.color.backgroundColorFilas));
+        }
     }
 
     /////////////////////////

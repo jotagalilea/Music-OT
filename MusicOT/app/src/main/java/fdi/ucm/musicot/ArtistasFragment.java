@@ -5,6 +5,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -21,17 +22,23 @@ import com.example.usuario_local.music_ot.R;
 import fdi.ucm.musicot.Misc.Utils;
 import fdi.ucm.musicot.Modelo.Artista;
 import fdi.ucm.musicot.Modelo.DAO;
+import fdi.ucm.musicot.Observers.OnNightModeEvent;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static fdi.ucm.musicot.MenuActivity.menuActivity;
+import static fdi.ucm.musicot.MenuActivity.observer;
 
 /**
  * Fragmento encargado de la lista de artistas en disco
  */
-public class ArtistasFragment extends Fragment {
+public class ArtistasFragment extends Fragment implements OnNightModeEvent {
 
     TableLayout tabla;
+    public static ArrayList<LinearLayout> listaElementos = new ArrayList<>();
+    public static ArrayList<TextView> listaTitulos = new ArrayList<>();
+    public static ArrayList<TableRow> tableRows = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -42,6 +49,12 @@ public class ArtistasFragment extends Fragment {
 
         tabla = (TableLayout) view.findViewById(R.id.contenedor_artistas);
         rellenarTablaInit(tabla, menuActivity);
+
+        if(observer.getNightMode()){
+            toNightMode();
+        }else{
+            toDayMode();
+        }
 
         return view;
     }
@@ -76,9 +89,10 @@ public class ArtistasFragment extends Fragment {
                 fila = new TableRow(menuActivity);
                 fila.setBackgroundResource(R.drawable.listabackground);
                 fila.setLayoutParams(tableParams);
+                tableRows.add(fila);
                 tabla.addView(fila);
             }
-            fila.addView(generateLinearArtista(artista));
+            fila.addView(generateLinearArtista(artista, true));
         }
     }
 
@@ -88,7 +102,7 @@ public class ArtistasFragment extends Fragment {
      * @param artista
      * @return
      */
-    public static LinearLayout generateLinearArtista(final Artista artista){
+    public static LinearLayout generateLinearArtista(final Artista artista, boolean almacenar){
 
         LinearLayout linearLayout = new LinearLayout(menuActivity);
 
@@ -109,7 +123,6 @@ public class ArtistasFragment extends Fragment {
 
             imageView.setImageBitmap(artista.getAlbumes()[0].getCaratula());
         } else{
-
             imageView.setImageResource(R.drawable.ic_menu_artista);
         }
 
@@ -133,26 +146,21 @@ public class ArtistasFragment extends Fragment {
         linearLayout.addView(imageView);
         linearLayout.addView(textView);
 
-        linearLayout.setBackgroundColor(Color.CYAN);
-
         // Creación de un mensaje de alerta:
         linearLayout.setOnClickListener(new View.OnClickListener() {
-            Artista art;
 
             @Override
             public void onClick(View view) {
 
-                art = artista;
-
                 if(MenuActivity.fragmentListaCanciones.initiated()){
 
-                    MenuActivity.fragmentListaCanciones.setArtista(art);
+                    MenuActivity.fragmentListaCanciones.setArtista(artista);
                     MenuActivity.fragmentListaCanciones.vaciarLista();
-                    MenuActivity.fragmentListaCanciones.rellenarLista(art);
+                    MenuActivity.fragmentListaCanciones.rellenarLista(artista);
 
                 } else{
 
-                    MenuActivity.fragmentListaCanciones.setArtista(art);
+                    MenuActivity.fragmentListaCanciones.setArtista(artista);
                 }
 
                 MenuActivity.menuActivity.cambiaFragment(R.id.fragment_contentmenu1, MenuActivity.fragmentListaCanciones);
@@ -160,6 +168,19 @@ public class ArtistasFragment extends Fragment {
                 MenuActivity.observer.actualizaDatosCancion();
             }
         });
+
+        if(almacenar) {
+            listaTitulos.add(textView);
+            listaElementos.add(linearLayout);
+        }
+
+        if(menuActivity.observer.getNightMode()){
+            textView.setTextColor(menuActivity.getResources().getColor(R.color.colorTituloTextRep_noct));
+            linearLayout.setBackgroundColor(menuActivity.getResources().getColor(R.color.backgroundColorFilas_noct));
+        } else{
+            textView.setTextColor(menuActivity.getResources().getColor(R.color.colorTituloTextRep));
+            linearLayout.setBackgroundColor(menuActivity.getResources().getColor(R.color.backgroundColorFilas));
+        }
 
         return linearLayout;
     }
@@ -170,5 +191,29 @@ public class ArtistasFragment extends Fragment {
 
     public void setTabla(TableLayout tabla) {
         this.tabla = tabla;
+    }
+
+    /////////////////////////////
+    ///// OnNightModeEvent //////
+    /////////////////////////////
+
+    @Override
+    public void toNightMode() {
+        for (LinearLayout line: listaElementos) {
+            line.setBackgroundColor(menuActivity.getResources().getColor(R.color.backgroundColorFilas_noct));
+        }
+        for (TextView titulos: listaTitulos) {
+            titulos.setTextColor(menuActivity.getResources().getColor(R.color.colorTituloTextRep_noct));
+        }
+    }
+
+    @Override
+    public void toDayMode() {
+        for (LinearLayout line: listaElementos) {
+            line.setBackgroundColor(menuActivity.getResources().getColor(R.color.backgroundColorFilas));
+        }
+        for (TextView titulos: listaTitulos) {
+            titulos.setTextColor(menuActivity.getResources().getColor(R.color.colorTituloTextRep));
+        }
     }
 }
