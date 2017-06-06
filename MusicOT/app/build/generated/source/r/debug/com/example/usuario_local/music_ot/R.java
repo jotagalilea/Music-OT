@@ -2231,8 +2231,9 @@ containing a value of this type.
         public static final int ic_rep_prevsong=0x7f02005b;
         public static final int ic_search_black_24dp=0x7f02005c;
         public static final int listabackground=0x7f02005d;
-        public static final int notification_template_icon_bg=0x7f02005f;
-        public static final int side_nav_bar=0x7f02005e;
+        public static final int menu_elemento_icon=0x7f02005e;
+        public static final int notification_template_icon_bg=0x7f020060;
+        public static final int side_nav_bar=0x7f02005f;
     }
     public static final class id {
         public static final int action0=0x7f0c0092;
@@ -2256,6 +2257,7 @@ containing a value of this type.
         public static final int alertTitle=0x7f0c0049;
         public static final int always=0x7f0c0032;
         public static final int app_bar_search=0x7f0c00a7;
+        public static final int añadir_a_lista=0x7f0c00a9;
         public static final int beginning=0x7f0c0030;
         public static final int boton_crear_lista=0x7f0c0084;
         public static final int bottom=0x7f0c001c;
@@ -2459,25 +2461,27 @@ containing a value of this type.
         public static final int fragment_busqueda=0x7f04002a;
         public static final int fragment_canciones=0x7f04002b;
         public static final int fragment_lista_canciones=0x7f04002c;
-        public static final int fragment_listas_reproduccion=0x7f04002d;
-        public static final int fragment_reproductor=0x7f04002e;
-        public static final int nav_header_menu=0x7f04002f;
-        public static final int notification_media_action=0x7f040030;
-        public static final int notification_media_cancel_action=0x7f040031;
-        public static final int notification_template_big_media=0x7f040032;
-        public static final int notification_template_big_media_narrow=0x7f040033;
-        public static final int notification_template_lines=0x7f040034;
-        public static final int notification_template_media=0x7f040035;
-        public static final int notification_template_part_chronometer=0x7f040036;
-        public static final int notification_template_part_time=0x7f040037;
-        public static final int select_dialog_item_material=0x7f040038;
-        public static final int select_dialog_multichoice_material=0x7f040039;
-        public static final int select_dialog_singlechoice_material=0x7f04003a;
-        public static final int support_simple_spinner_dropdown_item=0x7f04003b;
+        public static final int fragment_listas_dialog=0x7f04002d;
+        public static final int fragment_listas_reproduccion=0x7f04002e;
+        public static final int fragment_reproductor=0x7f04002f;
+        public static final int nav_header_menu=0x7f040030;
+        public static final int notification_media_action=0x7f040031;
+        public static final int notification_media_cancel_action=0x7f040032;
+        public static final int notification_template_big_media=0x7f040033;
+        public static final int notification_template_big_media_narrow=0x7f040034;
+        public static final int notification_template_lines=0x7f040035;
+        public static final int notification_template_media=0x7f040036;
+        public static final int notification_template_part_chronometer=0x7f040037;
+        public static final int notification_template_part_time=0x7f040038;
+        public static final int select_dialog_item_material=0x7f040039;
+        public static final int select_dialog_multichoice_material=0x7f04003a;
+        public static final int select_dialog_singlechoice_material=0x7f04003b;
+        public static final int support_simple_spinner_dropdown_item=0x7f04003c;
     }
     public static final class menu {
         public static final int activity_menu_drawer=0x7f0d0000;
         public static final int menu=0x7f0d0001;
+        public static final int menu_elemento=0x7f0d0002;
     }
     public static final class mipmap {
         public static final int crear_icon=0x7f030000;
@@ -2516,6 +2520,7 @@ containing a value of this type.
         public static final int search_fragment_search=0x7f06001e;
         public static final int search_fragment_song=0x7f06001f;
         public static final int status_bar_notification_info_overflow=0x7f060013;
+        public static final int titulo_lista_dialog=0x7f060020;
     }
     public static final class style {
         public static final int AlertDialog_AppCompat=0x7f09007f;

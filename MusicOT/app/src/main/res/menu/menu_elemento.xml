@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:icon="@drawable/menu_elemento_icon">
+
+    <item
+        android:id="@+id/añadir_a_lista"
+        android:title="Añadir a lista de reproducción"
+        android:onClick="mostrarSubMenuListas"
+    />
+
+</menu>

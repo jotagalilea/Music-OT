@@ -6,6 +6,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v7.app.ActionBar;
+import android.support.v7.widget.PopupMenu;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 
 import com.example.usuario_local.music_ot.R;
 
+import fdi.ucm.musicot.Misc.MenuElemLista;
 import fdi.ucm.musicot.Misc.Utils;
 import fdi.ucm.musicot.Modelo.Album;
 import fdi.ucm.musicot.Modelo.Artista;

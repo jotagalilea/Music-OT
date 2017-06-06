@@ -168,6 +168,10 @@
         "source": "C:\\Users\\J\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\src\\main\\res\\drawable-hdpi\\ic_menu_buscar.png"
     },
     {
+        "merged": "C:\\Users\\J\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\menu_elemento_icon.png",
+        "source": "C:\\Users\\J\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\src\\main\\res\\drawable-hdpi\\menu_elemento_icon.png"
+    },
+    {
         "merged": "C:\\Users\\J\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\abc_popup_background_mtrl_mult.9.png",
         "source": "C:\\Users\\J\\.android\\build-cache\\1307cab75b700edb9c535fd78d444b13a7ba05d1\\output\\res\\drawable-hdpi\\abc_popup_background_mtrl_mult.9.png"
     },

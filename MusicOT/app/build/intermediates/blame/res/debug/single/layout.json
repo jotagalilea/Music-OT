@@ -4,12 +4,12 @@
         "source": "C:\\Users\\J\\.android\\build-cache\\1307cab75b700edb9c535fd78d444b13a7ba05d1\\output\\res\\layout\\abc_action_mode_bar.xml"
     },
     {
-        "merged": "C:\\Users\\J\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_menu.xml",
-        "source": "C:\\Users\\J\\.android\\build-cache\\75a815ce19273abce7ef334703f9b928beccdc6c\\output\\res\\layout\\design_navigation_menu.xml"
-    },
-    {
         "merged": "C:\\Users\\J\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_albumes.xml",
         "source": "C:\\Users\\J\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\src\\main\\res\\layout\\fragment_albumes.xml"
+    },
+    {
+        "merged": "C:\\Users\\J\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_menu.xml",
+        "source": "C:\\Users\\J\\.android\\build-cache\\75a815ce19273abce7ef334703f9b928beccdc6c\\output\\res\\layout\\design_navigation_menu.xml"
     },
     {
         "merged": "C:\\Users\\J\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_layout_tab_text.xml",
@@ -202,6 +202,10 @@
     {
         "merged": "C:\\Users\\J\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_big_media.xml",
         "source": "C:\\Users\\J\\.android\\build-cache\\1307cab75b700edb9c535fd78d444b13a7ba05d1\\output\\res\\layout\\notification_template_big_media.xml"
+    },
+    {
+        "merged": "C:\\Users\\J\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_listas_dialog.xml",
+        "source": "C:\\Users\\J\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\src\\main\\res\\layout\\fragment_listas_dialog.xml"
     },
     {
         "merged": "C:\\Users\\J\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragmen_reproduccion_mini.xml",

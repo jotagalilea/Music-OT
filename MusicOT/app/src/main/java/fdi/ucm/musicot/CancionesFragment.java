@@ -1,16 +1,22 @@
 package fdi.ucm.musicot;
 
 import android.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.v4.app.DialogFragment;
+import android.support.v7.widget.PopupMenu;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
@@ -21,11 +27,14 @@ import com.example.usuario_local.music_ot.R;
 
 import java.util.ArrayList;
 
+import fdi.ucm.musicot.Misc.MenuElemLista;
 import fdi.ucm.musicot.Misc.Utils;
 import fdi.ucm.musicot.Modelo.Cancion;
 import fdi.ucm.musicot.Modelo.DAO;
+import fdi.ucm.musicot.Modelo.ListasReproduccion;
 import fdi.ucm.musicot.Modelo.RetenCanciones;
 
+import static fdi.ucm.musicot.MenuActivity.dao;
 import static fdi.ucm.musicot.MenuActivity.menuActivity;
 
 /**
@@ -101,6 +110,8 @@ public class CancionesFragment extends Fragment {
                 mContieneCanciones.addView(fila);
             }
             fila.addView(generateLinearCanciones(tema));
+            /*PopupMenu menu = MenuElemLista.generarMenu(fila);
+            menu.show();*/
         }
 
         return view;
@@ -189,6 +200,19 @@ public class CancionesFragment extends Fragment {
         textViewArtist.setTypeface(null, Typeface.ITALIC);
         textViewArtist.setTextSize(13);
 
+        ImageButton addListaButton = new ImageButton(menuActivity);
+        addListaButton.setImageResource(R.mipmap.crear_icon);
+        addListaButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Mostrar listas a las que se puede añadir en un dialog
+                mostrarDialogo();
+                /*DialogFragment dialog = ListasDialogFragment.newInstance();
+                //dialog.mostrarDialogo();
+                dialog.show();*/
+            }
+        });
+
         linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -207,10 +231,22 @@ public class CancionesFragment extends Fragment {
         linearLayoutInternal.addView(textViewAlbum);
         linearLayoutInternal.addView(textViewArtist);
         linearLayout.addView(linearLayoutInternal);
+        linearLayout.addView(addListaButton);
 
         linearLayout.setBackgroundColor(Color.CYAN);
 
         return linearLayout;
+    }
+
+    private static void mostrarDialogo(){
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        /*Fragment prev = getFragmentManager().findFragmentByTag("dialog");
+        if (prev != null) {
+            ft.remove(prev);
+        }*/
+        ft.addToBackStack(null);
+        DialogFragment df = ListasDialogFragment.newInstance();
+        df.show(ft, "dialog");
     }
 
     /*
