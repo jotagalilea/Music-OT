@@ -254,7 +254,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
     /**
      * Sustituye el fragmento del contenedor con la ID dada por el nuevo fragmento dado, también
-     * encoge el menú lateral si está dsplegado
+     * encoge el menú lateral si está desplegado
      * @param id
      * @param newFragment
      */

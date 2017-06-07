@@ -1,17 +1,14 @@
 package fdi.ucm.musicot;
 
-import android.graphics.Color;
-import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
+import android.app.DialogFragment;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -20,11 +17,7 @@ import android.widget.TextView;
 import com.example.usuario_local.music_ot.R;
 
 import fdi.ucm.musicot.Misc.Utils;
-import fdi.ucm.musicot.Modelo.Artista;
-import fdi.ucm.musicot.Modelo.DAO;
 import fdi.ucm.musicot.Modelo.ListasReproduccion;
-
-import java.util.List;
 
 import static fdi.ucm.musicot.MenuActivity.menuActivity;
 
@@ -32,12 +25,16 @@ import static fdi.ucm.musicot.MenuActivity.menuActivity;
 public class ListasReproduccionFragment extends Fragment {
 
     TableLayout tabla;
+    LayoutInflater inflater;
+    ViewGroup container;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view;
 
+        this.inflater = inflater;
+        this.container = container;
         view = inflater.inflate(R.layout.fragment_listas_reproduccion, container, false);
 
         tabla = (TableLayout) view.findViewById(R.id.contenedor_listas_reproduccion);
@@ -83,7 +80,7 @@ public class ListasReproduccionFragment extends Fragment {
         botonCrearLista.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                mostrarDialogoCrearLista();
             }
         });
 
@@ -98,6 +95,17 @@ public class ListasReproduccionFragment extends Fragment {
         filaBotonAddLista.setLayoutParams(tableParams);
         filaBotonAddLista.addView(botonCrearLista);
         tabla.addView(filaBotonAddLista);*/
+    }
+
+    private static void mostrarDialogoCrearLista(){
+        FragmentTransaction ft = menuActivity.getFragmentManager().beginTransaction();
+        Fragment prev = menuActivity.getFragmentManager().findFragmentByTag("dialog");
+        if (prev != null) {
+            ft.remove(prev);
+        }
+        ft.addToBackStack(null);
+        DialogFragment df = CrearListasDialogFragment.newInstance();
+        df.show(ft, "dialog");
     }
 
 
@@ -124,6 +132,33 @@ public class ListasReproduccionFragment extends Fragment {
         });
         //tabla.addView(linearLayout);
         return linearLayout;
+    }
+
+    /**
+     * Actualiza el fragment cuando se crea una nueva lista.
+     * Este código sólo vale en esta clase en particular. Si se quiere usar
+     * en los fragment con tablas con varias columnas hay que comprobar que
+     * la fila no tiene más elementos antes de borrarla. Falta pulirlo.
+     */
+    public void actualizar(){
+        /*
+        View view = inflater.inflate(R.layout.fragment_listas_reproduccion, container, false);
+
+        // La i accede a la fila y la j al elemento dentro de la fila.
+
+        for (int i = 0; i < tabla.getChildCount(); i++){
+            LinearLayout hijo = (LinearLayout) tabla.getChildAt(i);
+            for (int j = 0; i < hijo.getChildCount(); i++) {
+                View nieto = hijo.getChildAt(i);
+                if (nieto instanceof LinearLayout) {
+                    hijo.removeViewAt(j);
+                    tabla.removeViewAt(i);
+                }
+            }
+        }
+        tabla.refreshDrawableState();
+        rellenarTablaInit(tabla, menuActivity, view);
+        */
     }
 
 }

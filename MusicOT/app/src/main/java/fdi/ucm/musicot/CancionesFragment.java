@@ -206,10 +206,7 @@ public class CancionesFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 //Mostrar listas a las que se puede añadir en un dialog
-                mostrarDialogo();
-                /*DialogFragment dialog = ListasDialogFragment.newInstance();
-                //dialog.mostrarDialogo();
-                dialog.show();*/
+                mostrarDialogoListas();
             }
         });
 
@@ -238,12 +235,12 @@ public class CancionesFragment extends Fragment {
         return linearLayout;
     }
 
-    private static void mostrarDialogo(){
+    private static void mostrarDialogoListas(){
         FragmentTransaction ft = menuActivity.getFragmentManager().beginTransaction();
-        /*Fragment prev = getFragmentManager().findFragmentByTag("dialog");
+        Fragment prev = menuActivity.getFragmentManager().findFragmentByTag("dialog");
         if (prev != null) {
             ft.remove(prev);
-        }*/
+        }
         ft.addToBackStack(null);
         DialogFragment df = ListasDialogFragment.newInstance();
         df.show(ft, "dialog");

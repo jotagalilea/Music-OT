@@ -71,8 +71,8 @@ public class DAO {
         artistas = new ArrayList<>();
         listasReproduccion = new ListasReproduccion();
 
-        //File dir = Utils.parseMountDirectory();
-        File dir = new File("/mnt/sdcard/Music/Judas_Priest[1974-2016]");
+        File dir = Utils.parseMountDirectory();
+        //File dir = new File("/mnt/sdcard/Music/Judas_Priest[1974-2016]");
         MediaMetadataRetriever mmr = new MediaMetadataRetriever();
         cargarCancionesDeLaSD(dir.getAbsolutePath(), mmr);
 

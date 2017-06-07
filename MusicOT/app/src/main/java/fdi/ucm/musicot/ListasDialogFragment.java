@@ -22,25 +22,6 @@ import static fdi.ucm.musicot.MenuActivity.dao;
 
 public class ListasDialogFragment extends DialogFragment {
 
-    //AlertDialog.Builder builder;
-
-    //public ListasDialogFragment(){}
-
-
-   /* @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_listas_dialog, null, false);
-
-        return view;
-    }*/
-
-
     public static ListasDialogFragment newInstance(){
         ListasDialogFragment f = new ListasDialogFragment();
         return f;
@@ -49,7 +30,6 @@ public class ListasDialogFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class for convenient dialog construction
-        //this.builder = new AlertDialog.Builder(getActivity());
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
@@ -57,11 +37,21 @@ public class ListasDialogFragment extends DialogFragment {
 
         builder.setView(inflater.inflate(R.layout.fragment_listas_dialog, null));
         builder.setTitle(R.string.titulo_lista_dialog)
-                .setItems(listas, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-
-                    }
-                });
+            .setItems(listas, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    dao.getListasReproduccion().añadirCancion();
+                }
+            });
+        if (listas.length == 0){
+            // Si no hay listas de reproducción se muestra un textView para informar.
+            builder.setMessage("no hay listas");
+            builder.setNegativeButton(R.string.volver, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
+        }
         // Create the AlertDialog object and return it
         return builder.create();
     }
@@ -77,12 +67,10 @@ public class ListasDialogFragment extends DialogFragment {
         return listasLL.toArray(new String[listasLL.size()]);
     }
 
-    /*public void mostrarDialogo(){
-        builder.show();
-    }*/
 
     @Override
     public void onDestroy() {
         super.onDestroy();
     }
+
 }
