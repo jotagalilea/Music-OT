@@ -1,13 +1,13 @@
 package fdi.ucm.musicot;
 
 import android.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+import android.app.FragmentTransaction;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.support.v4.app.DialogFragment;
+import android.app.DialogFragment;
 import android.support.v7.widget.PopupMenu;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -239,7 +239,7 @@ public class CancionesFragment extends Fragment {
     }
 
     private static void mostrarDialogo(){
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        FragmentTransaction ft = menuActivity.getFragmentManager().beginTransaction();
         /*Fragment prev = getFragmentManager().findFragmentByTag("dialog");
         if (prev != null) {
             ft.remove(prev);
