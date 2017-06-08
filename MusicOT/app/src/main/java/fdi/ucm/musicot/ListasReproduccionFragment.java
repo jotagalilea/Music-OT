@@ -19,6 +19,7 @@ import com.example.usuario_local.music_ot.R;
 import fdi.ucm.musicot.Misc.Utils;
 import fdi.ucm.musicot.Modelo.ListasReproduccion;
 
+import static fdi.ucm.musicot.MenuActivity.fragmentListaCanciones;
 import static fdi.ucm.musicot.MenuActivity.menuActivity;
 
 
@@ -110,7 +111,7 @@ public class ListasReproduccionFragment extends Fragment {
 
 
 
-    private LinearLayout generateLinearLista(String nombreLista) {
+    private LinearLayout generateLinearLista(final String nombreLista) {
         LinearLayout linearLayout = new LinearLayout(menuActivity);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
 
@@ -127,11 +128,22 @@ public class ListasReproduccionFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 // Implementar el acceso a la lista de canciones aquí
-
+                crearVistaLista(nombreLista);
             }
         });
         //tabla.addView(linearLayout);
         return linearLayout;
+    }
+
+    private void crearVistaLista(String nombreLista) {
+        if(MenuActivity.fragmentListaCanciones.initiated())
+            MenuActivity.fragmentListaCanciones.vaciarLista();
+        else
+            fragmentListaCanciones.iniciarContenedor();
+
+        MenuActivity.fragmentListaCanciones.rellenarLista(nombreLista);
+        MenuActivity.menuActivity.cambiaFragment(R.id.fragment_contentmenu1, MenuActivity.fragmentListaCanciones);
+        MenuActivity.observer.actualizaDatosCancion();
     }
 
     /**

@@ -135,7 +135,7 @@ public class ArtistasFragment extends Fragment {
 
         linearLayout.setBackgroundColor(Color.CYAN);
 
-        // Creación de un mensaje de alerta:
+        // Creación del fragmento con la lista de canciones:
         linearLayout.setOnClickListener(new View.OnClickListener() {
             Artista art;
 

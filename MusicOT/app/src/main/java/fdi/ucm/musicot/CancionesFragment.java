@@ -16,7 +16,6 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
@@ -200,15 +199,7 @@ public class CancionesFragment extends Fragment {
         textViewArtist.setTypeface(null, Typeface.ITALIC);
         textViewArtist.setTextSize(13);
 
-        ImageButton addListaButton = new ImageButton(menuActivity);
-        addListaButton.setImageResource(R.mipmap.crear_icon);
-        addListaButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Mostrar listas a las que se puede añadir en un dialog
-                mostrarDialogoListas();
-            }
-        });
+        BotonCancion addListaButton = new BotonCancion(menuActivity, cancion);
 
         linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -235,16 +226,6 @@ public class CancionesFragment extends Fragment {
         return linearLayout;
     }
 
-    private static void mostrarDialogoListas(){
-        FragmentTransaction ft = menuActivity.getFragmentManager().beginTransaction();
-        Fragment prev = menuActivity.getFragmentManager().findFragmentByTag("dialog");
-        if (prev != null) {
-            ft.remove(prev);
-        }
-        ft.addToBackStack(null);
-        DialogFragment df = ListasDialogFragment.newInstance();
-        df.show(ft, "dialog");
-    }
 
     /*
     Guarda la lista de canciones ante la destrucción o el reinicio de la actividad.

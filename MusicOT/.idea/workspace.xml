@@ -40,15 +40,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ListasDialogFragment.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ListasDialogFragment.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/ListasDialogFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="41" column="62" selection-start-line="41" selection-start-column="62" selection-end-line="41" selection-end-column="62" />
+            <state relative-caret-position="166">
+              <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1235#1441#0" expanded="true" />
-                <element signature="e#1440#1441#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BotonCancion.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/BotonCancion.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="555">
+              <caret line="47" column="9" selection-start-line="47" selection-start-column="9" selection-end-line="47" selection-end-column="9" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -57,8 +67,31 @@
       <file leaf-file-name="ListaCancionesFragment.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/ListaCancionesFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
-              <caret line="110" column="59" selection-start-line="110" selection-start-column="59" selection-end-line="110" selection-end-column="59" />
+            <state relative-caret-position="6783">
+              <caret line="405" column="0" selection-start-line="405" selection-start-column="0" selection-end-line="405" selection-end-column="0" />
+              <folding>
+                <element signature="e#3061#3062#0" expanded="true" />
+                <element signature="e#3112#3113#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Artista.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/Modelo/Artista.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-462">
+              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ListasReproduccion.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/Modelo/ListasReproduccion.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="840">
+              <caret line="47" column="11" selection-start-line="47" selection-start-column="11" selection-end-line="47" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -67,12 +100,10 @@
       <file leaf-file-name="ListasReproduccionFragment.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/ListasReproduccionFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
-              <caret line="144" column="8" selection-start-line="144" selection-start-column="8" selection-end-line="144" selection-end-column="8" />
+            <state relative-caret-position="408">
+              <caret line="141" column="48" selection-start-line="141" selection-start-column="48" selection-end-line="141" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2598#2758#0" expanded="true" />
-                <element signature="e#2757#2758#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -81,27 +112,19 @@
       <file leaf-file-name="CrearListasDialogFragment.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/CrearListasDialogFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
+            <state relative-caret-position="51">
               <caret line="74" column="0" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2054#2071#0" expanded="true" />
-                <element signature="e#2073#2299#0" expanded="true" />
-                <element signature="e#2298#2299#0" expanded="true" />
-                <element signature="e#2336#2352#0" expanded="true" />
-                <element signature="e#2354#3910#0" expanded="true" />
-                <element signature="e#3516#3794#0" expanded="true" />
-                <element signature="e#3793#3794#0" expanded="true" />
-                <element signature="e#3909#3910#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DAO.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="DAO.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/Modelo/DAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="471">
+            <state relative-caret-position="408">
               <caret line="73" column="8" selection-start-line="73" selection-start-column="8" selection-end-line="73" selection-end-column="8" />
               <folding />
             </state>
@@ -1795,7 +1818,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_albumes.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_canciones.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/listabackground.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/content_menu.xml" />
@@ -1830,22 +1852,23 @@
         <option value="$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/BusquedaFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/Observers/Observer.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/AlbumesFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/ArtistasFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_listas_reproduccion.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/menu/menu_elemento.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/Misc/Utils.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/ListaCancionesFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/Misc/MenuElemLista.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_listas_dialog.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/CancionesFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_crear_listas_dialog.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/MenuActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/CrearListasDialogFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/CancionesFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/BotonCancion.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/ListasDialogFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/ArtistasFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/Modelo/ListasReproduccion.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/ListasReproduccionFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/ListaCancionesFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/Modelo/DAO.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/CrearListasDialogFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/ListasDialogFragment.java" />
       </list>
     </option>
   </component>
@@ -1880,7 +1903,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -1897,28 +1919,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MusicOT" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="layout" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -1997,21 +1997,12 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MusicOT" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="ProjectPane" />
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2360,32 +2351,32 @@
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32729805" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32729805" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3259053" sideWeight="0.5134474" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3259053" sideWeight="0.48655257" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33924204" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3259053" sideWeight="0.48655257" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328341" sideWeight="0.49775496" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286908" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286908" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286908" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286908" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2062982" sideWeight="0.49442896" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39972144" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20694087" sideWeight="0.505571" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20694087" sideWeight="0.505571" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33924204" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328341" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -2404,34 +2395,29 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/ListasDialogFragment.java</url>
-          <line>60</line>
-          <properties />
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/ListasReproduccionFragment.java</url>
-          <line>149</line>
+          <line>161</line>
           <properties />
           <option name="timeStamp" value="25" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/ListaCancionesFragment.java</url>
+          <line>149</line>
+          <properties />
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/ListaCancionesFragment.java</url>
+          <line>405</line>
+          <properties />
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="26" />
+      <option name="time" value="34" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_reproductor.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1037">
-          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/menu_albumes.xml" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/menu_canciones.xml" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
       <provider selected="true" editor-type-id="text-editor">
@@ -2556,13 +2542,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/Modelo/Reproductor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-283">
-          <caret line="175" column="29" selection-start-line="175" selection-start-column="29" selection-end-line="175" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/Observers/OnKeyEventHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -2596,13 +2575,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1344">
           <caret line="81" column="28" selection-start-line="81" selection-start-column="28" selection-end-line="81" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/ReproductorFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2373">
-          <caret line="128" column="5" selection-start-line="128" selection-start-column="5" selection-end-line="128" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -2718,7 +2690,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="84">
           <caret line="4" column="40" selection-start-line="4" selection-start-column="40" selection-end-line="4" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
       <provider editor-type-id="android-designer2">
@@ -2746,40 +2717,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/Modelo/ListasReproduccion.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="38" column="10" selection-start-line="38" selection-start-column="10" selection-end-line="38" selection-end-column="10" />
-          <folding>
-            <element signature="e#1945#1946#0" expanded="true" />
-            <element signature="e#2003#2004#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/CancionesFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-369">
-          <caret line="208" column="36" selection-start-line="208" selection-start-column="36" selection-end-line="208" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/MenuActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4620">
-          <caret line="272" column="9" selection-start-line="272" selection-start-column="9" selection-end-line="272" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/Modelo/RetenCanciones.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
           <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2794,69 +2735,120 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/ListasReproduccionFragment.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/CancionesFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="144" column="8" selection-start-line="144" selection-start-column="8" selection-end-line="144" selection-end-column="8" />
+        <state relative-caret-position="210">
+          <caret line="201" column="78" selection-start-line="201" selection-start-column="78" selection-end-line="201" selection-end-column="78" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2598#2758#0" expanded="true" />
-            <element signature="e#2757#2758#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/ListaCancionesFragment.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/MenuActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="110" column="59" selection-start-line="110" selection-start-column="59" selection-end-line="110" selection-end-column="59" />
+        <state relative-caret-position="1236">
+          <caret line="272" column="9" selection-start-line="272" selection-start-column="9" selection-end-line="272" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/Modelo/DAO.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/ReproductorFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="471">
-          <caret line="73" column="8" selection-start-line="73" selection-start-column="8" selection-end-line="73" selection-end-column="8" />
+        <state relative-caret-position="21">
+          <caret line="23" column="26" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/CrearListasDialogFragment.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/Modelo/Reproductor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="74" column="0" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2054#2071#0" expanded="true" />
-            <element signature="e#2073#2299#0" expanded="true" />
-            <element signature="e#2298#2299#0" expanded="true" />
-            <element signature="e#2336#2352#0" expanded="true" />
-            <element signature="e#2354#3910#0" expanded="true" />
-            <element signature="e#3516#3794#0" expanded="true" />
-            <element signature="e#3793#3794#0" expanded="true" />
-            <element signature="e#3909#3910#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-1407">
+          <caret line="42" column="11" selection-start-line="42" selection-start-column="11" selection-end-line="42" selection-end-column="11" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/ArtistasFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="149" column="61" selection-start-line="149" selection-start-column="61" selection-end-line="149" selection-end-column="61" />
+        <state relative-caret-position="546">
+          <caret line="159" column="62" selection-start-line="159" selection-start-column="62" selection-end-line="159" selection-end-column="62" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/BotonCancion.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="47" column="9" selection-start-line="47" selection-start-column="9" selection-end-line="47" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/CrearListasDialogFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="74" column="0" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/ListasDialogFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="41" column="62" selection-start-line="41" selection-start-column="62" selection-end-line="41" selection-end-column="62" />
+        <state relative-caret-position="166">
+          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1235#1441#0" expanded="true" />
-            <element signature="e#1440#1441#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/Modelo/ListasReproduccion.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="840">
+          <caret line="47" column="11" selection-start-line="47" selection-start-column="11" selection-end-line="47" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/ListasReproduccionFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="141" column="48" selection-start-line="141" selection-start-column="48" selection-end-line="141" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/Modelo/Artista.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-462">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/ListaCancionesFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6783">
+          <caret line="405" column="0" selection-start-line="405" selection-start-column="0" selection-end-line="405" selection-end-column="0" />
+          <folding>
+            <element signature="e#3061#3062#0" expanded="true" />
+            <element signature="e#3112#3113#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/fdi/ucm/musicot/Modelo/DAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="73" column="8" selection-start-line="73" selection-start-column="8" selection-end-line="73" selection-end-column="8" />
+          <folding />
         </state>
       </provider>
     </entry>

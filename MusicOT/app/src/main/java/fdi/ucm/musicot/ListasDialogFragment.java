@@ -8,12 +8,14 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 
 import com.example.usuario_local.music_ot.R;
 
 import java.util.LinkedList;
 
+import fdi.ucm.musicot.Modelo.Cancion;
 import fdi.ucm.musicot.Modelo.DAO;
 import fdi.ucm.musicot.Modelo.ListasReproduccion;
 
@@ -22,8 +24,11 @@ import static fdi.ucm.musicot.MenuActivity.dao;
 
 public class ListasDialogFragment extends DialogFragment {
 
-    public static ListasDialogFragment newInstance(){
+    private static Cancion cancion;
+
+    public static ListasDialogFragment newInstance(Cancion c){
         ListasDialogFragment f = new ListasDialogFragment();
+        cancion = c;
         return f;
     }
 
@@ -33,13 +38,14 @@ public class ListasDialogFragment extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
-        String[] listas = getArrayListas(dao.getListasReproduccion());
+        final String[] listas = getArrayListas(dao.getListasReproduccion());
 
         builder.setView(inflater.inflate(R.layout.fragment_listas_dialog, null));
         builder.setTitle(R.string.titulo_lista_dialog)
             .setItems(listas, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-                    dao.getListasReproduccion().añadirCancion();
+                    ListasReproduccion listasRep = dao.getListasReproduccion();
+                    listasRep.añadirCancion(cancion, listasRep.getLista(listas[id]));
                 }
             });
         if (listas.length == 0){
