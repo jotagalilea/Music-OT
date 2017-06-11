@@ -138,8 +138,8 @@ public class ListasReproduccionFragment extends Fragment {
     private void crearVistaLista(String nombreLista) {
         if(MenuActivity.fragmentListaCanciones.initiated())
             MenuActivity.fragmentListaCanciones.vaciarLista();
-        else
-            fragmentListaCanciones.iniciarContenedor();
+        //else
+          //  MenuActivity.fragmentListaCanciones.iniciarContenedor();
 
         MenuActivity.fragmentListaCanciones.rellenarLista(nombreLista);
         MenuActivity.menuActivity.cambiaFragment(R.id.fragment_contentmenu1, MenuActivity.fragmentListaCanciones);

@@ -401,9 +401,4 @@ public class ListaCancionesFragment extends Fragment {
         this.artista = artista;
     }
 
-
-    public void iniciarContenedor() {
-        view = inflater.inflate(R.layout.fragment_lista_canciones, container, false);
-        mContieneCanciones = (LinearLayout) view.findViewById(R.id.listaCancionesBaseLayout);
-    }
 }
