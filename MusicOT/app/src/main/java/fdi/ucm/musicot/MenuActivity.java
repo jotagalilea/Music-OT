@@ -53,6 +53,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     public static ReproductorFragment fragmentReproductor;
     public static ReproductorFragmentMini fragmentMini;
     public static ListaCancionesFragment fragmentListaCanciones;
+    public static BuscadorAmazonFragment fragmentBuscadorAmazon;
     private RelativeLayout menuLayout;
 
     private PopupMenu popupMenu;
@@ -125,6 +126,12 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
             //Observadores
             observer.addDatosCancionEventHandler(fragmentMini);
             observer.addOnNightModeEvent(fragmentMini);
+        }
+
+        if(fragmentBuscadorAmazon == null){
+            fragmentBuscadorAmazon = new BuscadorAmazonFragment();
+            fragmentBuscadorAmazon.setRetainInstance(true);
+            //Observadores
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -249,7 +256,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
                 cambiaFragment(R.id.fragment_contentmenu1, fragmentReproductor);
             }break;
             case R.id.nav_buscar: {
-                cambiaFragment(R.id.fragment_contentmenu1, fragmentBusqueda);
+                cambiaFragment(R.id.fragment_contentmenu1, fragmentBuscadorAmazon);
             }break;
             case R.id.nav_temas:{
                 cambiaFragment(R.id.fragment_contentmenu1, fragmentCanciones);
