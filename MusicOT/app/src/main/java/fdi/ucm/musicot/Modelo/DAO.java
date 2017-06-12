@@ -56,15 +56,8 @@ public class DAO {
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!! COSAS QUE FALTAN POR HACER !!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    // TODO(1) Relacionar la imagen con el album, eso no tengo claro como hacerlo
 
     public DAO() {
-
-        // TODO: Pensar en estructuras más eficientes para canciones, álbumes y artistas.
-        //canciones = new Cancion[NUM_TEMAS];
-        /*canciones = new Cancion[0];
-        albumes = new Album[0];
-        artistas = new Artista[0];*/
 
         canciones = new ArrayList<>();
         albumes = new ArrayList<>();
@@ -76,40 +69,6 @@ public class DAO {
         MediaMetadataRetriever mmr = new MediaMetadataRetriever();
         cargarCancionesDeLaSD(dir.getAbsolutePath(), mmr);
 
-
-        /*for (int i = 0; i < NUM_TEMAS; i++) {
-
-            //Crea las canciones con los datos dummies en el String
-            Album currAlbum = this.albumExiste(tituloAlbumArtista[i][1], tituloAlbumArtista[i][2]);
-            Artista currArtista = this.artistaExiste(tituloAlbumArtista[i][2]);
-
-            if(currAlbum != null)
-                System.out.println("Album leido numero "+i+": "+currAlbum.getTitulo());
-            else
-                System.out.println("Album leido numero "+i);
-
-            if (currAlbum == null) {
-                if (currArtista == null) {
-                    currArtista = new Artista(tituloAlbumArtista[i][2]);
-                    artistas = Arrays.copyOf(artistas, artistas.length + 1);
-                    artistas[artistas.length-1] = currArtista;
-                }
-                currAlbum = new Album(tituloAlbumArtista[i][1], currArtista);
-                albumes = Arrays.copyOf(albumes, albumes.length + 1);
-                albumes[albumes.length-1] = currAlbum;
-                currArtista.addAlbum(currAlbum);
-            }
-
-            canciones[i] = new Cancion(
-                    tituloAlbumArtista[i][0],
-                    currAlbum,
-                    currArtista);
-
-            canciones[i].getAlbum().addCancion(canciones[i]);
-            currAlbum.addCancion(canciones[i]);
-            currArtista.addCancion(canciones[i]);
-        }
-        */
     }
 
     private String[] extensions = { "mp3" };
@@ -251,12 +210,6 @@ public class DAO {
      */
     public ArrayList<Cancion> getListaCanciones() {
 
-        /*Cancion[] lista = new Cancion[NUM_TEMAS];
-
-        for (int i = 0; i < NUM_TEMAS; i++) {
-            lista[i] = canciones[i].clone();
-        }*/
-
         return DAO.canciones;
     }
 
@@ -274,12 +227,6 @@ public class DAO {
     }
 
     public ArrayList<Album> getListaAlbumes() {
-
-        /*Album[] lista = new Album[NUM_TEMAS];
-
-        for (int i = 0; i < NUM_TEMAS; i++) {
-            lista[i] =
-        }*/
 
         return DAO.albumes;
     }
@@ -307,17 +254,7 @@ public class DAO {
         return artistas;
     }
     public ListasReproduccion getListasReproduccion() { return listasReproduccion; }
-    /*public Cancion[] getCanciones() {
-        return Arrays.copyOf(this.canciones, canciones.length);
-    }
 
-    private Album[] getAlbum() {
-        return Arrays.copyOf(this.albumes, albumes.length);
-    }
-
-    private Artista[] getArtista() {
-        return Arrays.copyOf(this.artistas, artistas.length);
-    }*/
 }
 //------------------------------------------------------------------------------------------
 //------ No se recuperara esta parte del código hasta que no se vaya a hacer la BBDD -------
