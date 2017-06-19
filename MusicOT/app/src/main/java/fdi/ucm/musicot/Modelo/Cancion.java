@@ -13,7 +13,7 @@ public class Cancion {
     private String titulo;
     private Album album;
     private Artista artista;
-    private File ruta;
+    private String ruta;
     private int duracion;
 
     public Cancion(){
@@ -23,14 +23,14 @@ public class Cancion {
         this.ruta = null;
     }
 
-    public Cancion(String titulo, Album album, Artista artista, File path){
+    public Cancion(String titulo, Album album, Artista artista, String path){
         this.album = album;
         this.titulo = titulo;
         this.artista = artista;
         this.ruta = path;
     }
 
-    public Cancion(String titulo, Album album, Artista artista, File path, int duracion){
+    public Cancion(String titulo, Album album, Artista artista, String path, int duracion){
         this.album = album;
         this.titulo = titulo;
         this.artista = artista;
@@ -72,7 +72,7 @@ public class Cancion {
 
     public Artista getArtista() { return artista; }
 
-    public File getRuta() { return ruta; }
+    public String getRuta() { return ruta; }
 
     public int getDuracion() { return duracion; }
 }
