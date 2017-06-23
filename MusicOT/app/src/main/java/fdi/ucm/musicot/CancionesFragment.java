@@ -96,7 +96,7 @@ public class CancionesFragment extends Fragment {
         fila.setLayoutParams(tableParams);
         mContieneCanciones.addView(fila);
         byte i = 1;
-        fila.addView(generateLinearCanciones(listaCanciones.get(0)));
+        //fila.addView(generateLinearCanciones(listaCanciones.get(0)));
         for (Cancion tema: listaCanciones) {
             if (i < maxColumnas){
                 i++;
