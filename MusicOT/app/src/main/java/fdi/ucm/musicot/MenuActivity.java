@@ -45,6 +45,8 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        menuActivity = this;
+
         if(dao == null) {
             dao = new DAO();
         }
@@ -123,7 +125,6 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         transicionarMenuFragmento(R.id.mini_bot_reproductor, Utils.currentMiniFragment);
         cambiaFragment(R.id.fragment_contentmenu1, Utils.currentFragment);
 
-        menuActivity = this;
     }
 
     @Override

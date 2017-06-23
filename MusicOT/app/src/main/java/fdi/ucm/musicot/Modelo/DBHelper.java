@@ -22,7 +22,7 @@ public class DBHelper extends SQLiteOpenHelper{
     private static final String[] COLS_ARTISTAS =
             new String[] {"id", "nombre"};
     private static final String crearTablaArtistas = "CREATE TABLE t_artistas (" +
-            "id INTEGER AUTOINCREMENT, " +
+            "id INTEGER, " +
             "nombre TEXT, " +
             "PRIMARY KEY (id))";
     private static final String borrarTablaArtistas = "DROP TABLE IF EXISTS t_artistas";
@@ -34,7 +34,7 @@ public class DBHelper extends SQLiteOpenHelper{
     private static final String[] COLS_ALBUMES =
             new String[] {"id", "titulo", "artista_id", "caratula"};
     private static final String crearTablaAlbumes = "CREATE TABLE t_albumes (" +
-            "id INTEGER AUTOINCREMENT, " +
+            "id INTEGER, " +
             "titulo TEXT, " +
             "artista_id INTEGER, " +
             "caratula , " +
@@ -49,7 +49,7 @@ public class DBHelper extends SQLiteOpenHelper{
     private static final String[] COLS_TEMAS =
             new String[] {"id", "titulo", "artista_id", "album_id", "ruta", "duracion"};
     private static final String crearTablaTemas = "CREATE TABLE t_temas (" +
-            "id INTEGER AUTOINCREMENT, " +
+            "id INTEGER, " +
             "titulo TEXT, " +
             "artista_id INTEGER, " +
             "album_id INTEGER, " +
@@ -67,7 +67,7 @@ public class DBHelper extends SQLiteOpenHelper{
     private static final String[] COLS_LISTAS_REP =
             new String[] {"id", "cancion_id"};
     private static final String crearTablaListasRep = "CREATE TABLE t_listas_rep (" +
-            "id INTEGER AUTOINCREMENT, " +
+            "id INTEGER, " +
             "cancion_id INTEGER," +
             "PRIMARY KEY (id), " +
             "FOREIGN KEY (cancion_id) REFERENCES t_temas (id))";
@@ -127,8 +127,6 @@ public class DBHelper extends SQLiteOpenHelper{
         return COLS_TEMAS;
     }
 
-    public static String[] getColstListasRep(){
-        return COLS_LISTAS_REP;
-    }
+    public static String[] getColstListasRep(){ return COLS_LISTAS_REP; }
 
 }

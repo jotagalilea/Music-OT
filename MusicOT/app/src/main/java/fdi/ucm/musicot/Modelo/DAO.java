@@ -50,6 +50,10 @@ public class DAO {
     private ListasReproduccion listasReproduccion;
 
     private DBHelper dbHelper;
+    private HashMap<Integer, String> artistasEncontradosPorID = new HashMap<>();
+    private HashMap<Integer, String> albumesEncontradosPorID = new HashMap<>();
+    private HashMap<String, Integer> artistasEncontradosPorNombre = new HashMap<>();
+    private HashMap<String, Integer> albumesEncontradosPorNombre = new HashMap<>();
 
     String albumName;
     String artistName;
@@ -66,9 +70,12 @@ public class DAO {
         artistas = new ArrayList<>();
         listasReproduccion = new ListasReproduccion();
         dbHelper = new DBHelper(menuActivity, DBHelper.DB_NAME, null, 1);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
         MediaMetadataRetriever mmr = new MediaMetadataRetriever();
 
+        /* Si la tabla de temas está vacía es que el resto de la BD
+        también lo está y por tanto se acaba de crear.
+         */
         if (dbHelper.tablaEstaVacia(db, DBHelper.TABLA_TEMAS)){
             //File dir = Utils.parseMountDirectory();
             File dir = new File("/mnt/sdcard/Music/Judas_Priest[1974-2016]");
@@ -77,7 +84,9 @@ public class DAO {
         else {
             cargarCancionesDeLaBD(mmr);
         }
-
+    /////////////////////////////////////////////////////
+        System.out.println();
+        ////////////////////////////////////////////
     }
 
     private String[] extensions = { "mp3" };
@@ -111,31 +120,31 @@ public class DAO {
     private void cargarCancionesDeLaBD(MediaMetadataRetriever mmr){
         try {
             SQLiteDatabase db = dbHelper.getReadableDatabase();
-            String[] tTem = new String[]{DBHelper.TABLA_TEMAS};
-            Cursor cTemas = db.rawQuery("SELECT * FROM ?", tTem);
+            Cursor cTemas = db.rawQuery("SELECT * FROM " + DBHelper.TABLA_TEMAS, null);
 
             if (cTemas.moveToFirst()) {
                 /* Usaremos un hashMap de artistas encontrados en consultas
                 anteriores para no repetir consultas futuras. Lo mismo con álbumes.
                  */
-                HashMap<Integer, String> artistasEncontrados = new HashMap<>();
-                HashMap<Integer, String> albumesEncontrados = new HashMap<>();
+                //HashMap<Integer, String> artistasEncontrados = new HashMap<>();
+                //HashMap<Integer, String> albumesEncontrados = new HashMap<>();
                 Artista art = null;
                 Album alb = null;
                 do {
                     titulo = cTemas.getString(1);
                     int artistID = cTemas.getInt(2);
-                    if (artistasEncontrados.containsKey(artistID)) {
-                        artistName = artistasEncontrados.get(artistID);
+                    if (artistasEncontradosPorID.containsKey(artistID)) {
+                        artistName = artistasEncontradosPorID.get(artistID);
                         //art = artistaExiste(artistName);
                     }
                     else {
-                        String[] args = new String[]{DBHelper.TABLA_ARTISTAS, Integer.toString(artistID)};
-                        Cursor cArtista = db.rawQuery("SELECT * FROM ? WHERE id=?", args);
+                        String[] args = new String[]{Integer.toString(artistID)};
+                        Cursor cArtista = db.rawQuery("SELECT * FROM "+DBHelper.TABLA_ARTISTAS+" WHERE id=?", args);
                         if (cArtista.moveToFirst()) {
                             int idArtista = cArtista.getInt(0);
                             artistName = cArtista.getString(1);
-                            artistasEncontrados.put(idArtista, artistName);
+                            artistasEncontradosPorID.put(idArtista, artistName);
+                            artistasEncontradosPorNombre.put(artistName, idArtista);
                             /*art = artistaExiste(artistName);
                             if (art == null)
                                 art = new Artista(artistName);*/
@@ -149,15 +158,16 @@ public class DAO {
 
 
                     int albumID = cTemas.getInt(3);
-                    if (albumesEncontrados.containsKey(albumID))
-                        albumName = albumesEncontrados.get(albumID);
+                    if (albumesEncontradosPorID.containsKey(albumID))
+                        albumName = albumesEncontradosPorID.get(albumID);
                     else{
                         String[] args = new String[]{ DBHelper.TABLA_ALBUMES, Integer.toString(albumID) };
                         Cursor cAlbum = db.rawQuery("SELECT * FROM ? WHERE id=?", args);
                         if (cAlbum.moveToFirst()){
                             int idAlbum = cAlbum.getInt(0);
                             albumName = cAlbum.getString(1);
-                            albumesEncontrados.put(idAlbum, albumName);
+                            albumesEncontradosPorID.put(idAlbum, albumName);
+                            albumesEncontradosPorNombre.put(albumName, idAlbum);
                         }
                         else throw new Exception("Error al buscar el álbum de la canción " + titulo);
                     }
@@ -177,7 +187,7 @@ public class DAO {
 
                     duracion = cTemas.getInt(5);
 
-                    Cancion tema = new Cancion(titulo, alb, art, cTemas.getString(4), duracion);
+                    Cancion tema = new Cancion(titulo, alb, art, new File(cTemas.getString(4)), duracion);
 
                     if (alb == null) {
                         art.addAlbum(alb);
@@ -201,6 +211,7 @@ public class DAO {
 
     private void crearCancion(File f, MediaMetadataRetriever mmr) {
 
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
         try {
             mmr.setDataSource(f.getAbsolutePath());
 
@@ -236,7 +247,7 @@ public class DAO {
                 alb = new Album(albumName, art, caratula);
             }
 
-            Cancion c = new Cancion(titulo, alb, art, f.getAbsolutePath(), duracion);
+            Cancion c = new Cancion(titulo, alb, art, f, duracion);
 
             if (!albumExists) {
                 art.addAlbum(alb);
@@ -252,31 +263,74 @@ public class DAO {
             canciones.add(c);
 
             // La información obtenida se insertará en la base de datos aquí:
+            int idArtista, idAlbum;
+
             // Inserción del artista:
-            SQLiteDatabase db = dbHelper.getWritableDatabase();
-            ContentValues insertArt, insertTem, insertAlb;
-            insertArt = new ContentValues();
-            insertArt.put(DBHelper.getColstArtistas()[1], art.getNombre());
-            int idArtista = (int) db.insert(DBHelper.TABLA_ARTISTAS, null, insertArt);
+            if (!artistExists) {
+                ContentValues insertArt;
+                insertArt = new ContentValues();
+                insertArt.put(DBHelper.getColstArtistas()[1], art.getNombre());
+                idArtista = (int) db.insert(DBHelper.TABLA_ARTISTAS, null, insertArt);
+                artistasEncontradosPorID.put(idArtista, c.getArtista().getNombre());
+                artistasEncontradosPorNombre.put(c.getArtista().getNombre(), idArtista);
+            }
+            else
+                idArtista = artistasEncontradosPorNombre.get(artistName);
+                //idArtista = comprobarArtista(db, artistName);
 
             // Inserción del álbum:
-            insertAlb = new ContentValues();
-            insertAlb.put(DBHelper.getColstAlbumes()[1], alb.getTitulo());
-            insertAlb.put(DBHelper.getColstAlbumes()[2], idArtista);
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            Bitmap bm = alb.getCaratula();
-            bm.compress(Bitmap.CompressFormat.PNG, 100, baos);
-            byte[] b = baos.toByteArray();
-            insertAlb.put(DBHelper.getColstAlbumes()[3], b);
-            int idAlbum = (int) db.insert(DBHelper.TABLA_ALBUMES, null, insertAlb);
+            if (!albumExists) {
+                ContentValues insertAlb = new ContentValues();
+                insertAlb.put(DBHelper.getColstAlbumes()[1], alb.getTitulo());
+                insertAlb.put(DBHelper.getColstAlbumes()[2], idArtista);
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                Bitmap bm = alb.getCaratula();
+                // La compresión es lo que más tarda. ¿Hay otra forma de hacerlo?
+                bm.compress(Bitmap.CompressFormat.PNG, 100, baos);
+                /////////////////////////////////////////////////////////////////
+                byte[] b = baos.toByteArray();
+                insertAlb.put(DBHelper.getColstAlbumes()[3], b);
+                idAlbum = (int) db.insert(DBHelper.TABLA_ALBUMES, null, insertAlb);
+                albumesEncontradosPorID.put(idAlbum, c.getAlbum().getTitulo());
+                albumesEncontradosPorNombre.put(c.getAlbum().getTitulo(), idAlbum);
+            }
+            else
+                idAlbum = albumesEncontradosPorNombre.get(albumName);
 
             // Inserción de la canción:
-            insertTem = new ContentValues();
+            ContentValues insertTem = new ContentValues();
+            insertTem.put(DBHelper.getColstTemas()[1], c.getTitulo());
+            insertTem.put(DBHelper.getColstTemas()[2], idArtista);
+            insertTem.put(DBHelper.getColstTemas()[3], idAlbum);
+            insertTem.put(DBHelper.getColstTemas()[4], c.getRuta().getAbsolutePath());
+            insertTem.put(DBHelper.getColstTemas()[5], Integer.toString(c.getDuracion()));
+            db.insert(DBHelper.TABLA_TEMAS, null, insertTem);
 
         }
         catch (Exception e){
             e.printStackTrace();
+            db.close();
         }
+        db.close();
+    }
+
+    /**
+     * Método para comprobar si el artista de la canción que se inserta en la BD
+     * ya está en ella. Para evitar usar este método se probará primero a utilizar
+     * el objeto artistasEncontradosPorNombre.
+     * @param db
+     * @param nombre
+     * @return
+     */
+    private int comprobarArtista(SQLiteDatabase db, String nombre) {
+        String consulta = "SELECT id FROM " + DBHelper.TABLA_ARTISTAS + " WHERE " +
+                DBHelper.getColstArtistas()[1] + "='" + nombre + "'";
+        Cursor c = db.rawQuery(consulta, null);
+        int resultado = -1;
+        if (c.moveToFirst()){
+            resultado = c.getInt(0);
+        }
+        return resultado;
     }
 
 
