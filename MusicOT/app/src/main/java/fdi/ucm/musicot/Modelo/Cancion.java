@@ -21,6 +21,7 @@ public class Cancion {
         this.titulo = null;
         this.artista = null;
         this.ruta = null;
+        this.duracion = 0;
     }
 
     public Cancion(String titulo, Album album, Artista artista, File path){
@@ -28,6 +29,7 @@ public class Cancion {
         this.titulo = titulo;
         this.artista = artista;
         this.ruta = path;
+        this.duracion = 0;
     }
 
     public Cancion(String titulo, Album album, Artista artista, File path, int duracion){

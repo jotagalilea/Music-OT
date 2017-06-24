@@ -53,6 +53,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     public static ReproductorFragment fragmentReproductor;
     public static ReproductorFragmentMini fragmentMini;
     public static ListaCancionesFragment fragmentListaCanciones;
+    public static ListasReproduccionFragment fragmentListasReproduccion;
     public static BuscadorAmazonFragment fragmentBuscadorAmazon;
     private RelativeLayout menuLayout;
 
@@ -60,6 +61,8 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        menuActivity = this;
 
         if(dao == null) {
             dao = new DAO();
@@ -90,6 +93,11 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
             fragmentListaCanciones.setRetainInstance(true);
             //Observadores
             observer.addOnNightModeEvent(fragmentListaCanciones);
+        }
+
+        if(fragmentListasReproduccion == null) {
+            fragmentListasReproduccion = new ListasReproduccionFragment();
+            fragmentListasReproduccion.setRetainInstance(true);
         }
 
         if(fragmentArtistas == null) {
@@ -309,7 +317,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
     /**
      * Sustituye el fragmento del contenedor con la ID dada por el nuevo fragmento dado, también
-     * encoge el menú lateral si está dsplegado
+     * encoge el menú lateral si está desplegado
      * @param id
      * @param newFragment
      */

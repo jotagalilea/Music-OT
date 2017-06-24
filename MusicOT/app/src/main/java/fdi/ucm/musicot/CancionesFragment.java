@@ -1,11 +1,16 @@
 package fdi.ucm.musicot;
 
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.app.DialogFragment;
+import android.support.v7.widget.PopupMenu;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -21,12 +26,15 @@ import com.example.usuario_local.music_ot.R;
 
 import java.util.ArrayList;
 
+import fdi.ucm.musicot.Misc.MenuElemLista;
 import fdi.ucm.musicot.Misc.Utils;
 import fdi.ucm.musicot.Modelo.Cancion;
 import fdi.ucm.musicot.Modelo.DAO;
+import fdi.ucm.musicot.Modelo.ListasReproduccion;
 import fdi.ucm.musicot.Modelo.RetenCanciones;
 import fdi.ucm.musicot.Observers.OnNightModeEvent;
 
+import static fdi.ucm.musicot.MenuActivity.dao;
 import static fdi.ucm.musicot.MenuActivity.menuActivity;
 import static fdi.ucm.musicot.MenuActivity.observer;
 
@@ -98,7 +106,7 @@ public class CancionesFragment extends Fragment implements OnNightModeEvent{
         tableRows.add(fila);
         mContieneCanciones.addView(fila);
         byte i = 1;
-        fila.addView(generateLinearCanciones(listaCanciones.get(0),true));
+        //fila.addView(generateLinearCanciones(listaCanciones.get(0),true));
         for (Cancion tema: listaCanciones) {
             if (i < maxColumnas){
                 i++;
@@ -203,6 +211,8 @@ public class CancionesFragment extends Fragment implements OnNightModeEvent{
         textViewArtist.setTypeface(null, Typeface.ITALIC);
         textViewArtist.setTextSize(13);
 
+        BotonCancion addListaButton = new BotonCancion(menuActivity, cancion);
+
         linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -221,6 +231,7 @@ public class CancionesFragment extends Fragment implements OnNightModeEvent{
         linearLayoutInternal.addView(textViewAlbum);
         linearLayoutInternal.addView(textViewArtist);
         linearLayout.addView(linearLayoutInternal);
+        linearLayout.addView(addListaButton);
 
         linearLayout.setBackgroundColor(Color.CYAN);
 
@@ -246,6 +257,7 @@ public class CancionesFragment extends Fragment implements OnNightModeEvent{
         return linearLayout;
     }
 
+
     /*
     Guarda la lista de canciones ante la destrucción o el reinicio de la actividad.
      */
@@ -256,7 +268,7 @@ public class CancionesFragment extends Fragment implements OnNightModeEvent{
     }
 
     //// OnNightModeEvent
-    
+
     @Override
     public void toNightMode() {
         for (LinearLayout line: filasContenedor) {

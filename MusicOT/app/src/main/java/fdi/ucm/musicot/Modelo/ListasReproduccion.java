@@ -28,12 +28,16 @@ public class ListasReproduccion {
     }
 
     public void crearLista(String nombre) throws Exception{
-        if (!listasReproduccion.containsKey(nombre)){
+        if (!listasReproduccion.containsKey(nombre) && nombre.length()>0){
             List lista = new LinkedList<Cancion>();
             listasReproduccion.put(nombre, lista);
         }
-        else
-            throw new Exception("Ya existe una lista con ese nombre");
+        else {
+            if (nombre.length() == 0)
+                throw new Exception("Debes darle un nombre a la lista");
+            else
+                throw new Exception("Ya existe una lista con ese nombre");
+        }
     }
 
     public void borrarLista(String nombreLista){
@@ -60,5 +64,9 @@ public class ListasReproduccion {
     public void moverCancion(Cancion c, List l, int pos){
         l.remove(c);
         l.set(pos, c);
+    }
+
+    public boolean existeLista(String str){
+        return listasReproduccion.containsKey(str);
     }
 }

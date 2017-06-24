@@ -1,18 +1,23 @@
 package fdi.ucm.musicot.Modelo;
 
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaMetadataRetriever;
-import android.provider.MediaStore;
 
-import com.example.usuario_local.music_ot.R;
-
+import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.lang.reflect.Array;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashMap;
+
 
 import fdi.ucm.musicot.Misc.Utils;
+
+import static fdi.ucm.musicot.MenuActivity.menuActivity;
 
 /**
  * Created by Javier/Julio on 24/04/17.
@@ -45,6 +50,13 @@ public class DAO {
     private static ArrayList<Cancion> canciones;
     private static ArrayList<Album> albumes;
     private static ArrayList<Artista> artistas;
+    private ListasReproduccion listasReproduccion;
+
+    private DBHelper dbHelper;
+    private HashMap<Integer, String> artistasEncontradosPorID = new HashMap<>();
+    private HashMap<Integer, String> albumesEncontradosPorID = new HashMap<>();
+    private HashMap<String, Integer> artistasEncontradosPorNombre = new HashMap<>();
+    private HashMap<String, Integer> albumesEncontradosPorNombre = new HashMap<>();
 
     String albumName;
     String artistName;
@@ -52,67 +64,34 @@ public class DAO {
     int duracion;
     byte[] imagen;
 
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!! COSAS QUE FALTAN POR HACER !!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    // TODO(1) Relacionar la imagen con el album, eso no tengo claro como hacerlo
+
 
     public DAO() {
-
-        // TODO: Pensar en estructuras más eficientes para canciones, álbumes y artistas.
-        //canciones = new Cancion[NUM_TEMAS];
-        /*canciones = new Cancion[0];
-        albumes = new Album[0];
-        artistas = new Artista[0];*/
 
         canciones = new ArrayList<>();
         albumes = new ArrayList<>();
         artistas = new ArrayList<>();
-
-        File dir = Utils.parseMountDirectory();
-        //File dir = new File("/mnt/sdcard/Music/Judas_Priest[1974-2016]");
+        listasReproduccion = new ListasReproduccion();
+        dbHelper = new DBHelper(menuActivity, DBHelper.DB_NAME, null, 1);
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
         MediaMetadataRetriever mmr = new MediaMetadataRetriever();
-        cargarCancionesDeLaSD(dir.getAbsolutePath(), mmr);
 
-
-        /*for (int i = 0; i < NUM_TEMAS; i++) {
-
-            //Crea las canciones con los datos dummies en el String
-            Album currAlbum = this.albumExiste(tituloAlbumArtista[i][1], tituloAlbumArtista[i][2]);
-            Artista currArtista = this.artistaExiste(tituloAlbumArtista[i][2]);
-
-            if(currAlbum != null)
-                System.out.println("Album leido numero "+i+": "+currAlbum.getTitulo());
-            else
-                System.out.println("Album leido numero "+i);
-
-            if (currAlbum == null) {
-                if (currArtista == null) {
-                    currArtista = new Artista(tituloAlbumArtista[i][2]);
-                    artistas = Arrays.copyOf(artistas, artistas.length + 1);
-                    artistas[artistas.length-1] = currArtista;
-                }
-                currAlbum = new Album(tituloAlbumArtista[i][1], currArtista);
-                albumes = Arrays.copyOf(albumes, albumes.length + 1);
-                albumes[albumes.length-1] = currAlbum;
-                currArtista.addAlbum(currAlbum);
-            }
-
-            canciones[i] = new Cancion(
-                    tituloAlbumArtista[i][0],
-                    currAlbum,
-                    currArtista);
-
-            canciones[i].getAlbum().addCancion(canciones[i]);
-            currAlbum.addCancion(canciones[i]);
-            currArtista.addCancion(canciones[i]);
+        /* Si la tabla de temas está vacía es que el resto de la BD
+        también lo está y por tanto se acaba de crear.
+         */
+        if (dbHelper.tablaEstaVacia(db, DBHelper.TABLA_TEMAS)){
+            File dir = Utils.parseMountDirectory();
+            //File dir = new File("/mnt/sdcard/Music/Judas_Priest[1974-2016]");
+            cargarCancionesDeLaSD(dir.getAbsolutePath(), mmr);
         }
-        */
+        else {
+            cargarCancionesDeLaBD(mmr);
+        }
     }
 
     private String[] extensions = { "mp3" };
 
-    public void cargarCancionesDeLaSD(String path, MediaMetadataRetriever mmr) {
+    private void cargarCancionesDeLaSD(String path, MediaMetadataRetriever mmr) {
 
         try {
             File file = new File(path);
@@ -138,8 +117,113 @@ public class DAO {
         }
     }
 
+    private void cargarCancionesDeLaBD(MediaMetadataRetriever mmr){
+        try {
+            SQLiteDatabase db = dbHelper.getReadableDatabase();
+            Cursor cTemas = db.rawQuery("SELECT * FROM " + DBHelper.TABLA_TEMAS, null);
+
+            if (cTemas.moveToFirst()) {
+                /* Usaremos un hashMap de artistas encontrados en consultas
+                anteriores para no repetir consultas futuras. Lo mismo con álbumes.
+                 */
+                //HashMap<Integer, String> artistasEncontrados = new HashMap<>();
+                //HashMap<Integer, String> albumesEncontrados = new HashMap<>();
+                Artista art = null;
+                Album alb = null;
+                boolean artistExists;
+                boolean albumExists;
+                do {
+                    titulo = cTemas.getString(1);
+                    int artistID = cTemas.getInt(2);
+                    if (artistasEncontradosPorID.containsKey(artistID)) {
+                        artistName = artistasEncontradosPorID.get(artistID);
+                        //art = artistaExiste(artistName);
+                    }
+                    else {
+                        String[] args = new String[]{Integer.toString(artistID)};
+                        Cursor cArtista = db.rawQuery("SELECT * FROM "+DBHelper.TABLA_ARTISTAS+" WHERE id=?", args);
+                        if (cArtista.moveToFirst()) {
+                            int idArtista = cArtista.getInt(0);
+                            artistName = cArtista.getString(1);
+                            artistasEncontradosPorID.put(idArtista, artistName);
+                            artistasEncontradosPorNombre.put(artistName, idArtista);
+                            /*art = artistaExiste(artistName);
+                            if (art == null)
+                                art = new Artista(artistName);*/
+
+                        } else
+                            throw new Exception("Error al buscar el artista de la canción " + titulo);
+
+                        cArtista.close();
+                    }
+
+                    art = artistaExiste(artistName);
+                    artistExists = art != null;
+                    if (!artistExists)
+                        art = new Artista(artistName);
+
+
+                    int albumID = cTemas.getInt(3);
+                    if (albumesEncontradosPorID.containsKey(albumID))
+                        albumName = albumesEncontradosPorID.get(albumID);
+                    else{
+                        String[] args = new String[]{ Integer.toString(albumID) };
+                        Cursor cAlbum = db.rawQuery("SELECT * FROM "+DBHelper.TABLA_ALBUMES+" WHERE id=?", args);
+                        if (cAlbum.moveToFirst()){
+                            int idAlbum = cAlbum.getInt(0);
+                            albumName = cAlbum.getString(1);
+                            albumesEncontradosPorID.put(idAlbum, albumName);
+                            albumesEncontradosPorNombre.put(albumName, idAlbum);
+                        }
+                        else throw new Exception("Error al buscar el álbum de la canción " + titulo);
+
+                        cAlbum.close();
+                    }
+
+                    alb = albumExiste(albumName, artistName);
+                    albumExists = alb != null;
+
+                    Bitmap caratula = null;
+                    if (!albumExists) {
+                        if (albumName != "Desconocido") {
+                            File archivoImagen = new File(menuActivity.getFilesDir() + albumName);
+                            FileInputStream fis = new FileInputStream(archivoImagen);
+                            imagen = new byte[(int) fis.getChannel().size()];
+                            fis.read(imagen);
+                            caratula = Utils.decodeSampledBitmapFromByteArray(imagen, 400, 400);
+                            fis.close();
+                        }
+                        alb = new Album(albumName, art, caratula);
+                    }
+
+                    duracion = cTemas.getInt(5);
+
+                    Cancion tema = new Cancion(titulo, alb, art, new File(cTemas.getString(4)), duracion);
+
+                    if (!albumExists) {
+                        art.addAlbum(alb);
+                        albumes.add(alb);
+                    }
+                    alb.addCancion(tema);
+                    if (!artistExists) {
+                        artistas.add(art);
+                    }
+                    art.addCancion(tema);
+
+                    canciones.add(tema);
+
+                } while (cTemas.moveToNext());
+            }
+            cTemas.close();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
     private void crearCancion(File f, MediaMetadataRetriever mmr) {
 
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
         try {
             mmr.setDataSource(f.getAbsolutePath());
 
@@ -189,10 +273,83 @@ public class DAO {
             art.addCancion(c);
 
             canciones.add(c);
+
+            // La información obtenida se insertará en la base de datos aquí:
+            int idArtista, idAlbum;
+
+            // Inserción del artista:
+            if (!artistExists) {
+                ContentValues insertArt;
+                insertArt = new ContentValues();
+                insertArt.put(DBHelper.getColstArtistas()[1], art.getNombre());
+                idArtista = (int) db.insert(DBHelper.TABLA_ARTISTAS, null, insertArt);
+                artistasEncontradosPorID.put(idArtista, c.getArtista().getNombre());
+                artistasEncontradosPorNombre.put(c.getArtista().getNombre(), idArtista);
+            }
+            else
+                idArtista = artistasEncontradosPorNombre.get(artistName);
+                //idArtista = comprobarArtista(db, artistName);
+
+            // Inserción del álbum:
+            if (!albumExists) {
+                ContentValues insertAlb = new ContentValues();
+                insertAlb.put(DBHelper.getColstAlbumes()[1], alb.getTitulo());
+                insertAlb.put(DBHelper.getColstAlbumes()[2], idArtista);
+                // Preparación de la imagen:
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                Bitmap bm = alb.getCaratula();
+                bm.compress(Bitmap.CompressFormat.PNG, 100, baos);
+                byte[] b = baos.toByteArray();
+                //insertAlb.put(DBHelper.getColstAlbumes()[3], b);
+
+                File archivoImagen = new File(menuActivity.getFilesDir() + alb.getTitulo());
+                FileOutputStream fos = new FileOutputStream(archivoImagen);
+                fos.write(b);
+                fos.close();
+                baos.close();
+                insertAlb.put(DBHelper.getColstAlbumes()[3], archivoImagen.getAbsolutePath());
+
+                idAlbum = (int) db.insert(DBHelper.TABLA_ALBUMES, null, insertAlb);
+                albumesEncontradosPorID.put(idAlbum, c.getAlbum().getTitulo());
+                albumesEncontradosPorNombre.put(c.getAlbum().getTitulo(), idAlbum);
+            }
+            else
+                idAlbum = albumesEncontradosPorNombre.get(albumName);
+
+            // Inserción de la canción:
+            ContentValues insertTem = new ContentValues();
+            insertTem.put(DBHelper.getColstTemas()[1], c.getTitulo());
+            insertTem.put(DBHelper.getColstTemas()[2], idArtista);
+            insertTem.put(DBHelper.getColstTemas()[3], idAlbum);
+            insertTem.put(DBHelper.getColstTemas()[4], c.getRuta().getAbsolutePath());
+            insertTem.put(DBHelper.getColstTemas()[5], Integer.toString(c.getDuracion()));
+            db.insert(DBHelper.TABLA_TEMAS, null, insertTem);
+
         }
         catch (Exception e){
             e.printStackTrace();
+            db.close();
         }
+        db.close();
+    }
+
+    /**
+     * Método para comprobar si el artista de la canción que se inserta en la BD
+     * ya está en ella. Para evitar usar este método se probará primero a utilizar
+     * el objeto artistasEncontradosPorNombre.
+     * @param db
+     * @param nombre
+     * @return
+     */
+    private int comprobarArtista(SQLiteDatabase db, String nombre) {
+        String consulta = "SELECT id FROM " + DBHelper.TABLA_ARTISTAS + " WHERE " +
+                DBHelper.getColstArtistas()[1] + "='" + nombre + "'";
+        Cursor c = db.rawQuery(consulta, null);
+        int resultado = -1;
+        if (c.moveToFirst()){
+            resultado = c.getInt(0);
+        }
+        return resultado;
     }
 
 
@@ -232,7 +389,7 @@ public class DAO {
         int i = 0;
 
         while (i < this.artistas.size() && (res == null)) {
-            //Si el album no existe ya
+            //Si el artista no existe ya
             if (artistas.get(i).getNombre().equalsIgnoreCase(nombreArtista)) {
                 res = artistas.get(i);
             }
@@ -248,12 +405,6 @@ public class DAO {
      * @return
      */
     public ArrayList<Cancion> getListaCanciones() {
-
-        /*Cancion[] lista = new Cancion[NUM_TEMAS];
-
-        for (int i = 0; i < NUM_TEMAS; i++) {
-            lista[i] = canciones[i].clone();
-        }*/
 
         return DAO.canciones;
     }
@@ -272,12 +423,6 @@ public class DAO {
     }
 
     public ArrayList<Album> getListaAlbumes() {
-
-        /*Album[] lista = new Album[NUM_TEMAS];
-
-        for (int i = 0; i < NUM_TEMAS; i++) {
-            lista[i] =
-        }*/
 
         return DAO.albumes;
     }
@@ -304,128 +449,6 @@ public class DAO {
     public static ArrayList<Artista> getArtistas(){
         return artistas;
     }
-    /*public Cancion[] getCanciones() {
-        return Arrays.copyOf(this.canciones, canciones.length);
-    }
+    public ListasReproduccion getListasReproduccion() { return listasReproduccion; }
 
-    private Album[] getAlbum() {
-        return Arrays.copyOf(this.albumes, albumes.length);
-    }
-
-    private Artista[] getArtista() {
-        return Arrays.copyOf(this.artistas, artistas.length);
-    }*/
 }
-//------------------------------------------------------------------------------------------
-//------ No se recuperara esta parte del código hasta que no se vaya a hacer la BBDD -------
-//------------------------------------------------------------------------------------------
-
-/*public class DAO extends SQLiteOpenHelper{
-
-    public static final String DATABASE_NAME = "musica.db";
-    public static final String TABLE_NAME = "temas_table";
-
-    public static final String[] COLS_TEMAS = {"ID","NOMBRE","ARTISTA","FAVORITO"};
-
-    public DAO(Context context) {
-        super(context, DATABASE_NAME, null, 1);
-    }
-
-    @Override
-    public void onCreate(SQLiteDatabase db) {
-
-        String createTemas = createTable(TABLE_NAME, COLS_TEMAS);
-
-        db.execSQL(createTemas);
-    }
-
-    @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
-    }
-
-    /**
-     * Devuelve el array de Strings con los nombres de las columnas de la tabla dada.
-     * @param nombreTabla
-     * @return
-     */
-/*    public String[] getNombreColumnas(String nombreTabla){
-
-        String[] res = null;
-
-        switch(nombreTabla){
-
-            case "temas_table":{ res = COLS_TEMAS.clone(); }break;
-        }
-
-        return res;
-    }
-
-    //------------------------------------------------------
-
-    /**
-     * Genera un String que contiene un CREATE TABLE con el nombre de la tabla y las columnas dadas,
-     * EL ULTIMO ELEMENTO DEL ARRAY "nombreColumnas" SERÁ EL KEY
-     * @param nombreTabla
-     * @param nombreColumnas
-     * @return
-     */
-/*    private String createTable(String nombreTabla, String[] nombreColumnas){
-
-        String res = null;
-
-        if(nombreColumnas.length >= 1){
-            res = "CREATE TABLE" + nombreTabla + " (";
-
-            for (int i=0;i<nombreColumnas.length-2;i++ ) {
-                res = res + nombreColumnas[i] + ",";
-            }
-
-            res = res + nombreColumnas[nombreColumnas.length-1] + "PRIMARY KEY)";
-        }
-
-        return res;
-    }
-
-    /**
-     * Genera el comando SQL para eliminar la tabla pasada por variable
-     * @param nombreTabla
-     * @return
-     */
-/*    private String deleteTable(String nombreTabla){
-
-        String res = null;
-
-        res = "DROP TABLE" + nombreTabla;
-
-        return res;
-    }
-
-    /**
-     * Devuelve un string con la linea SELECT SQl generada
-     * @param nombreTabla
-     * @param nombreColumnas
-     * @param condiciones
-     * @return
-     */
-/*    private String selectSQLString(String nombreTabla, String[] nombreColumnas, String[] condiciones){
-
-        String res = null;
-
-        res = "SELECT * FROM "+ nombreTabla;
-
-        if(condiciones.length >= 1){
-
-            res +=" WHERE ";
-
-            for (int i=0;i<condiciones.length-2;i++ ) {
-                res = res +nombreColumnas[i] + condiciones[i] + ",";
-            }
-
-            res = res + condiciones[condiciones.length-1] + ")";
-        }
-
-        return res;
-    }
-}
-*/

@@ -146,7 +146,9 @@ public class ArtistasFragment extends Fragment implements OnNightModeEvent {
         linearLayout.addView(imageView);
         linearLayout.addView(textView);
 
-        // Creación de un mensaje de alerta:
+        linearLayout.setBackgroundColor(Color.CYAN);
+
+        // Creación del fragmento con la lista de canciones:
         linearLayout.setOnClickListener(new View.OnClickListener() {
 
             @Override

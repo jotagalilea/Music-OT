@@ -5,6 +5,8 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.v7.app.ActionBar;
+import android.support.v7.widget.PopupMenu;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.Gravity;
@@ -17,6 +19,9 @@ import android.widget.TextView;
 
 import com.example.usuario_local.music_ot.R;
 
+import java.util.LinkedList;
+
+import fdi.ucm.musicot.Misc.MenuElemLista;
 import java.util.ArrayList;
 
 import fdi.ucm.musicot.Misc.Utils;
@@ -25,6 +30,7 @@ import fdi.ucm.musicot.Modelo.Artista;
 import fdi.ucm.musicot.Modelo.Cancion;
 import fdi.ucm.musicot.Observers.OnNightModeEvent;
 
+import static fdi.ucm.musicot.MenuActivity.dao;
 import static fdi.ucm.musicot.MenuActivity.menuActivity;
 
 /**
@@ -41,6 +47,8 @@ public class ListaCancionesFragment extends Fragment implements OnNightModeEvent
 
     private View view;
     private LinearLayout mContieneCanciones;
+    private LayoutInflater inflater;
+    private ViewGroup container;
 
     ArrayList<LinearLayout> filasContenedor = new ArrayList<>();
     ArrayList<ImageView> listaImagenes = new ArrayList<>();
@@ -77,6 +85,8 @@ public class ListaCancionesFragment extends Fragment implements OnNightModeEvent
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         setRetainInstance(true);
+        this.inflater = inflater;
+        this.container = container;
         view = inflater.inflate(R.layout.fragment_lista_canciones, container, false);
         mContieneCanciones = (LinearLayout) view.findViewById(R.id.listaCancionesBaseLayout);
 
@@ -125,6 +135,28 @@ public class ListaCancionesFragment extends Fragment implements OnNightModeEvent
         for (Cancion tema: artista.getCanciones()) {
             fila = generateLinearCanciones(tema, artista, true);
             fila.setBackgroundResource(R.drawable.listabackground);
+            fila.setLayoutParams(tableParams);
+            mContieneCanciones.addView(fila);
+        }
+    }
+
+    /**
+     * Toma la lista de reproducción cuyo nombre coincide con el string pasado como
+     * parámetro y rellena el fragmento con las canciones de esa lista.
+     * @param nombreLista
+     */
+    public void rellenarLista(String nombreLista) {
+        LinkedList<Cancion> lista = (LinkedList) dao.getListasReproduccion().getLista(nombreLista);
+
+        LinearLayout fila = new LinearLayout(menuActivity);
+        LinearLayout.LayoutParams tableParams;
+        tableParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        tableParams.setMargins(2, 5, 2, 0);
+        for (int i=0; i<lista.size(); i++) {
+            Cancion tema = lista.get(i);
+            fila = generateLinearCanciones(tema, tema.getArtista(), true);
+            //fila.setBackgroundResource(R.drawable.listabackground);
             fila.setLayoutParams(tableParams);
             mContieneCanciones.addView(fila);
         }
