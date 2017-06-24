@@ -106,7 +106,7 @@ public class CancionesFragment extends Fragment implements OnNightModeEvent{
         tableRows.add(fila);
         mContieneCanciones.addView(fila);
         byte i = 1;
-        fila.addView(generateLinearCanciones(listaCanciones.get(0),true));
+        //fila.addView(generateLinearCanciones(listaCanciones.get(0),true));
         for (Cancion tema: listaCanciones) {
             if (i < maxColumnas){
                 i++;
