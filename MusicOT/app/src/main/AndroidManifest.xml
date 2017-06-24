@@ -3,10 +3,12 @@
     package="com.example.usuario_local.music_ot">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
+        android:configChanges="orientation|keyboardHidden"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">

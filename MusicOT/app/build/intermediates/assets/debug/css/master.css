@@ -1,0 +1,89 @@
+#buscadorContainer {
+  margin: auto;
+  height: 3em;
+  background-color: #a4a597; }
+
+#encabezado {
+  background-color: brown;
+  color: white; }
+
+#buscadorBotones {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 2em; }
+
+#botonBuscar {
+  background-color: green;
+  vertical-align: middle;
+  border-style: solid;
+  border-color: black;
+  padding: 0;
+  height: 2em; }
+
+#inputBuscador {
+  vertical-align: middle;
+  height: 2em; }
+
+#backgroundEEH {
+  background-image: url("https://image.flaticon.com/icons/png/512/24/24501.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  opacity: 0.3;
+  -webkit-filter: blur(2px);
+  -moz-filter: blur(2px);
+  -o-filter: blur(2px);
+  -ms-filter: blur(2px);
+  filter: blur(2px);
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: -1; }
+
+.tituloOrder {
+  height: 0.5em; }
+
+#searchResultEncabezado {
+  background-color: rgba(61, 117, 225, 0.4);
+  padding-left: 5px;
+  padding-right: 4px; }
+
+.searchResUnit {
+  margin-top: 0.5em;
+  background-color: rgba(151, 194, 225, 0.5);
+  padding-left: 5px;
+  padding-right: 4px; }
+  .searchResUnit .col-titulo {
+    font-weight: bold; }
+
+.col-titulo {
+  border-right: 1px solid black;
+  vertical-align: middle;
+  height: 2.5em;
+  padding-left: 5px;
+  padding-right: 4px; }
+  .col-titulo a {
+    text-decoration: none;
+    color: black; }
+
+.col-artista {
+  border-right: 1px solid black;
+  vertical-align: middle;
+  height: 2.5em;
+  padding-left: 5px;
+  padding-right: 4px; }
+
+.col-duracion {
+  vertical-align: middle;
+  height: 2.5em;
+  padding-left: 5px;
+  padding-right: 4px; }
+
+#col-titulo-encabezado:active {
+  background-color: blue; }
+
+#col-artista-encabezado:active {
+  background-color: blue; }
+
+#col-duracion-encabezado:active {
+  background-color: blue; }

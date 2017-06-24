@@ -12,12 +12,12 @@
         "source": "C:\\Users\\J\\.android\\build-cache\\1307cab75b700edb9c535fd78d444b13a7ba05d1\\output\\res\\drawable-xhdpi\\abc_scrubber_control_to_pressed_mtrl_000.png"
     },
     {
-        "merged": "C:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_rep_pause.png",
-        "source": "C:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\src\\main\\res\\drawable-xhdpi\\ic_rep_pause.png"
-    },
-    {
         "merged": "C:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_rep_prevsong.png",
         "source": "C:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\src\\main\\res\\drawable-xhdpi\\ic_rep_prevsong.png"
+    },
+    {
+        "merged": "C:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_rep_pause.png",
+        "source": "C:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\src\\main\\res\\drawable-xhdpi\\ic_rep_pause.png"
     },
     {
         "merged": "C:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\abc_scrubber_control_off_mtrl_alpha.png",

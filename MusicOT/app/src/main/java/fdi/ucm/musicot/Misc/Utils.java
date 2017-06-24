@@ -21,6 +21,9 @@ public class Utils {
     public static Fragment currentFragment;
     public static Fragment currentMiniFragment;
 
+    public static boolean standNightmode;
+    public static boolean automaticNightmode;
+
     /**
      * Convierte el numero introducido a DP.
      * num = numero que se quiere pasar a DP

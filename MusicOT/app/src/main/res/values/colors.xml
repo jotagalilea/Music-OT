@@ -3,10 +3,29 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
     <color name="colorTituloTextRep">#111111</color>
+    <color name="colorTituloTextRep_noct">#f2f2f2</color>
+
     <color name="colorAlbumTextRep">#666666</color>
+    <color name="colorAlbumTextRep_noct">#d1d1d1</color>
+
     <color name="colorRepLandBackground">#afe1e1e1</color>
+    <color name="colorRepLandBackground_noct">#f51e1e1e</color>
+
     <color name="colorRepProgressBarLan">#afa9a9a9</color>
+    <color name="colorRepProgressBarLan_noct">#ea1e1e1e</color>
+
     <color name="colorIconMenu">#ffffff</color>
     <color name="colorIconMenu_noct">#ff000000</color>
+
+    <color name="backgroundColorFilas">#00ffff</color>
+    <color name="backgroundColorFilas_noct">#007979</color>
+
+    <color name="backgroundApp">#DADDEA</color>
+    <color name="backgroundApp_noct">#65676c</color>
+
+    <color name="textSearch">#ac0003</color>
+    <color name="textSearch_noct">#f20b12</color>
+
 </resources>

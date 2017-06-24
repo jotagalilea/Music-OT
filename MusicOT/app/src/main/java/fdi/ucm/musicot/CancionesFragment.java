@@ -32,14 +32,16 @@ import fdi.ucm.musicot.Modelo.Cancion;
 import fdi.ucm.musicot.Modelo.DAO;
 import fdi.ucm.musicot.Modelo.ListasReproduccion;
 import fdi.ucm.musicot.Modelo.RetenCanciones;
+import fdi.ucm.musicot.Observers.OnNightModeEvent;
 
 import static fdi.ucm.musicot.MenuActivity.dao;
 import static fdi.ucm.musicot.MenuActivity.menuActivity;
+import static fdi.ucm.musicot.MenuActivity.observer;
 
 /**
  * Fragmento encargado de la lista de canciones en disco
  */
-public class CancionesFragment extends Fragment {
+public class CancionesFragment extends Fragment implements OnNightModeEvent{
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -47,6 +49,12 @@ public class CancionesFragment extends Fragment {
     RetenCanciones retenCanciones;
     ArrayList<Cancion> listaCanciones;
     TableLayout mContieneCanciones;
+
+    public static ArrayList<LinearLayout> filasContenedor = new ArrayList<>();
+    public static ArrayList<TableRow> tableRows = new ArrayList<>();
+    public static ArrayList<TextView> tituloAlbum = new ArrayList<>();
+    public static ArrayList<TextView> tituloCancion = new ArrayList<>();
+    public static ArrayList<TextView> tituloArtist = new ArrayList<>();
 
     private String mParam1;
     private String mParam2;
@@ -94,9 +102,11 @@ public class CancionesFragment extends Fragment {
         tableParams.setMargins(2, 5, 2, 0);
 
         fila.setLayoutParams(tableParams);
+        fila.setBackgroundResource(R.drawable.listabackground);
+        tableRows.add(fila);
         mContieneCanciones.addView(fila);
         byte i = 1;
-        //fila.addView(generateLinearCanciones(listaCanciones.get(0)));
+        fila.addView(generateLinearCanciones(listaCanciones.get(0),true));
         for (Cancion tema: listaCanciones) {
             if (i < maxColumnas){
                 i++;
@@ -106,11 +116,16 @@ public class CancionesFragment extends Fragment {
                 fila = new TableRow(menuActivity);
                 fila.setBackgroundResource(R.drawable.listabackground);
                 fila.setLayoutParams(tableParams);
+                tableRows.add(fila);
                 mContieneCanciones.addView(fila);
             }
-            fila.addView(generateLinearCanciones(tema));
-            /*PopupMenu menu = MenuElemLista.generarMenu(fila);
-            menu.show();*/
+            fila.addView(generateLinearCanciones(tema, true));
+        }
+
+        if(observer.getNightMode()){
+            toNightMode();
+        }else{
+            toDayMode();
         }
 
         return view;
@@ -122,7 +137,7 @@ public class CancionesFragment extends Fragment {
      * @param cancion
      * @return
      */
-    public static LinearLayout generateLinearCanciones(final Cancion cancion){
+    public static LinearLayout generateLinearCanciones(final Cancion cancion,boolean almacenar){
 
         LinearLayout linearLayout = new LinearLayout(menuActivity);
         LinearLayout linearLayoutInternal = new LinearLayout(menuActivity);
@@ -158,10 +173,8 @@ public class CancionesFragment extends Fragment {
         textView.setLayoutParams( textParams );
 
         textView.setText(cancion.getTitulo());
-        //textView.setBackgroundColor(Color.RED);
         textView.setTextSize(17);
         textView.setTypeface(null, Typeface.BOLD);
-
 
         textView.setSingleLine(true);
         textView.setEllipsize(TextUtils.TruncateAt.END);
@@ -176,7 +189,6 @@ public class CancionesFragment extends Fragment {
         textViewAlbum.setLayoutParams( textParamsAlbum );
 
         textViewAlbum.setText(cancion.getAlbum().getTitulo());
-        //textViewAlbum.setBackgroundColor(Color.GREEN);
         textViewAlbum.setSingleLine(true);
         textViewAlbum.setEllipsize(TextUtils.TruncateAt.END);
         textViewAlbum.setTypeface(null, Typeface.ITALIC);
@@ -191,7 +203,7 @@ public class CancionesFragment extends Fragment {
         );
         textParamsArtist.gravity = Gravity.LEFT;
 
-        textViewArtist.setLayoutParams( textParamsArtist );
+        textViewArtist.setLayoutParams(textParamsArtist);
 
         textViewArtist.setText(cancion.getArtista().getNombre());
         textViewArtist.setSingleLine(true);
@@ -223,6 +235,25 @@ public class CancionesFragment extends Fragment {
 
         linearLayout.setBackgroundColor(Color.CYAN);
 
+        if(almacenar) {
+            filasContenedor.add(linearLayout);
+            tituloAlbum.add(textViewAlbum);
+            tituloCancion.add(textView);
+            tituloArtist.add(textViewArtist);
+        }
+
+        if(observer.getNightMode()){
+            linearLayout.setBackgroundColor(menuActivity.getResources().getColor(R.color.backgroundColorFilas_noct));
+            textView.setTextColor(menuActivity.getResources().getColor(R.color.colorTituloTextRep_noct));
+            textViewAlbum.setTextColor(menuActivity.getResources().getColor(R.color.colorAlbumTextRep_noct));
+            textViewArtist.setTextColor(menuActivity.getResources().getColor(R.color.colorAlbumTextRep_noct));
+        } else{
+            linearLayout.setBackgroundColor(menuActivity.getResources().getColor(R.color.backgroundColorFilas));
+            textView.setTextColor(menuActivity.getResources().getColor(R.color.colorTituloTextRep));
+            textViewAlbum.setTextColor(menuActivity.getResources().getColor(R.color.colorAlbumTextRep));
+            textViewArtist.setTextColor(menuActivity.getResources().getColor(R.color.colorAlbumTextRep));
+        }
+
         return linearLayout;
     }
 
@@ -234,6 +265,40 @@ public class CancionesFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         retenCanciones.setCancionesRetenidas(listaCanciones);
+    }
+
+    //// OnNightModeEvent
+
+    @Override
+    public void toNightMode() {
+        for (LinearLayout line: filasContenedor) {
+            line.setBackgroundColor(menuActivity.getResources().getColor(R.color.backgroundColorFilas_noct));
+        }
+        for (TextView titulo: tituloCancion) {
+            titulo.setTextColor(menuActivity.getResources().getColor(R.color.colorTituloTextRep_noct));
+        }
+        for (TextView album: tituloAlbum) {
+            album.setTextColor(menuActivity.getResources().getColor(R.color.colorAlbumTextRep_noct));
+        }
+        for (TextView artist: tituloArtist) {
+            artist.setTextColor(menuActivity.getResources().getColor(R.color.colorAlbumTextRep_noct));
+        }
+    }
+
+    @Override
+    public void toDayMode() {
+        for (LinearLayout line: filasContenedor) {
+            line.setBackgroundColor(menuActivity.getResources().getColor(R.color.backgroundColorFilas));
+        }
+        for (TextView titulo: tituloCancion) {
+            titulo.setTextColor(menuActivity.getResources().getColor(R.color.colorTituloTextRep));
+        }
+        for (TextView album: tituloAlbum) {
+            album.setTextColor(menuActivity.getResources().getColor(R.color.colorAlbumTextRep));
+        }
+        for (TextView artist: tituloArtist) {
+            artist.setTextColor(menuActivity.getResources().getColor(R.color.colorAlbumTextRep));
+        }
     }
 
     /////////////////////////

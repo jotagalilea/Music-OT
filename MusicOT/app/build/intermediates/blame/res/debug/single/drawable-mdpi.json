@@ -428,12 +428,21 @@
         "source": "C:\\Users\\J\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\src\\main\\res\\drawable-mdpi\\ic_menu_favoritos.png"
     },
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_list_focused_holo.9.png",
         "source": "C:\\Users\\Deekin\\.android\\build-cache\\fee569be024ac456fce7220e26c2cb22aea14bc9\\output\\res\\drawable-mdpi\\abc_list_focused_holo.9.png"
     },
     {
         "merged": "C:\\Users\\J\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_list_pressed_holo_dark.9.png",
         "source": "C:\\Users\\J\\.android\\build-cache\\1307cab75b700edb9c535fd78d444b13a7ba05d1\\output\\res\\drawable-mdpi\\abc_list_pressed_holo_dark.9.png"
+=======
+        "merged": "C:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_scrubber_control_to_pressed_mtrl_000.png",
+        "source": "C:\\Users\\Deekin\\.android\\build-cache\\fee569be024ac456fce7220e26c2cb22aea14bc9\\output\\res\\drawable-mdpi\\abc_scrubber_control_to_pressed_mtrl_000.png"
+>>>>>>> master
+    },
+    {
+        "merged": "C:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_list_focused_holo.9.png",
+        "source": "C:\\Users\\Deekin\\.android\\build-cache\\fee569be024ac456fce7220e26c2cb22aea14bc9\\output\\res\\drawable-mdpi\\abc_list_focused_holo.9.png"
     },
     {
         "merged": "C:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_scrubber_track_mtrl_alpha.9.png",

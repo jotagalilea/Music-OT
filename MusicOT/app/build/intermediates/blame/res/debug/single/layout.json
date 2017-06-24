@@ -236,6 +236,7 @@
         "source": "C:\\Users\\Deekin\\.android\\build-cache\\fee569be024ac456fce7220e26c2cb22aea14bc9\\output\\res\\layout\\abc_dialog_title_material.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\J\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_media_cancel_action.xml",
         "source": "C:\\Users\\J\\.android\\build-cache\\1307cab75b700edb9c535fd78d444b13a7ba05d1\\output\\res\\layout\\notification_media_cancel_action.xml"
     },
@@ -246,6 +247,14 @@
     {
         "merged": "C:\\Users\\J\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_item_subheader.xml",
         "source": "C:\\Users\\J\\.android\\build-cache\\75a815ce19273abce7ef334703f9b928beccdc6c\\output\\res\\layout\\design_navigation_item_subheader.xml"
+=======
+        "merged": "C:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_buscador_amazon.xml",
+        "source": "C:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\src\\main\\res\\layout\\fragment_buscador_amazon.xml"
+    },
+    {
+        "merged": "C:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_icon.xml",
+        "source": "C:\\Users\\Deekin\\.android\\build-cache\\fee569be024ac456fce7220e26c2cb22aea14bc9\\output\\res\\layout\\abc_list_menu_item_icon.xml"
+>>>>>>> master
     },
     {
         "merged": "C:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_content_include.xml",
