@@ -160,11 +160,8 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         transicionarMenuFragmento(R.id.mini_bot_reproductor, Utils.currentMiniFragment);
         cambiaFragment(R.id.fragment_contentmenu1, Utils.currentFragment);
 
-<<<<<<< HEAD
-=======
         observer.addOnNightModeEvent(this);
         menuActivity = this;
->>>>>>> master
     }
 
     @Override

@@ -155,7 +155,7 @@ public class ListaCancionesFragment extends Fragment implements OnNightModeEvent
         tableParams.setMargins(2, 5, 2, 0);
         for (int i=0; i<lista.size(); i++) {
             Cancion tema = lista.get(i);
-            fila = generateLinearCanciones(tema, tema.getArtista());
+            fila = generateLinearCanciones(tema, tema.getArtista(), true);
             //fila.setBackgroundResource(R.drawable.listabackground);
             fila.setLayoutParams(tableParams);
             mContieneCanciones.addView(fila);
