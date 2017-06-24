@@ -136,13 +136,19 @@ public class ListasReproduccionFragment extends Fragment {
     }
 
     private void crearVistaLista(String nombreLista) {
+        //ListaCancionesFragment fr = null;
         if(MenuActivity.fragmentListaCanciones.initiated())
             MenuActivity.fragmentListaCanciones.vaciarLista();
-        //else
-          //  MenuActivity.fragmentListaCanciones.iniciarContenedor();
+        else {
+            //fr = ListaCancionesFragment.newInstance();
+            //  MenuActivity.fragmentListaCanciones.iniciarContenedor();
+        }
 
-        MenuActivity.fragmentListaCanciones.rellenarLista(nombreLista);
+        //MenuActivity.menuActivity.cambiaFragment(R.id.fragment_contentmenu1, fr);
         MenuActivity.menuActivity.cambiaFragment(R.id.fragment_contentmenu1, MenuActivity.fragmentListaCanciones);
+        MenuActivity.observer.actualizaDatosCancion();
+        MenuActivity.fragmentListaCanciones.rellenarLista(nombreLista);
+        //MenuActivity.menuActivity.cambiaFragment(R.id.fragment_contentmenu1, MenuActivity.fragmentListaCanciones);
         MenuActivity.observer.actualizaDatosCancion();
     }
 

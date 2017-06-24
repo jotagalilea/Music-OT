@@ -277,6 +277,9 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_artista:{
                 cambiaFragment(R.id.fragment_contentmenu1, fragmentArtistas);
             }break;
+            case R.id.nav_listas:{
+                cambiaFragment(R.id.fragment_contentmenu1, fragmentListasReproduccion);
+            }break;
             case R.id.nav_salir:{
                 exitProcess();
             }break;
