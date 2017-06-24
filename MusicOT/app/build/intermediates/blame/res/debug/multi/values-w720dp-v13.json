@@ -22,5 +22,29 @@
                 }
             }
         ]
+    },
+    {
+        "outputFile": "C:\\Users\\Deekin\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-w720dp-v13\\values-w720dp-v13.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 76,
+                    "endOffset": 127
+                },
+                "from": {
+                    "file": "C:\\Users\\Deekin\\.android\\build-cache\\fee569be024ac456fce7220e26c2cb22aea14bc9\\output\\res\\values-w720dp\\values-w720dp.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 231,
+                        "endColumn": 76,
+                        "endOffset": 303
+                    }
+                }
+            }
+        ]
     }
 ]
