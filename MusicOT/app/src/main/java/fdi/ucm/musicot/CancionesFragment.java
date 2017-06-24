@@ -165,7 +165,6 @@ public class CancionesFragment extends Fragment implements OnNightModeEvent{
         textView.setLayoutParams( textParams );
 
         textView.setText(cancion.getTitulo());
-        //textView.setBackgroundColor(Color.RED);
         textView.setTextSize(17);
         textView.setTypeface(null, Typeface.BOLD);
 
@@ -182,7 +181,6 @@ public class CancionesFragment extends Fragment implements OnNightModeEvent{
         textViewAlbum.setLayoutParams( textParamsAlbum );
 
         textViewAlbum.setText(cancion.getAlbum().getTitulo());
-        //textViewAlbum.setBackgroundColor(Color.GREEN);
         textViewAlbum.setSingleLine(true);
         textViewAlbum.setEllipsize(TextUtils.TruncateAt.END);
         textViewAlbum.setTypeface(null, Typeface.ITALIC);

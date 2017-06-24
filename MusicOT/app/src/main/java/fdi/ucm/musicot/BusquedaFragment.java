@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import com.example.usuario_local.music_ot.R;
 
+import java.util.ArrayList;
+
 import fdi.ucm.musicot.Modelo.Album;
 import fdi.ucm.musicot.Modelo.Artista;
 import fdi.ucm.musicot.Observers.OnKeyEventHandler;
@@ -39,6 +41,9 @@ public class BusquedaFragment extends Fragment implements OnKeyEventHandler, OnN
     TextView textAlbum;
     TextView textArtista;
 
+    ArrayList<LinearLayout> elemsCanciones;
+    ArrayList<LinearLayout> elemsAlbum;
+    ArrayList<LinearLayout> elemsArtista;
     public BusquedaFragment() {
         // Required empty public constructor
     }
@@ -47,6 +52,7 @@ public class BusquedaFragment extends Fragment implements OnKeyEventHandler, OnN
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
         view = inflater.inflate(R.layout.fragment_busqueda, container, false);
 
         cancionResults = (LinearLayout) view.findViewById(R.id.fragment_search_song_result);
@@ -120,7 +126,7 @@ public class BusquedaFragment extends Fragment implements OnKeyEventHandler, OnN
                 if(cancion.getTitulo().toLowerCase().contains(this.searchInputText.getText().toString().toLowerCase())){
 
                     line = new LinearLayout(menuActivity);
-                    content = CancionesFragment.generateLinearCanciones(cancion, false);
+                    content = CancionesFragment.generateLinearCanciones(cancion, true);
                     content.setLayoutParams(contentParams);
                     line.setBackgroundResource(R.drawable.listabackground);
                     line.setLayoutParams(lineParams);
@@ -134,7 +140,7 @@ public class BusquedaFragment extends Fragment implements OnKeyEventHandler, OnN
                 if(album.getTitulo().toLowerCase().contains(this.searchInputText.getText().toString().toLowerCase())){
 
                     line = new LinearLayout(menuActivity);
-                    content = AlbumesFragment.generateLinearAlbumes(album, false);
+                    content = AlbumesFragment.generateLinearAlbumes(album, true);
                     content.setLayoutParams(contentParams);
                     line.setBackgroundResource(R.drawable.listabackground);
                     line.setLayoutParams(lineParams);
@@ -148,7 +154,7 @@ public class BusquedaFragment extends Fragment implements OnKeyEventHandler, OnN
                 if(artista.getNombre().toLowerCase().contains(this.searchInputText.getText().toString().toLowerCase())){
 
                     line = new LinearLayout(menuActivity);
-                    content = ArtistasFragment.generateLinearArtista(artista, false);
+                    content = ArtistasFragment.generateLinearArtista(artista, true);
                     content.setLayoutParams(contentParams);
                     line.setBackgroundResource(R.drawable.listabackground);
                     line.setLayoutParams(lineParams);
@@ -163,17 +169,21 @@ public class BusquedaFragment extends Fragment implements OnKeyEventHandler, OnN
 
     @Override
     public void toNightMode() {
-        searchInputText.setHintTextColor(menuActivity.getResources().getColor(R.color.colorTituloTextRep_noct));
-        textCancion.setTextColor(menuActivity.getResources().getColor(R.color.textSearch_noct));
-        textAlbum.setTextColor(menuActivity.getResources().getColor(R.color.textSearch_noct));
-        textArtista.setTextColor(menuActivity.getResources().getColor(R.color.textSearch_noct));
+        if(searchInputText != null) {
+            searchInputText.setHintTextColor(menuActivity.getResources().getColor(R.color.colorTituloTextRep_noct));
+            textCancion.setTextColor(menuActivity.getResources().getColor(R.color.textSearch_noct));
+            textAlbum.setTextColor(menuActivity.getResources().getColor(R.color.textSearch_noct));
+            textArtista.setTextColor(menuActivity.getResources().getColor(R.color.textSearch_noct));
+        }
     }
 
     @Override
     public void toDayMode() {
-        searchInputText.setHintTextColor(menuActivity.getResources().getColor(R.color.colorAlbumTextRep));
-        textCancion.setTextColor(menuActivity.getResources().getColor(R.color.textSearch));
-        textAlbum.setTextColor(menuActivity.getResources().getColor(R.color.textSearch));
-        textArtista.setTextColor(menuActivity.getResources().getColor(R.color.textSearch));
+        if(searchInputText != null) {
+            searchInputText.setHintTextColor(menuActivity.getResources().getColor(R.color.colorAlbumTextRep));
+            textCancion.setTextColor(menuActivity.getResources().getColor(R.color.textSearch));
+            textAlbum.setTextColor(menuActivity.getResources().getColor(R.color.textSearch));
+            textArtista.setTextColor(menuActivity.getResources().getColor(R.color.textSearch));
+        }
     }
 }

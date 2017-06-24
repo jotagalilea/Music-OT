@@ -82,7 +82,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
             fragmentBusqueda = new BusquedaFragment();
             //Observadores
             observer.addOnKeyEventHandler(fragmentBusqueda);
-            observer.addOnKeyEventHandler(fragmentBusqueda);
+            observer.addOnNightModeEvent(fragmentBusqueda);
         }
 
         if(fragmentListaCanciones == null) {
@@ -109,6 +109,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         if(fragmentAlbumes == null) {
             fragmentAlbumes = new AlbumesFragment();
             fragmentAlbumes.setRetainInstance(true);
+            //Observadores
             observer.addOnNightModeEvent(fragmentAlbumes);
         }
 
@@ -132,6 +133,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
             fragmentBuscadorAmazon = new BuscadorAmazonFragment();
             fragmentBuscadorAmazon.setRetainInstance(true);
             //Observadores
+            observer.addOnNightModeEvent(fragmentBuscadorAmazon);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

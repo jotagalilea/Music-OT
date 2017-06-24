@@ -361,7 +361,7 @@ public class ListaCancionesFragment extends Fragment implements OnNightModeEvent
         linearLayoutBackgroundColor.addView(linearLayoutInternal);
         linearLayout.addView(linearLayoutBackgroundColor);
 
-        //linearLayoutBackgroundColor.setBackgroundColor(Color.CYAN);
+        linearLayoutBackgroundColor.setBackgroundColor(Color.CYAN);
 
         if(almacenar) {
             tituloCancion.add(textView);
