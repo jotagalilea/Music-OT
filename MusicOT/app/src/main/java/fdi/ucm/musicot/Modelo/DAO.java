@@ -9,6 +9,8 @@ import android.media.MediaMetadataRetriever;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -168,12 +170,6 @@ public class DAO {
                         String[] args = new String[]{ Integer.toString(albumID) };
                         Cursor cAlbum = db.rawQuery("SELECT * FROM "+DBHelper.TABLA_ALBUMES+" WHERE id=?", args);
                         if (cAlbum.moveToFirst()){
-                            /////////////////////////////////////
-                            if ((titulo != null) && titulo.equalsIgnoreCase("lords resistance army"))
-                                System.out.println();
-                            if ((titulo != null) && titulo.equalsIgnoreCase("nostradamus"))
-                                System.out.println();
-                            /////////////////////////////////////
                             int idAlbum = cAlbum.getInt(0);
                             albumName = cAlbum.getString(1);
                             albumesEncontradosPorID.put(idAlbum, albumName);
@@ -189,14 +185,13 @@ public class DAO {
 
                     Bitmap caratula = null;
                     if (!albumExists) {
-                        File f = new File(cTemas.getString(4));
                         if (albumName != "Desconocido") {
-                            mmr.setDataSource(f.getAbsolutePath());
-                            imagen = mmr.getEmbeddedPicture();
-                            if (imagen != null)
-                                //caratula = BitmapFactory.decodeByteArray(imagen, 0, imagen.length);
-                            // PONER QUE COJA LA IMAGEN DE LA BD Y NO DEL ARCHIVO.
-                                caratula = Utils.decodeSampledBitmapFromByteArray(imagen, 400, 400);
+                            File archivoImagen = new File(menuActivity.getFilesDir() + albumName);
+                            FileInputStream fis = new FileInputStream(archivoImagen);
+                            imagen = new byte[(int) fis.getChannel().size()];
+                            fis.read(imagen);
+                            caratula = Utils.decodeSampledBitmapFromByteArray(imagen, 400, 400);
+                            fis.close();
                         }
                         alb = new Album(albumName, art, caratula);
                     }
@@ -300,13 +295,20 @@ public class DAO {
                 ContentValues insertAlb = new ContentValues();
                 insertAlb.put(DBHelper.getColstAlbumes()[1], alb.getTitulo());
                 insertAlb.put(DBHelper.getColstAlbumes()[2], idArtista);
+                // Preparación de la imagen:
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 Bitmap bm = alb.getCaratula();
-                // La compresión es lo que más tarda. ¿Hay otra forma de hacerlo?
                 bm.compress(Bitmap.CompressFormat.PNG, 100, baos);
-                /////////////////////////////////////////////////////////////////
                 byte[] b = baos.toByteArray();
-                insertAlb.put(DBHelper.getColstAlbumes()[3], b);
+                //insertAlb.put(DBHelper.getColstAlbumes()[3], b);
+
+                File archivoImagen = new File(menuActivity.getFilesDir() + alb.getTitulo());
+                FileOutputStream fos = new FileOutputStream(archivoImagen);
+                fos.write(b);
+                fos.close();
+                baos.close();
+                insertAlb.put(DBHelper.getColstAlbumes()[3], archivoImagen.getAbsolutePath());
+
                 idAlbum = (int) db.insert(DBHelper.TABLA_ALBUMES, null, insertAlb);
                 albumesEncontradosPorID.put(idAlbum, c.getAlbum().getTitulo());
                 albumesEncontradosPorNombre.put(c.getAlbum().getTitulo(), idAlbum);

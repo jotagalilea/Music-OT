@@ -37,7 +37,7 @@ public class DBHelper extends SQLiteOpenHelper{
             "id INTEGER, " +
             "titulo TEXT, " +
             "artista_id INTEGER, " +
-            "caratula , " +
+            "caratula TEXT, " +
             "PRIMARY KEY (id), " +
             "FOREIGN KEY (artista_id) REFERENCES t_artistas (id))";
     private static final String borrarTablaAlbumes = "DROP TABLE IF EXISTS t_albumes";
