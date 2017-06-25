@@ -1,0 +1,108 @@
+body{
+  background-color: #696a5c;
+}
+
+#buscadorContainer {
+  margin: auto;
+  height: 3em;
+  background-color: #a4a597; }
+
+#encabezado {
+  background-color: brown; }
+
+#buscadorBotones {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 2em; }
+
+#botonBuscar {
+  background-color: green;
+  vertical-align: middle;
+  border-style: solid;
+  border-color: black;
+  padding: 0;
+  height: 2em; }
+
+#inputBuscador {
+  vertical-align: middle;
+  height: 2em;
+  }
+
+#backgroundEEH {
+  background-image: url("https://image.flaticon.com/icons/png/512/24/24501.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  opacity: 0.3;
+  -webkit-filter: blur(2px);
+  -moz-filter: blur(2px);
+  -o-filter: blur(2px);
+  -ms-filter: blur(2px);
+  filter: blur(2px);
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: -1; }
+
+.tituloOrder {
+  height: 0.5em; }
+
+#searchResultEncabezado {
+  background-color: rgba(0, 59, 149, 0.5);
+  padding-left: 5px;
+  padding-right: 4px; }
+
+.searchResUnit {
+  color: white;
+  margin-top: 0.5em;
+  background-color: rgba(57, 60, 106, 0.5);
+  padding-left: 5px;
+  padding-right: 4px;
+  color: white;}
+  .searchResUnit .col-titulo {
+    color: white;
+    font-weight: bold; }
+
+.col-titulo {
+  color: white;
+  border-right: 1px solid white;
+  vertical-align: middle;
+  height: 2.5em;
+  padding-left: 5px;
+  padding-right: 4px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;}
+  .col-titulo a {
+    text-decoration: none;
+    color: white; }
+
+.col-artista {
+  color: white;
+  border-right: 1px solid white;
+  vertical-align: middle;
+  height: 2.5em;
+  padding-left: 5px;
+  padding-right: 4px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;}
+
+.col-duracion {
+  color: white;
+  vertical-align: middle;
+  height: 2.5em;
+  padding-left: 5px;
+  padding-right: 4px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden; }
+
+#col-titulo-encabezado:active {
+  background-color: blue; }
+
+#col-artista-encabezado:active {
+  background-color: blue; }
+
+#col-duracion-encabezado:active {
+  background-color: blue; }

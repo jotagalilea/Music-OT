@@ -1,9 +1,9 @@
 package fdi.ucm.musicot;
 
+import android.app.Fragment;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,12 +14,15 @@ import android.webkit.WebViewClient;
 
 import com.example.usuario_local.music_ot.R;
 
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+import java.io.IOException;
 
 import fdi.ucm.musicot.Observers.OnNightModeEvent;
 
@@ -40,14 +43,12 @@ public class BuscadorAmazonFragment extends Fragment implements OnNightModeEvent
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_buscador_amazon, container, false);
 
-        //if(wb == null) {
-            wb = (WebView) view.findViewById(R.id.webView_amazon);
-            wb.getSettings().setJavaScriptEnabled(true);
-            wb.setWebViewClient(new WebViewClient());
-            wb.loadUrl("file:///android_asset/searchresults.html");
-            wb.addJavascriptInterface(new WebViewBuyer(), "JSInterface");
-            checkModoNoct(menuActivity.observer.getNightMode());
-        //}
+        wb = (WebView) view.findViewById(R.id.webView_amazon);
+        wb.getSettings().setJavaScriptEnabled(true);
+        wb.setWebViewClient(new WebViewClient());
+        wb.loadUrl("file:///android_asset/searchresults.html");
+        wb.addJavascriptInterface(new WebViewBuyer(), "JSInterface");
+        checkModoNoct(menuActivity.observer.getNightMode());
 
         return view;
     }
@@ -69,29 +70,49 @@ public class BuscadorAmazonFragment extends Fragment implements OnNightModeEvent
         }
 
         @JavascriptInterface
-        public String getWebAmazon(String key){
-            String str = null;
-            try {
-                URL url =
-                        new URL("https://www.amazon.es/s/ref=nb_sb_noss_1?__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&url=search-alias%3Ddigital-music&field-keywords="+key);
-                URLConnection con = url.openConnection();
-                Pattern p = Pattern.compile("text/html;\\s+charset=([^\\s]+)\\s*");
-                Matcher m = p.matcher(con.getContentType());
-
-                String charset = m.matches() ? m.group(1) : "ISO-8859-1";
-                Reader r = new InputStreamReader(con.getInputStream(), charset);
-                StringBuilder buf = new StringBuilder();
-                while (true) {
-                    int ch = r.read();
-                    if (ch < 0)
-                        break;
-                    buf.append((char) ch);
-                }
-                str = buf.toString();
-            }catch (Exception e){}
-
-            return str;
+        public boolean getGetModoNoct(){
+            return menuActivity.observer.getNightMode();
         }
+
+        @JavascriptInterface
+        public String getWebAmazon(String key){
+
+            JSONObject res = new JSONObject();
+            JSONArray ja = new JSONArray();
+            int i = 0;
+
+            Document doc = null;
+            try {
+                //doc = Jsoup.connect("http://en.wikipedia.org/").get();
+                doc = Jsoup.connect("https://www.amazon.es/s/ref=nb_sb_noss_1?__mk_es_ES=ÅMÅŽÕÑ&url=search-alias%3Ddigital-music&field-keywords="+key).get();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            //Elements tracks = doc.select("#mp-itn b a");
+            Elements tracks = doc.select(".s-music-track-row");
+            try {
+
+                for (Element elem: tracks) {
+                    JSONObject jo = new JSONObject();
+                    jo.put("titulo", elem.select("td.s-music-track-title > div > a").first().text());
+                    jo.put("link", elem.select("td.s-music-track-title > div > a").first().attr("href"));
+                    jo.put("duracion", elem.select("td.s-music-track-time > div > span").first().text());
+                    jo.put("artista", elem.select("td.s-music-track-artist > div > span > a").first().text());
+
+                    ja.put(jo);
+
+                    i++;
+                }
+
+                res.put("elem", ja);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            System.out.println(res.toString());
+            return res.toString();
+        }
+
     }
 
     //OnNightModeEvent
@@ -99,14 +120,14 @@ public class BuscadorAmazonFragment extends Fragment implements OnNightModeEvent
     @Override
     public void toNightMode() {
         if(wb != null) {
-            checkModoNoct(true);
+            checkModoNoct(false);
         }
     }
 
     @Override
     public void toDayMode() {
         if(wb != null) {
-            checkModoNoct(false);
+            checkModoNoct(true);
         }
     }
 }

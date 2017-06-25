@@ -1,8 +1,5 @@
 
-const listResut = [
-                ["Me enamoré","Shakira", "3:45", "https://www.amazon.es/Me-Enamor%C3%A9/dp/B06Y1DRZBC/ref=sr_1_1?s=dmusic&ie=UTF8&qid=1497312478&sr=1-1&keywords=shakira"],
-                ["40:1","Sabatón", "1:20", "https://www.amazon.es/40-1/dp/B00950RHUM/ref=sr_1_5?s=dmusic&ie=UTF8&qid=1497312356&sr=1-5&keywords=40%3A1"],
-              ];
+var listResut = [];
 
 var organizadoTitulo = 0;
 var organizadoArtista = 0;
@@ -32,6 +29,8 @@ $( document ).ready(function() {
       direccionArrow("duracion", organizadoDuracion);
     });
 
+    checkModoNocturno(window.JSInterface.getGetModoNoct());
+
 });
 
 function limpiarArrows(){
@@ -52,14 +51,18 @@ function direccionArrow(tipo, direccion){
 
 function onBotonBuscar(){
 
-  /*var listaRes = listResut.slice();
-  var list = "";
+  if($("#inputBuscador").val() != ""){
+    this.listResut = extractArrayResult().elem;
 
-  list = generarElementoLista(listaRes);
+    $("#listaResultados").html(generarElementoLista(this.listResut));
+  }else{
+    $("#listaResultados").html("¡El campo de búsqueda está vacio!");
+  }
+}
 
-  $("#listaResultados").html(list);*/
+function extractArrayResult(){
 
-  $("#listaResultados").html(window.JSInterface.getWebAmazon($("#inputBuscador").val()));
+  return JSON.parse(window.JSInterface.getWebAmazon($("#inputBuscador").val()));
 }
 
 function generarElementoLista(lista){
@@ -70,10 +73,10 @@ function generarElementoLista(lista){
 
     listAux += '<div class="col-xs-12 searchResUnit">';
     listAux += '<div class="col-xs-5 col-titulo"><a onClick="abrirLinkCancion(';
-    listAux += "'"+lista[i][3]+"'";
-    listAux += ')">'+lista[i][0]+'</a></div>';
-    listAux += '<div class="col-xs-4 col-artista">'+lista[i][1]+'</div>';
-    listAux += '<div class="col-xs-3 col-duracion">'+lista[i][2]+'</div>';
+    listAux += "'"+lista[i]["link"]+"'";
+    listAux += ')">'+lista[i]["titulo"]+'</a></div>';
+    listAux += '<div class="col-xs-4 col-artista">'+lista[i]["artista"]+'</div>';
+    listAux += '<div class="col-xs-3 col-duracion">'+lista[i]["duracion"]+'</div>';
     listAux += '</div>';
   }
   return listAux;
@@ -84,13 +87,13 @@ function abrirLinkCancion(link){
 }
 
 function onOrderTitulo(){
-    let a = listResut.slice();
+    let a = this.listResut.slice();
     if(this.organizadoTitulo == 0 || this.organizadoTitulo == 2){
       a.sort(
         function(a,b){
-          if (a[0] < b[0])
+          if (a["titulo"] < b["titulo"])
             return -1;
-          if (a[0] > b[0])
+          if (a["titulo"] > b["titulo"])
             return 1;
           return 0;
         });
@@ -99,9 +102,9 @@ function onOrderTitulo(){
     } else{
         a.sort(
           function(a,b){
-            if (a[0] > b[0])
+            if (a["titulo"] > b["titulo"])
               return -1;
-            if (a[0] < b[0])
+            if (a["titulo"] < b["titulo"])
               return 1;
             return 0;
           });
@@ -115,9 +118,9 @@ function onOrderArtista(){
     if(this.organizadoArtista == 0 || this.organizadoArtista == 2){
       a.sort(
         function(a,b){
-          if (a[1] < b[1])
+          if (a["artista"] < b["artista"])
             return -1;
-          if (a[1] > b[1])
+          if (a["artista"] > b["artista"])
             return 1;
           return 0;
         });
@@ -126,9 +129,9 @@ function onOrderArtista(){
     } else{
         a.sort(
           function(a,b){
-            if (a[1] > b[1])
+            if (a["artista"] > b["artista"])
               return -1;
-            if (a[1] < b[1])
+            if (a["artista"] < b["artista"])
               return 1;
             return 0;
           });
@@ -142,9 +145,9 @@ function onOrderDuracion(){
     if(this.organizadoDuracion == 0 || this.organizadoDuracion == 2){
       a.sort(
         function(a,b){
-          if (a[2] < b[2])
+          if (a["duracion"] < b["duracion"])
             return -1;
-          if (a[2] > b[2])
+          if (a["duracion"] > b["duracion"])
             return 1;
           return 0;
         });
@@ -153,9 +156,9 @@ function onOrderDuracion(){
     } else{
         a.sort(
           function(a,b){
-            if (a[2] > b[2])
+            if (a["duracion"] > b["duracion"])
               return -1;
-            if (a[2] < b[2])
+            if (a["duracion"] < b["duracion"])
               return 1;
             return 0;
           });
@@ -165,11 +168,9 @@ function onOrderDuracion(){
   }
 
   function checkModoNocturno(modo){
-    if (modo) {
-      $("#listaResultados").html("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+    if (!modo) {
+      $('link[id="cssSelect"]').attr('href','./css/master.css');
     }else {
-      $("#listaResultados").html("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
+      $('link[id="cssSelect"]').attr('href','./css/master_noct.css');
     }
-
-
   }

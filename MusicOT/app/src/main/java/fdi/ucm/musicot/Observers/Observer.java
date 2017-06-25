@@ -2,8 +2,6 @@ package fdi.ucm.musicot.Observers;
 
 import java.util.ArrayList;
 
-import static fdi.ucm.musicot.MenuActivity.menuActivity;
-
 /**
  * Created by Javier on 01/06/2017.
  */
@@ -75,7 +73,6 @@ public class Observer {
 
     ////OnNightModeEvent
 
-    //TODO Sacar esta opción de la base de datos
     // DAO.configuracion.onNightMode
     public boolean onNightMode = false;
 

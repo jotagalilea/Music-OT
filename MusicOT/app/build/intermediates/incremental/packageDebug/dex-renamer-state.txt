@@ -1,4 +1,4 @@
-#Sat Jun 24 19:30:13 CEST 2017
+#Sun Jun 25 17:42:34 CEST 2017
 base.0=C\:\\Users\\J\\Documents\\GitHub\\Proyecto-PAD\\MusicOT\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_c8f879f0974e74494295d48a73bac1c5eeed399a
 renamed.1=classes.dex
 renamed.0=classes2.dex
